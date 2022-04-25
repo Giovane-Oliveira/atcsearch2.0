@@ -47,6 +47,18 @@ class Home extends StatelessWidget {
       ),
       actions: [
 
+        Align(
+          alignment: Alignment.center,
+          child: Text(
+            "Sair",
+            textScaleFactor: 1.5,
+            style: TextStyle(
+              fontSize: 12.0,
+              color: Colors.white,
+            ),
+          ),
+        ),
+
         IconButton(icon: Icon(Icons.logout), onPressed: () {
 
           showDialog<String>(
