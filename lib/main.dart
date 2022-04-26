@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:atcsearch/Home.dart';
 import 'package:atcsearch/Login.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Splash Screen',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.grey,
       ),
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
@@ -32,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  double value = 0;
   @override
   void initState() {
     super.initState();
@@ -45,9 +47,9 @@ class _MyHomePageState extends State<MyHomePage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? s = prefs.getBool('boolValue');
 
-    if (s == true) {
 
-      Timer(
+       if (s == true) {
+    Timer(
           Duration(seconds: 3),
               () => Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => Home())));
@@ -60,10 +62,25 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
         color: Colors.white,
-        child: Image.asset("images/atclogo.jpg"));
+        child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+
+            Image.asset("images/atclogo.jpg"),
+
+
+
+        ])
+    );
+
+
+
   }
 }
