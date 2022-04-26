@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:atcsearch/Login.dart';
 import 'package:atcsearch/Quality2/Degradation.dart';
 import 'package:atcsearch/Quality2/NicotineAndSugar.dart';
 import 'package:atcsearch/Quality2/Moinsture.dart';
@@ -22,6 +23,7 @@ import 'package:fluttericon/rpg_awesome_icons.dart';
 import 'package:fluttericon/typicons_icons.dart';
 import 'package:fluttericon/web_symbols_icons.dart';
 import 'package:fluttericon/zocial_icons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 //https://www.fluttericon.com/
 
 class Quality2 extends StatefulWidget {
@@ -35,6 +37,7 @@ class _Quality2State extends State<Quality2> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF040404),
+        automaticallyImplyLeading: false,
         title: Text(
           'Quality2',
           textAlign: TextAlign.center,
@@ -44,7 +47,55 @@ class _Quality2State extends State<Quality2> {
             fontSize: 22,
           ),
         ),
-        actions: [],
+        actions: [
+
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              "Sair",
+              textScaleFactor: 1.5,
+              style: TextStyle(
+                fontSize: 12.0,
+                color: Colors.white,
+              ),
+            ),
+          ),
+
+          IconButton(icon: Icon(Icons.logout, color: Colors.white,), onPressed: () {
+
+            showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                title: const Text('Aviso!'),
+                content: const Text('Deseja mesmo sair?'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                    child: const Text('Cancel'),
+                  ),
+                  TextButton(
+
+                    onPressed: () async {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      prefs.setBool('boolValue', false);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => Login(),
+                        ),
+
+                      );
+
+                    },
+                    child: const Text('Continue'),
+                  ),
+                ],
+              ),
+            );
+
+          }),
+
+        ],
         centerTitle: false,
         elevation: 2,
       ),

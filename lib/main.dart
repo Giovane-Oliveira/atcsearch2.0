@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:atcsearch/Home.dart';
 import 'package:atcsearch/Login.dart';
+import 'package:atcsearch/Quality2/Quality2.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -48,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Timer(
           Duration(seconds: 3),
               () => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => Home())));
+              MaterialPageRoute(builder: (context) => Quality2())));
     }else{
       Timer(
           Duration(seconds: 3),
