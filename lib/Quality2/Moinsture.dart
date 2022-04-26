@@ -294,6 +294,43 @@ class _MoinstureState extends State<Moinsture> {
                               snapshot.data!.length,
                               (index) {
                                 var emp = snapshot.data![index];
+                                if(emp.sampledate.toString() == "null"){
+                                  emp.sampledate = "0";
+
+                                }else if(emp.shift.toString() == "null"){
+                                  emp.shift = 0;
+
+                                }else if(emp.sampletime.toString() == "null"){
+                                  emp.sampletime = "0";
+
+                                }else if(emp.brabender.toString() == "null"){
+                                  emp.brabender = 0;
+
+                                }else if(emp.oven.toString() == "null"){
+                                  emp.oven = 0;
+
+                                }else if(emp.coolerr.toString() == "null"){
+                                  emp.coolerr = 0;
+
+                                }else if(emp.coolerl.toString() == "null"){
+                                  emp.coolerl = "0";
+
+                                }else if(emp.blending.toString() == "null"){
+                                  emp.blending = "0";
+
+                                }else if(emp.bthresh.toString() == "null"){
+                                  emp.bthresh = 0;
+
+                                }else if(emp.stem.toString() == "null"){
+                                  emp.stem = 0;
+
+                                }else if(emp.tips.toString() == "null"){
+                                  emp.tips = 0;
+
+                                }else if(emp.ptemp.toString() == "null"){
+                                  emp.ptemp = 0;
+
+                                }
                                 return DataRow(cells: [
                                   /* DataCell(
                                 Text(emp.cod_grade.toString()),

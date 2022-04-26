@@ -283,6 +283,56 @@ class _DegradationState extends State<Degradation> {
                               snapshot.data!.length,
                               (index) {
                                 var emp = snapshot.data![index];
+
+                                if(emp.ps4.toString() == "null"){
+                                  emp.ps4 = "0";
+
+                                }else if(emp.sampledate.toString() == "null"){
+                                  emp.sampledate = "0";
+
+                                }else if(emp.sampletime.toString() == "null"){
+                                  emp.sampletime = "0";
+
+                                }else if(emp.shift.toString() == "null"){
+                                  emp.shift = 0;
+
+                                }else if(emp.box.toString() == "null"){
+                                  emp.box = 0;
+
+                                }else if(emp.d1x1.toString() == "null"){
+                                  emp.d1x1 = "0";
+
+                                }else if(emp.d12x12.toString() == "null"){
+                                  emp.d12x12 = "0";
+
+                                }else if(emp.total12.toString() == "null"){
+                                  emp.total12 = "0";
+
+                                }else if(emp.d14x14.toString() == "null"){
+                                  emp.d14x14 = "0";
+
+                                }else if(emp.total14.toString() == "null"){
+                                  emp.total14 = "0";
+
+                                }else if(emp.pan.toString() == "null"){
+                                  emp.pan = "0";
+
+                                }else if(emp.s332.toString() == "null"){
+                                  emp.s332 = "0";
+
+                                }else if(emp.s7.toString() == "null"){
+                                  emp.s7 = "0";
+
+                                }else if(emp.s12.toString() == "null"){
+                                  emp.s12 = "0";
+
+                                }else if(emp.fiberspan.toString() == "null"){
+                                  emp.fiberspan = "0";
+
+                                }else if(emp.totalstems.toString() == "null"){
+                                  emp.totalstems = "0";
+
+                                }
                                 return DataRow(cells: [
                                   /* DataCell(
                                 Text(emp.cod_grade.toString()),
@@ -300,32 +350,33 @@ class _DegradationState extends State<Degradation> {
                                 Text(emp.box.toString()),
                                   ),
                                   DataCell(
-                                    Text(emp.d1x1.toString().substring(0,4)),
+                                    Text(double.parse(emp.d1x1.toString()).toStringAsFixed(2)),
                                   ),
                                     DataCell(
-                                      Text(emp.d12x12.toString().substring(0,4)),
+                                      Text(double.parse(emp.d12x12.toString()).toStringAsFixed(2)),
                                   ),  DataCell(
-                                    Text(emp.total12.toString().substring(0,4)),
+                                    Text(double.parse(emp.total12.toString()).toStringAsFixed(2)),
                                   ), DataCell(
-                                    Text(emp.d14x14.toString().substring(0,4)),
+                                    Text(double.parse(emp.d14x14.toString()).toStringAsFixed(2)),
                                   ), DataCell(
-                                    Text(emp.total14.toString().substring(0,4)),
+                                    Text(double.parse(emp.total14.toString()).toStringAsFixed(2)),
                                   ), DataCell(
-                                    Text(emp.d18x18.toString().substring(0,4)),
+                                    Text(double.parse(emp.d18x18.toString()).toStringAsFixed(2)),
                                   ), DataCell(
-                                    Text(emp.pan.toString().substring(0,4)),
+                                    Text(double.parse(emp.pan.toString()).toStringAsFixed(2)),
                                   ), DataCell(
-                                    Text(emp.s332.toString().substring(0,4)),
+                                    Text(double.parse(emp.s332.toString()).toStringAsFixed(2)),
                                   ), DataCell(
-                                    Text(emp.s7.toString().substring(0,4)),
+                                    Text(double.parse(emp.s7.toString()).toStringAsFixed(2)),
                                   ), DataCell(
-                                    Text(emp.s12.toString().substring(0,4)),
+                                    Text(double.parse(emp.s12.toString()).toStringAsFixed(2)),
                                   ), DataCell(
-                                    Text(emp.fiberspan.toString().substring(0,4)),
+                                    Text(double.parse(emp.fiberspan.toString()).toStringAsFixed(2)),
                                   ), DataCell(
-                                    Text(emp.totalstems.toString().substring(0,4)),
-                                  ), DataCell(
-                                    Text(emp.ps4.toString().substring(0,4)),
+                                    Text(double.parse(emp.totalstems.toString()).toStringAsFixed(2)),
+                                  ),
+                                  DataCell(
+                                      Text(double.parse(emp.ps4.toString()).toStringAsFixed(2)),
                                   ), /*DataCell(
                                     Text(emp.out_crop.toString()),
                                   ), DataCell(

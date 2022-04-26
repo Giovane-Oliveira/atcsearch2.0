@@ -256,6 +256,35 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                               snapshot.data!.length,
                               (index) {
                                 var emp = snapshot.data![index];
+                                if(emp.data_processo.toString() == "null"){
+                                  emp.data_processo = "0";
+
+                                }else if(emp.box_inicial.toString() == "null"){
+                                  emp.box_inicial = 0;
+
+                                }else if(emp.box_final.toString() == "null"){
+                                  emp.box_final = 0;
+
+                                }else if(emp.umidade.toString() == "null"){
+                                  emp.umidade = "0";
+
+                                }else if(emp.peso_amostra.toString() == "null"){
+                                  emp.peso_amostra = "0";
+
+                                }else if(emp.leitura_nicotina.toString() == "null"){
+                                  emp.leitura_nicotina = "0";
+
+                                }else if(emp.leitura_acucar.toString() == "null"){
+                                  emp.leitura_acucar = "0";
+
+                                }else if(emp.result_nicotina.toString() == "null"){
+                                  emp.result_nicotina = "0";
+
+                                }else if(emp.result_acucar.toString() == "null"){
+                                  emp.result_acucar = "0";
+
+                                }
+
                                 return DataRow(cells: [
                                   /* DataCell(
                                 Text(emp.cod_grade.toString()),
