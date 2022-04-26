@@ -64,6 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Container(
         color: Colors.white,
-        child: FlutterLogo(size: MediaQuery.of(context).size.height));
+        child: Image.asset("images/atclogo.jpg"));
   }
 }
