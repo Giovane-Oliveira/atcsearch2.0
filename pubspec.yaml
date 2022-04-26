@@ -39,6 +39,8 @@ dependencies:
   intl: ^0.17.0
   fluttericon: ^2.0.0
   shared_preferences: ^2.0.13
+  splashscreen: ^1.2.0
+  get: ^4.6.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

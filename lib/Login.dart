@@ -37,26 +37,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   }
 
-  //continuação
-  _verificalogado() async {
-    //_logado();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool? s = prefs.getBool('boolValue');
-
-    if(s == true){
-
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => Home(),
-        ),
-
-      );
-
-    }
-
-  }
-
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -64,20 +44,21 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     if (nameController.text.isEmpty || passwordController.text.isEmpty) {
       showDialog<String>(
         context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('Aviso!'),
-          content: const Text('Informe usuário e senha'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.pop(context, 'Cancel'),
-              child: const Text('Cancel'),
+        builder: (BuildContext context) =>
+            AlertDialog(
+              title: const Text('Aviso!'),
+              content: const Text('Informe usuário e senha'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'Cancel'),
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'OK'),
+                  child: const Text('OK'),
+                ),
+              ],
             ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, 'OK'),
-              child: const Text('OK'),
-            ),
-          ],
-        ),
       );
     } else {
       String url = "http://192.168.200.11/readpass.php?tipo=login&usuario=" +
@@ -89,36 +70,36 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       Map<String, dynamic> retorno = json.decode(response.body);
 
 
-      if (retorno["nome"].toString().contains(nameController.text.toUpperCase()) &&
-          retorno["senha"].toString().contains(passwordController.text.toUpperCase())) {
-
-       _logado();
+      if (retorno["nome"].toString().contains(
+          nameController.text.toUpperCase()) &&
+          retorno["senha"].toString().contains(
+              passwordController.text.toUpperCase())) {
+        _logado();
         Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (_) => Home(),
-            ),
+          context,
+          MaterialPageRoute(
+            builder: (_) => Home(),
+          ),
 
         );
-
-
       } else if (retorno["nome"].toString() == "null") {
         showDialog<String>(
           context: context,
-          builder: (BuildContext context) => AlertDialog(
-            title: const Text('Aviso!'),
-            content: const Text('Usuário ou senha incorretos'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: const Text('Cancel'),
+          builder: (BuildContext context) =>
+              AlertDialog(
+                title: const Text('Aviso!'),
+                content: const Text('Usuário ou senha incorretos'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                    child: const Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'OK'),
+                    child: const Text('OK'),
+                  ),
+                ],
               ),
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'OK'),
-                child: const Text('OK'),
-              ),
-            ],
-          ),
         );
       }
     }
@@ -126,7 +107,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    _verificalogado();
     return Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(
@@ -151,6 +131,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
+                obscureText: true,
                 controller: passwordController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -168,19 +149,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   border: OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black, width: 0.50),
-
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black),
                   ),
-
                   prefixIcon: Icon(Icons.key),
-
                   labelText: 'Senha',
                     labelStyle: TextStyle(
                         color:  Colors.black
                     ),
-
               ),
                       cursorColor: Colors.black,
             ),
