@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
-
+import 'package:data_table_2/data_table_2.dart';
 import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
 
 class Degradation extends StatefulWidget {
@@ -210,17 +210,10 @@ class _DegradationState extends State<Degradation> {
           ],
         ),
         Expanded(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            //https://stackoverflow.com/questions/55299332/make-datatable-scroll-bidirectional-in-flutter
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Column(children: [
-                FutureBuilder<List<ModelDegradation>>(
-                  initialData: const <ModelDegradation>[],
-                  future: _myData,
-                  builder: (context, snapshot)
-
+        child: FutureBuilder<List<ModelDegradation>>(
+    initialData: const <ModelDegradation>[],
+    future: _myData,
+    builder: (context, snapshot)
                       /*Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 child:
@@ -242,26 +235,29 @@ class _DegradationState extends State<Degradation> {
                         } else {
                           print("lista: carregou!! ");
 
-                          return DataTable(
+                          return DataTable2(
+                            columnSpacing: 0,
+                            horizontalMargin: 0,
+                            minWidth: 1300,
                             columns: const [
                               // DataColumn(label: Text('COD_GRADE')),
-                              DataColumn(label: Text('Date')),
-                              DataColumn(label: Text('Time')),
-                              DataColumn(label: Text('Shift')),
-                              DataColumn(label: Text('Case')),
-                              DataColumn(label: Text('1x1')),
-                              DataColumn(label: Text('1/2 x 1/2')),
-                              DataColumn(label: Text('Total 1/2')),
-                              DataColumn(label: Text('1/4 x 1/4')),
-                              DataColumn(label: Text('Total 1/4')),
-                              DataColumn(label: Text('1/8 x 1/8')),
-                              DataColumn(label: Text('PAN')),
-                              DataColumn(label: Text('3/32')),
-                              DataColumn(label: Text('#7')),
-                              DataColumn(label: Text('#12')),
-                              DataColumn(label: Text('Pan (Fibers)')),
-                              DataColumn(label: Text('Total Stem')),
-                              DataColumn(label: Text('%>4')),
+                              DataColumn2(label: Text('Date', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('Time', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('Shift', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('Case', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('1x1', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('1/2 x 1/2', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('Total 1/2', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('1/4 x 1/4', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('Total 1/4', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('1/8 x 1/8', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('PAN', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('3/32', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('#7', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('#12', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('Pan (Fibers)', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('Total Stem', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('%>4', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
                              /* DataColumn(label: Text('Out_crop')),
                               DataColumn(label: Text('Des_grade')),
                               DataColumn(label: Text('Method')),
@@ -447,14 +443,11 @@ class _DegradationState extends State<Degradation> {
                     return Container();
                   },
                 ),
-              ]),
-            ), //https://flutterhq.com/questions-and-answers/1284/how-to-create-rows-data-in-to-datatable-using-from-json-model-json-api-respons-flutter
-          ),
-        ),
+              ),
+            ]),
+    ); //https://flutterhq.com/questions-and-answers/1284/how-to-create-rows-data-in-to-datatable-using-from-json-model-json-api-respons-flutter
 
-        /**/
-      ]),
-    );
+
   }
 }
 
