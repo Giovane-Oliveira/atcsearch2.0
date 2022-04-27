@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
+import 'package:data_table_2/data_table_2.dart';
 
 import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
 
@@ -230,7 +231,6 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                           print("lista: Erro ao carregar $snapshot");
                         } else {
                           print("lista: carregou!! ");
-
                           return DataTable(
                             columns: const [
                               // DataColumn(label: Text('COD_GRADE')),

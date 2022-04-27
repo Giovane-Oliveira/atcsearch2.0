@@ -1,10 +1,11 @@
 import 'dart:ui';
-
 import 'package:atcsearch/Login.dart';
 import 'package:atcsearch/Quality2/Degradation.dart';
-import 'package:atcsearch/Quality2/NicotineAndSugar.dart';
 import 'package:atcsearch/Quality2/Moinsture.dart';
+import 'package:atcsearch/Quality2/NicotineAndSugar.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:fluttericon/brandico_icons.dart';
 import 'package:fluttericon/elusive_icons.dart';
 import 'package:fluttericon/entypo_icons.dart';
@@ -23,84 +24,99 @@ import 'package:fluttericon/rpg_awesome_icons.dart';
 import 'package:fluttericon/typicons_icons.dart';
 import 'package:fluttericon/web_symbols_icons.dart';
 import 'package:fluttericon/zocial_icons.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 //https://www.fluttericon.com/
 
-class Quality2 extends StatefulWidget {
-  @override
-  _Quality2State createState() => _Quality2State();
-}
+class Quality2 extends StatelessWidget {
+  static const String _title = 'ATC Search';
 
-class _Quality2State extends State<Quality2> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF040404),
-        automaticallyImplyLeading: false,
-        title: Text(
-          'Quality2',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            color: Colors.white,
-            fontSize: 22,
-          ),
-        ),
-        actions: [
-
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              "Sair",
-              textScaleFactor: 1.5,
-              style: TextStyle(
-                fontSize: 12.0,
-                color: Colors.white,
-              ),
+    return MaterialApp(
+      title: _title,
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        appBar:   AppBar(
+          backgroundColor: Color(0xFF040404),
+          automaticallyImplyLeading: false,
+          title: Text(
+            'ATC Search',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              color: Colors.white,
+              fontSize: 22,
             ),
           ),
+          actions: [
 
-          IconButton(icon: Icon(Icons.logout, color: Colors.white,), onPressed: () {
-
-            showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                title: const Text('Aviso!'),
-                content: const Text('Deseja mesmo sair?'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                    child: const Text('Cancel'),
-                  ),
-                  TextButton(
-
-                    onPressed: () async {
-                      SharedPreferences prefs = await SharedPreferences.getInstance();
-                      prefs.setBool('boolValue', false);
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => Login(),
-                        ),
-
-                      );
-
-                    },
-                    child: const Text('Continue'),
-                  ),
-                ],
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                "Sair",
+                textScaleFactor: 1.5,
+                style: TextStyle(
+                  fontSize: 12.0,
+                  color: Colors.white,
+                ),
               ),
-            );
+            ),
 
-          }),
+            IconButton(icon: Icon(Icons.logout), onPressed: () {
 
-        ],
-        centerTitle: false,
-        elevation: 2,
+              showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: const Text('Aviso!'),
+                  content: const Text('Deseja mesmo sair?'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'Cancel'),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+
+                      onPressed: () async {
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                        prefs.setBool('boolValue', false);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => Login(),
+                          ),
+
+                        );
+
+                      },
+                      child: const Text('Continue'),
+                    ),
+                  ],
+                ),
+              );
+
+            }),
+
+          ],
+          centerTitle: false,
+          elevation: 2,
+        ),
+        body: MyStatefulWidget(),
       ),
-      backgroundColor: Colors.white,
-      body: SafeArea(
+    );
+  }
+}
+
+class MyStatefulWidget extends StatefulWidget {
+  @override
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+}
+
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return  SafeArea(
         child: GestureDetector(
           child: GridView.count(
             primary: false,
@@ -110,94 +126,81 @@ class _Quality2State extends State<Quality2> {
             crossAxisCount: 3,
             children: [
 
-          Card(
-            elevation: 10,
-            color: Colors.white,
-            child: Center(
-              child: InkWell(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => NicotineAndSugar(),
+              Card(
+                elevation: 10,
+                color: Colors.white,
+                child: Center(
+                  child: InkWell(
+                    onTap: () =>    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => NicotineAndSugar())),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          FontAwesome.beaker,
+                          size: 80.0,
+                        ),
+                        Text("Nic & Sugar"),
+                      ],
+                    ),
                   ),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      FontAwesome.beaker,
-                      size: 80.0,
+              ),
+
+              Card(
+                elevation: 10,
+                color: Colors.white,
+                child: Center(
+                  child: InkWell(
+                    onTap: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Moinsture())),
+                    child: Column(
+
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+
+                        Icon( Typicons.temperatire, size:80.0),
+                        Text("Moisture"),
+
+                      ],
                     ),
-                    Text("Nic & Sugar"),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          ),
 
-          Card(
-            elevation: 10,
-            color: Colors.white,
-            child: Center(
-                child: InkWell(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => Moinsture(),
-                      ),
+              ),
+
+
+              Card(
+                elevation: 10,
+                color: Colors.white,
+                child: Center(
+                  child: InkWell(
+                    onTap: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Degradation())),
+                    child: Column(
+
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+
+                        Icon( Icons.waterfall_chart, size:80.0,),
+                        Text("Degradation"),
+
+                      ],
                     ),
-              child: Column(
+                  ),
+                ),
 
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-
-                  Icon( Typicons.temperatire, size:80.0),
-                  Text("Moisture"),
-
-                ],
               ),
-               ),
-            ),
-
-          ),
-
-
-          Card(
-            elevation: 10,
-            color: Colors.white,
-            child: Center(
-              child: InkWell(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => Degradation(),
-                      ),
-                    ),
-              child: Column(
-
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-
-                  Icon( Icons.waterfall_chart, size:80.0,),
-                  Text("Degradation"),
-
-                ],
-              ),
-              ),
-            ),
-
-          ),
 
 
 
             ],
           ),
         ),
-      ),
-    );
+      );
 
     /*GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -291,4 +294,7 @@ class _Quality2State extends State<Quality2> {
       ),
     );*/
   }
+
 }
+
+
