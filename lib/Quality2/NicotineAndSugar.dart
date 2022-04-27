@@ -19,7 +19,7 @@ class NicotineAndSugar extends StatefulWidget {
 }
 
 class _NicotineAndSugarState extends State<NicotineAndSugar> {
-  late Future<List<Post>> _myData = _recuperarPostagens(0);
+  late Future<List<Post>> _myData = _recuperarPostagens();
   late TextEditingController safra;
   late TextEditingController grade;
 
@@ -52,7 +52,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
     });
   }
 
-  Future<List<Post>> _recuperarPostagens(int n) async {
+  Future<List<Post>> _recuperarPostagens() async {
     String url = "http://192.168.200.11/read.php?tipo=consultar&safra=" +
         safra.text +
         "&grade=" +
@@ -234,7 +234,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                           return DataTable(
                             columns: const [
                               // DataColumn(label: Text('COD_GRADE')),
-                              DataColumn(label: Text('Date')),
+                              DataColumn(label: Text('')),
                               DataColumn(label: Text('Case First')),
                               DataColumn(label: Text('Case Last')),
                               // DataColumn(label: Text('BOX_TOTAL')),
