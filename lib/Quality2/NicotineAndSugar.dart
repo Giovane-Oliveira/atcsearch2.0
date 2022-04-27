@@ -234,7 +234,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                           return DataTable(
                             columns: const [
                               // DataColumn(label: Text('COD_GRADE')),
-                              DataColumn(label: Text('')),
+                              DataColumn(label: Text('Date')),
                               DataColumn(label: Text('Case First')),
                               DataColumn(label: Text('Case Last')),
                               // DataColumn(label: Text('BOX_TOTAL')),
