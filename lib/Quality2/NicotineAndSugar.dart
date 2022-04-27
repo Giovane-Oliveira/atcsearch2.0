@@ -200,13 +200,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
           ],
         ),
         Expanded(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            //https://stackoverflow.com/questions/55299332/make-datatable-scroll-bidirectional-in-flutter
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Column(children: [
-                FutureBuilder<List<Post>>(
+                child: FutureBuilder<List<Post>>(
                   initialData: const <Post>[],
                   future: _myData,
                   builder: (context, snapshot)
@@ -231,19 +225,22 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                           print("lista: Erro ao carregar $snapshot");
                         } else {
                           print("lista: carregou!! ");
-                          return DataTable(
+                          return DataTable2(
+                            columnSpacing: 0,
+                            horizontalMargin: 0,
+                            minWidth: 900,
                             columns: const [
                               // DataColumn(label: Text('COD_GRADE')),
-                              DataColumn(label: Text('Date')),
-                              DataColumn(label: Text('Case First')),
-                              DataColumn(label: Text('Case Last')),
+                              DataColumn2(label: Text('Date', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('Case First', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('Case Last', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
                               // DataColumn(label: Text('BOX_TOTAL')),
-                              DataColumn(label: Text('Moisture')),
-                              DataColumn(label: Text('Weight')),
-                              DataColumn(label: Text('Read Nicotine mg/mL')),
-                              DataColumn(label: Text('Read Sugar mg/mL')),
-                              DataColumn(label: Text('Result_Nicotine %')),
-                              DataColumn(label: Text('Result_Sugar %')),
+                              DataColumn2(label: Text('Moisture',style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('Weight',style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('Read Nicotine',style: TextStyle(fontSize: 13)), size: ColumnSize.L), //mg/mL
+                              DataColumn2(label: Text('Read Sugar', style: TextStyle(fontSize: 13)), size: ColumnSize.L), //mg/mL
+                              DataColumn2(label: Text('Result Nicotine', style: TextStyle(fontSize: 13)), size: ColumnSize.L), //%
+                              DataColumn2(label: Text('Result_Sugar', style: TextStyle(fontSize: 13)), size: ColumnSize.L), //%
                               /*  DataColumn(label: Text('DES_GRADE')),
                           DataColumn(label: Text('DES_PESSOA')),
                           DataColumn(label: Text('USER_INSERCAO')),
@@ -377,14 +374,12 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                     return Container();
                   },
                 ),
-              ]),
-            ), //https://flutterhq.com/questions-and-answers/1284/how-to-create-rows-data-in-to-datatable-using-from-json-model-json-api-respons-flutter
-          ),
-        ),
 
-        /**/
-      ]),
+            ),
+        //https://flutterhq.com/questions-and-answers/1284/how-to-create-rows-data-in-to-datatable-using-from-json-model-json-api-respons-flutter
+          ]),
     );
+
   }
 }
 
