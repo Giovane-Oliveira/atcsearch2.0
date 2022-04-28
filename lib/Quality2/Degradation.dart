@@ -257,70 +257,70 @@ class _DegradationState extends State<Degradation> {
                           // DataColumn(label: Text('COD_GRADE')),
                           DataColumn2(
                               label:
-                                  Text('Date', style: TextStyle(fontSize: 13)),
+                                  Text('Date', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)),
                               size: ColumnSize.L),
                           DataColumn2(
                               label:
-                                  Text('Time', style: TextStyle(fontSize: 13)),
+                                  Text('Time', textAlign:TextAlign.center,  style: TextStyle(fontSize: 13)),
                               size: ColumnSize.L),
                           DataColumn2(
                               label:
-                                  Text('Shift', style: TextStyle(fontSize: 13)),
-                              size: ColumnSize.L),
+                                  Text('Shift', textAlign:TextAlign.center,  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.S),
                           DataColumn2(
                               label:
-                                  Text('Case', style: TextStyle(fontSize: 13)),
-                              size: ColumnSize.L),
+                                  Text('Case', textAlign:TextAlign.center,  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.S),
                           DataColumn2(
                               label:
-                                  Text('1x1', style: TextStyle(fontSize: 13)),
+                                  Text('1x1', textAlign:TextAlign.center,  style: TextStyle(fontSize: 13)),
                               size: ColumnSize.L),
                           DataColumn2(
-                              label: Text('1/2 x 1/2',
+                              label: Text('1/2 x 1/2',textAlign:TextAlign.center,
                                   style: TextStyle(fontSize: 13)),
                               size: ColumnSize.L),
                           DataColumn2(
-                              label: Text('Total 1/2',
+                              label: Text('Total 1/2', textAlign:TextAlign.center,
                                   style: TextStyle(fontSize: 13)),
                               size: ColumnSize.L),
                           DataColumn2(
-                              label: Text('1/4 x 1/4',
+                              label: Text('1/4 x 1/4', textAlign:TextAlign.center,
                                   style: TextStyle(fontSize: 13)),
                               size: ColumnSize.L),
                           DataColumn2(
-                              label: Text('Total 1/4',
+                              label: Text('Total 1/4', textAlign:TextAlign.center,
                                   style: TextStyle(fontSize: 13)),
                               size: ColumnSize.L),
                           DataColumn2(
-                              label: Text('1/8 x 1/8',
-                                  style: TextStyle(fontSize: 13)),
-                              size: ColumnSize.L),
-                          DataColumn2(
-                              label:
-                                  Text('PAN', style: TextStyle(fontSize: 13)),
-                              size: ColumnSize.L),
-                          DataColumn2(
-                              label:
-                                  Text('3/32', style: TextStyle(fontSize: 13)),
-                              size: ColumnSize.L),
-                          DataColumn2(
-                              label: Text('#7', style: TextStyle(fontSize: 13)),
-                              size: ColumnSize.L),
-                          DataColumn2(
-                              label:
-                                  Text('#12', style: TextStyle(fontSize: 13)),
-                              size: ColumnSize.L),
-                          DataColumn2(
-                              label: Text('Pan (Fibers)',
-                                  style: TextStyle(fontSize: 13)),
-                              size: ColumnSize.L),
-                          DataColumn2(
-                              label: Text('Total Stem',
+                              label: Text('1/8 x 1/8', textAlign:TextAlign.center,
                                   style: TextStyle(fontSize: 13)),
                               size: ColumnSize.L),
                           DataColumn2(
                               label:
-                                  Text('%>4', style: TextStyle(fontSize: 13)),
+                                  Text('PAN', textAlign:TextAlign.center,  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label:
+                                  Text('3/32', textAlign:TextAlign.center,  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label: Text('#7', textAlign:TextAlign.center,  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label:
+                                  Text('#12', textAlign:TextAlign.center,  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label: Text('Pan (Fibers)', textAlign:TextAlign.center,
+                                  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label: Text('Total Stem', textAlign:TextAlign.center,
+                                  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label:
+                                  Text('%>4', textAlign:TextAlign.center,  style: TextStyle(fontSize: 13)),
                               size: ColumnSize.L),
                           /* DataColumn(label: Text('Out_crop')),
                               DataColumn(label: Text('Des_grade')),
@@ -386,68 +386,68 @@ class _DegradationState extends State<Degradation> {
                                 Text(emp.cod_grade.toString()),
                               ),*/
                               DataCell(
-                                Text(emp.sampledate.toString()),
+                                Text(emp.sampledate.toString(), textAlign:TextAlign.center),
                               ),
                               DataCell(
-                                Text(emp.sampletime.toString()),
+                                Text(emp.sampletime.toString(), textAlign:TextAlign.center),
                               ),
                               DataCell(
-                                Text(emp.shift.toString()),
+                                Text(emp.shift.toString(), textAlign:TextAlign.center),
                               ),
                               DataCell(
-                                Text(emp.box.toString()),
+                                Text(emp.box.toString(), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.d1x1.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.d12x12.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.total12.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.d14x14.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.total14.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.d18x18.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.pan.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.s332.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.s7.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.s12.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.fiberspan.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.totalstems.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ),
                               DataCell(
                                 Text(double.parse(emp.ps4.toString())
-                                    .toStringAsFixed(2)),
+                                    .toStringAsFixed(2), textAlign:TextAlign.center),
                               ), /*DataCell(
                                     Text(emp.out_crop.toString()),
                                   ), DataCell(

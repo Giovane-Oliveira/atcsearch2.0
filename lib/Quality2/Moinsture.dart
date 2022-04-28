@@ -270,54 +270,54 @@ class _MoinstureState extends State<Moinsture> {
                       columns: const [
                         // DataColumn(label: Text('COD_GRADE')),
                         DataColumn2(
-                            label: Text('Date', style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                            label: Text('Date', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)),
+                            size: ColumnSize.M),
                         DataColumn2(
                             label:
-                                Text('Shift', style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                                Text('Shift', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)),
+                            size: ColumnSize.S),
                         DataColumn2(
-                            label: Text('Case', style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                            label: Text('Case', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)),
+                            size: ColumnSize.S),
                         DataColumn2(
-                            label: Text('Time', style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                            label: Text('Time', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)),
+                            size: ColumnSize.M),
                         //   DataColumn(label: Text('Casefirst')),
                         //  DataColumn(label: Text('Caselast')),
                         DataColumn2(
-                            label: Text('% Brabender',
+                            label: Text('% Brabender', textAlign:TextAlign.center,
                                 style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                            size: ColumnSize.S),
                         DataColumn2(
                             label:
-                                Text(' % Oven', style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                                Text(' % Oven', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)),
+                            size: ColumnSize.S),
                         DataColumn2(
-                            label: Text('Cooler R',
+                            label: Text('Cooler R', textAlign:TextAlign.center,
                                 style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                            size: ColumnSize.S),
                         DataColumn2(
-                            label: Text('Cooler L',
+                            label: Text('Cooler L', textAlign:TextAlign.center,
                                 style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                            size: ColumnSize.S),
                         DataColumn2(
-                            label: Text('Blending',
+                            label: Text('Blending', textAlign:TextAlign.center,
                                 style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                            size: ColumnSize.S),
                         DataColumn2(
                             label:
-                                Text('Bthresh', style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                                Text('Bthresh', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)),
+                            size: ColumnSize.S),
                         DataColumn2(
-                            label: Text('Stem', style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                            label: Text('Stem', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)),
+                            size: ColumnSize.S),
                         DataColumn2(
-                            label: Text('Tips', style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                            label: Text('Tips', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)),
+                            size: ColumnSize.S),
                         DataColumn2(
-                            label: Text('Packed Temp',
+                            label: Text('Packed Temp', textAlign:TextAlign.center,
                                 style: TextStyle(fontSize: 13)),
-                            size: ColumnSize.L),
+                            size: ColumnSize.S),
                         /* DataColumn(label: Text('Out_crop')),
                               DataColumn(label: Text('Des_grade')),
                               DataColumn(label: Text('Method')),
@@ -373,16 +373,16 @@ class _MoinstureState extends State<Moinsture> {
                                 Text(emp.cod_grade.toString()),
                               ),*/
                             DataCell(
-                              Text(emp.sampledate.toString()),
+                              Text(emp.sampledate.toString(),textAlign:TextAlign.center),
                             ),
                             DataCell(
-                              Text(emp.shift.toString()),
+                              Text(emp.shift.toString(),textAlign:TextAlign.center),
                             ),
                             DataCell(
-                              Text(emp.box.toString()),
+                              Text(emp.box.toString(),textAlign:TextAlign.center),
                             ),
                             DataCell(
-                              Text(emp.sampletime.toString()),
+                              Text(emp.sampletime.toString(),textAlign:TextAlign.center),
                             ),
                             /*DataCell(
                                     Text(emp.casefirst.toString()),
@@ -392,39 +392,39 @@ class _MoinstureState extends State<Moinsture> {
                                   ),*/
                             DataCell(
                               Text(double.parse(emp.brabender.toString())
-                                  .toStringAsFixed(2)),
+                                  .toStringAsFixed(2),textAlign:TextAlign.center),
                             ),
                             DataCell(
                               Text(double.parse(emp.oven.toString())
-                                  .toStringAsFixed(2)),
+                                  .toStringAsFixed(2),textAlign:TextAlign.center),
                             ),
                             DataCell(
                               Text(double.parse(emp.coolerr.toString())
-                                  .toStringAsFixed(2)),
+                                  .toStringAsFixed(2),textAlign:TextAlign.center),
                             ),
                             DataCell(
                               Text(double.parse(emp.coolerl.toString())
-                                  .toStringAsFixed(2)),
+                                  .toStringAsFixed(2),textAlign:TextAlign.center),
                             ),
                             DataCell(
                               Text(double.parse(emp.blending.toString())
-                                  .toStringAsFixed(2)),
+                                  .toStringAsFixed(2),textAlign:TextAlign.center),
                             ),
                             DataCell(
                               Text(double.parse(emp.bthresh.toString())
-                                  .toStringAsFixed(2)),
+                                  .toStringAsFixed(2),textAlign:TextAlign.center),
                             ),
                             DataCell(
                               Text(double.parse(emp.stem.toString())
-                                  .toStringAsFixed(2)),
+                                  .toStringAsFixed(2),textAlign:TextAlign.center),
                             ),
                             DataCell(
                               Text(double.parse(emp.tips.toString())
-                                  .toStringAsFixed(2)),
+                                  .toStringAsFixed(2),textAlign:TextAlign.center),
                             ),
                             DataCell(
                               Text(double.parse(emp.ptemp.toString())
-                                  .toStringAsFixed(2)),
+                                  .toStringAsFixed(2),textAlign:TextAlign.center),
                             ), /*DataCell(
                                     Text(emp.out_crop.toString()),
                                   ), DataCell(

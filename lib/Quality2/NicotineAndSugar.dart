@@ -257,16 +257,16 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                             dataRowHeight: 20,
                             columns: const [
                               // DataColumn(label: Text('COD_GRADE')),
-                              DataColumn2(label: Text('Date', style: TextStyle(fontSize: 13)), size: ColumnSize.S),
-                              DataColumn2(label: Text('Case First', style: TextStyle(fontSize: 13)), size: ColumnSize.S),
-                              DataColumn2(label: Text('Case Last', style: TextStyle(fontSize: 13)), size: ColumnSize.S),
+                              DataColumn2(label: Text('Date',  textAlign:TextAlign.center, style: TextStyle(fontSize: 13)), size: ColumnSize.S),
+                              DataColumn2(label: Text('Case First', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)), size: ColumnSize.S),
+                              DataColumn2(label: Text('Case Last', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)), size: ColumnSize.S),
                               // DataColumn(label: Text('BOX_TOTAL')),
-                              DataColumn2(label: Text('Moisture',style: TextStyle(fontSize: 13)), size: ColumnSize.S),
-                              DataColumn2(label: Text('Weight',style: TextStyle(fontSize: 13)), size: ColumnSize.S),
-                              DataColumn2(label: Text('Read Nicotine mg/mL',style: TextStyle(fontSize: 13)), size: ColumnSize.M), //mg/mL
-                              DataColumn2(label: Text('Read Sugar mg/mL', style: TextStyle(fontSize: 13)), size: ColumnSize.M), //mg/mL
-                              DataColumn2(label: Text('Result Nicotine %', style: TextStyle(fontSize: 13)), size: ColumnSize.M), //%
-                              DataColumn2(label: Text('Result_Sugar %',  style: TextStyle(fontSize: 13)), size: ColumnSize.S), //%
+                              DataColumn2(label: Text('Moisture', textAlign:TextAlign.center,style: TextStyle(fontSize: 13)), size: ColumnSize.S),
+                              DataColumn2(label: Text('Weight', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)), size: ColumnSize.S),
+                              DataColumn2(label: Text('Read Nicotine mg/mL', textAlign:TextAlign.center,style: TextStyle(fontSize: 13)), size: ColumnSize.M), //mg/mL
+                              DataColumn2(label: Text('Read Sugar mg/mL', textAlign:TextAlign.center,style: TextStyle(fontSize: 13)), size: ColumnSize.M), //mg/mL
+                              DataColumn2(label: Text('Result Nicotine %', textAlign:TextAlign.center,style: TextStyle(fontSize: 13)), size: ColumnSize.M), //%
+                              DataColumn2(label: Text('Result_Sugar %',  textAlign:TextAlign.center,style: TextStyle(fontSize: 13)), size: ColumnSize.S), //%
                               /*  DataColumn(label: Text('DES_GRADE')),
                           DataColumn(label: Text('DES_PESSOA')),
                           DataColumn(label: Text('USER_INSERCAO')),
@@ -329,22 +329,22 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                               ),*/
 
                                   DataCell(
-                                    Text((double.parse(emp.umidade.toString()).toStringAsFixed(2)).toString()),
+                                    Text((double.parse(emp.umidade.toString()).toStringAsFixed(2)).toString(), textAlign:TextAlign.center,),
                                   ),
                                   DataCell(
-                                    Text((double.parse(emp.peso_amostra.toString()).toStringAsFixed(3)).toString()),
+                                    Text((double.parse(emp.peso_amostra.toString()).toStringAsFixed(3)).toString(), textAlign:TextAlign.center,),
                                   ),
                                   DataCell(
-                                    Text((double.parse(emp.leitura_nicotina.toString()).toStringAsFixed(4)).toString()),
+                                    Text((double.parse(emp.leitura_nicotina.toString()).toStringAsFixed(4)).toString(), textAlign:TextAlign.center,),
                                   ),
                                   DataCell(
-                                    Text((double.parse(emp.leitura_acucar.toString()).toStringAsFixed(2)).toString()),
+                                    Text((double.parse(emp.leitura_acucar.toString()).toStringAsFixed(2)).toString(), textAlign:TextAlign.center,),
                                   ),
                                   DataCell(
-                                    Text((double.parse(emp.result_nicotina.toString()).toStringAsFixed(2)).toString()),
+                                    Text((double.parse(emp.result_nicotina.toString()).toStringAsFixed(2)).toString(), textAlign:TextAlign.center,),
                                   ),
                                   DataCell(
-                                    Text((double.parse(emp.result_acucar.toString()).toStringAsFixed(2)).toString()),
+                                    Text((double.parse(emp.result_acucar.toString()).toStringAsFixed(2)).toString(), textAlign:TextAlign.center,),
                                   ),
                                   /*  DataCell(
                                 Text(emp.des_grade.toString()),
