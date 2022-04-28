@@ -81,3 +81,20 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 }
+
+
+
+/*
+Segunda tela, pode ser implementado diversas telas num único arquivo .dart
+
+class SecondScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title:Text("GeeksForGeeks")),
+      body: Center(
+          child:Text("Home page",textScaleFactor: 2,)
+      ),
+    );
+  }
+}*/
