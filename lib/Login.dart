@@ -107,6 +107,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown, //Forçar orientação da tela
+     // DeviceOrientation.landscapeLeft, 
+      // DeviceOrientation.landscapeRight,
     ]);
     return Padding(
         padding: const EdgeInsets.all(10),

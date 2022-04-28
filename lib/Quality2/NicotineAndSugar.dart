@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:atcsearch/Quality2/ModelsQuality/ModelCC.dart';
 import 'package:flutter/material.dart';
@@ -90,6 +91,12 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown, //Forçar orientação da tela
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
     return Scaffold(
       appBar: AppBar(
         title: Text("Nicotine and Sugar"),

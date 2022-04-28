@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:atcsearch/Quality2/ModelsQuality/ModelDegradation.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:atcsearch/Quality2/ModelsQuality/ModelMoisture.dart';
 import 'package:flutter/material.dart';
@@ -93,6 +94,12 @@ class _DegradationState extends State<Degradation> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown, //Forçar orientação da tela
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
     return Scaffold(
       appBar: AppBar(
         title: Text("Degradation"),
