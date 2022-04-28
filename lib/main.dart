@@ -2,12 +2,25 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:atcsearch/Home.dart';
 import 'package:atcsearch/Login.dart';
+import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
+import 'package:atcsearch/Quality2/Degradation.dart';
+import 'package:atcsearch/Quality2/NicotineAndSugar.dart';
 import 'package:atcsearch/Quality2/Quality2.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(MyApp());
+void main(){
+  runApp(MaterialApp(
+    initialRoute: '/',
+    routes: {
+      "/login": (context) => Login(),
+      '/quality': (context) => Quality2(),
+      "/consultacostumer": (context) => ConsultaCostumer(),
+      '/degradation': (context) => Degradation(),
+      "/nicotine": (context) => NicotineAndSugar(),
+    },
+    home: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

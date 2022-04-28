@@ -1,9 +1,12 @@
 import 'dart:ui';
 import 'package:atcsearch/Login.dart';
+import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
 import 'package:atcsearch/Quality2/Degradation.dart';
 import 'package:atcsearch/Quality2/Moinsture.dart';
 import 'package:atcsearch/Quality2/NicotineAndSugar.dart';
+import 'package:atcsearch/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluttericon/brandico_icons.dart';
@@ -28,6 +31,13 @@ import 'package:fluttericon/zocial_icons.dart';
 
 class Quality2 extends StatelessWidget {
   static const String _title = 'ATC Search';
+
+  _logado() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('boolValue', false);
+    //bool? boolValue = prefs.getBool('boolValue');
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,16 +85,17 @@ class Quality2 extends StatelessWidget {
                     ),
                     TextButton(
 
-                      onPressed: () async {
-                        SharedPreferences prefs = await SharedPreferences.getInstance();
-                        prefs.setBool('boolValue', false);
-                        Navigator.pushReplacement(
+                      onPressed: () {
+                        _logado();
+                    /*    Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (_) => Login(),
                           ),
 
-                        );
+                        );*/
+                        //Fecha a ultima tela ao fazer logout
+                        Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
 
                       },
                       child: const Text('Continue'),
@@ -105,6 +116,10 @@ class Quality2 extends StatelessWidget {
   }
 }
 
+
+
+
+
 class MyStatefulWidget extends StatefulWidget {
   @override
   State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
@@ -112,10 +127,12 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
-
-
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown, //Forçar orientação da tela
+    ]);
     return  SafeArea(
         child: GestureDetector(
           child: GridView.count(
@@ -131,7 +148,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 color: Colors.white,
                 child: Center(
                   child: InkWell(
-                    onTap: () =>    Navigator.push(context,
+                    onTap: () =>  Navigator.push(context,
                         MaterialPageRoute(builder: (context) => NicotineAndSugar())),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
