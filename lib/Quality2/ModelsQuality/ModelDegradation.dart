@@ -3,7 +3,15 @@ class ModelDegradation{
 
 String? _sampledate;
 String? _sampletime;
-int? _shift;
+String? _des_pessoa;
+
+String? get des_pessoa => _des_pessoa;
+
+  set des_pessoa(String? value) {
+    _des_pessoa = value;
+  }
+
+  int? _shift;
 int? _box;
 
 ModelDegradation(

@@ -20,6 +20,13 @@ class Post {
   String? _leitura_acucar;
   String? _result_nicotina;
   String? _result_acucar;
+  String? _des_pessoa;
+
+  String? get des_pessoa => _des_pessoa;
+
+  set des_pessoa(String? value) {
+    _des_pessoa = value;
+  }
 
   int get box_inicial => _box_inicial;
 

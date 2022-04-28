@@ -4,6 +4,14 @@ class ModelMoisture{
 
 
   String? _sampledate;
+  String? _des_pessoa;
+
+  String? get des_pessoa => _des_pessoa;
+
+  set des_pessoa(String? value) {
+    _des_pessoa = value;
+  }
+
   int? _shift;
 
   ModelMoisture(this._sampledate, this._shift, this._box, this._sampletime,

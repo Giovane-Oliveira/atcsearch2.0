@@ -22,19 +22,20 @@ class _DegradationState extends State<Degradation> {
   late Future<List<ModelDegradation>> _myData = _recuperarPostagens();
   late TextEditingController safra;
   late TextEditingController grade;
+  late TextEditingController cliente;
 
   @override
   void initState() {
     super.initState();
     safra = TextEditingController();
     grade = TextEditingController();
+    cliente = TextEditingController();
 
-      final DateTime now = DateTime.now();
-      final DateFormat formatter = DateFormat('yyyy');
-      final String formatted = formatter.format(now);
-      safra.text = formatted.toString();
-      grade.text = "0000";
-
+    final DateTime now = DateTime.now();
+    final DateFormat formatter = DateFormat('yyyy');
+    final String formatted = formatter.format(now);
+    safra.text = formatted.toString();
+    grade.text = "0000";
 
     setState(() {
       if (widget.valor != null) {
@@ -42,7 +43,7 @@ class _DegradationState extends State<Degradation> {
         safra.text = "${widget.valor2}";
         //VALOR = COD_GRADE
 //VALOR1 = DES_GRADE
-      //VALOR2 = SAFRA
+        //VALOR2 = SAFRA
 
         //Consultar banco de dados
 
@@ -62,7 +63,9 @@ class _DegradationState extends State<Degradation> {
     var dadosJson = json.decode(response.body);
     List<ModelDegradation> postagens = <ModelDegradation>[];
     for (var post in dadosJson) {
-      // print("post: " + post["cod_carga"] );
+      setState(() {
+        cliente.text =  post["des_pessoa"];
+      });
       ModelDegradation p = ModelDegradation(
           post["sampledate"],
           post["sampletime"],
@@ -95,13 +98,13 @@ class _DegradationState extends State<Degradation> {
         title: Text("Degradation"),
         backgroundColor: Colors.black,
       ),
-      body: Column(mainAxisSize: MainAxisSize.max, children: [
+      body: Column(mainAxisSize: MainAxisSize.max,    crossAxisAlignment: CrossAxisAlignment.start, children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 16, 0),
-          child: Row(
+          padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 0),
+          child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Codigo: " + grade.text + " Safra: " + safra.text,
@@ -109,10 +112,18 @@ class _DegradationState extends State<Degradation> {
                     fontSize: 15,
                   ),
                 ),
+                Text(
+                  "Cliente: " + cliente.text,
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
+
               ]),
+
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -121,21 +132,18 @@ class _DegradationState extends State<Degradation> {
               Expanded(
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    child: Text(
-
-                      "Grade: ${widget.valor1}",
-                      style: TextStyle(
-                          fontSize: 20,
-                        foreground: Paint()
-                          ..style = PaintingStyle.stroke
-                          ..strokeWidth = 1.5
-                          ..color = Colors.black,
-                      ),
-
+                  child: Text(
+                    "Grade: ${widget.valor1}",
+                    style: TextStyle(
+                      fontSize: 20,
+                      foreground: Paint()
+                        ..style = PaintingStyle.stroke
+                        ..strokeWidth = 1.5
+                        ..color = Colors.black,
                     ),
+                  ),
                 ),
               ),
-
 
               /*  Expanded(
 
@@ -175,11 +183,9 @@ class _DegradationState extends State<Degradation> {
                    ),*/
                   ),
                   ),*/
-
             ],
           ),
         ),
-
         Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -187,14 +193,12 @@ class _DegradationState extends State<Degradation> {
           children: <Widget>[
             ElevatedButton.icon(
               onPressed: () {
-
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => ConsultaCostumer(
-                          interface: "Degradation",
-
-                        )));
+                              interface: "Degradation",
+                            )));
 
                 /*setState(() {
                   _myData = _recuperarPostagens(0);
@@ -210,55 +214,108 @@ class _DegradationState extends State<Degradation> {
           ],
         ),
         Expanded(
-        child: FutureBuilder<List<ModelDegradation>>(
-    initialData: const <ModelDegradation>[],
-    future: _myData,
-    builder: (context, snapshot)
-                      /*Padding(
+          child: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+            child: FutureBuilder<List<ModelDegradation>>(
+              initialData: const <ModelDegradation>[],
+              future: _myData,
+              builder: (context, snapshot)
+                  /*Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 child:
                 new  FutureBuilder<List<Post>>(
                   future:  _myData,
                   builder:  (context, snapshot)*/
-                      {
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.none:
-                      case ConnectionState.waiting:
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                        break;
-                      case ConnectionState.active:
-                      case ConnectionState.done:
-                        if (snapshot.hasError) {
-                          print("lista: Erro ao carregar $snapshot");
-                        } else {
-                          print("lista: carregou!! ");
+                  {
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                  case ConnectionState.waiting:
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                    break;
+                  case ConnectionState.active:
+                  case ConnectionState.done:
+                    if (snapshot.hasError) {
+                      print("lista: Erro ao carregar $snapshot");
+                    } else {
+                      print("lista: carregou!! ");
 
-                          return DataTable2(
-                            columnSpacing: 0,
-                            horizontalMargin: 0,
-                            minWidth: 1300,
-                            columns: const [
-                              // DataColumn(label: Text('COD_GRADE')),
-                              DataColumn2(label: Text('Date', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('Time', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('Shift', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('Case', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('1x1', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('1/2 x 1/2', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('Total 1/2', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('1/4 x 1/4', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('Total 1/4', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('1/8 x 1/8', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('PAN', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('3/32', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('#7', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('#12', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('Pan (Fibers)', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('Total Stem', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('%>4', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                             /* DataColumn(label: Text('Out_crop')),
+                      return DataTable2(
+                        columnSpacing: 0,
+                        horizontalMargin: 0,
+                        minWidth: 1300,
+                        dataRowHeight: 20,
+                        columns: const [
+                          // DataColumn(label: Text('COD_GRADE')),
+                          DataColumn2(
+                              label:
+                                  Text('Date', style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label:
+                                  Text('Time', style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label:
+                                  Text('Shift', style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label:
+                                  Text('Case', style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label:
+                                  Text('1x1', style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label: Text('1/2 x 1/2',
+                                  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label: Text('Total 1/2',
+                                  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label: Text('1/4 x 1/4',
+                                  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label: Text('Total 1/4',
+                                  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label: Text('1/8 x 1/8',
+                                  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label:
+                                  Text('PAN', style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label:
+                                  Text('3/32', style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label: Text('#7', style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label:
+                                  Text('#12', style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label: Text('Pan (Fibers)',
+                                  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label: Text('Total Stem',
+                                  style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          DataColumn2(
+                              label:
+                                  Text('%>4', style: TextStyle(fontSize: 13)),
+                              size: ColumnSize.L),
+                          /* DataColumn(label: Text('Out_crop')),
                               DataColumn(label: Text('Des_grade')),
                               DataColumn(label: Text('Method')),
                               DataColumn(label: Text('Product')),
@@ -274,106 +331,117 @@ class _DegradationState extends State<Degradation> {
                               DataColumn(label: Text('Pm10')),
                               DataColumn(label: Text('Pm11')),
                               DataColumn(label: Text('Pm12')),*/
-                            ],
-                            rows: List.generate(
-                              snapshot.data!.length,
-                              (index) {
-                                var emp = snapshot.data![index];
+                        ],
+                        rows: List.generate(
+                          snapshot.data!.length,
+                          (index) {
+                            var emp = snapshot.data![index];
 
-                                if(emp.ps4.toString() == "null"){
-                                  emp.ps4 = "0";
-
-                                }else if(emp.sampledate.toString() == "null"){
-                                  emp.sampledate = "0";
-
-                                }else if(emp.sampletime.toString() == "null"){
-                                  emp.sampletime = "0";
-
-                                }else if(emp.shift.toString() == "null"){
-                                  emp.shift = 0;
-
-                                }else if(emp.box.toString() == "null"){
-                                  emp.box = 0;
-
-                                }else if(emp.d1x1.toString() == "null"){
-                                  emp.d1x1 = "0";
-
-                                }else if(emp.d12x12.toString() == "null"){
-                                  emp.d12x12 = "0";
-
-                                }else if(emp.total12.toString() == "null"){
-                                  emp.total12 = "0";
-
-                                }else if(emp.d14x14.toString() == "null"){
-                                  emp.d14x14 = "0";
-
-                                }else if(emp.total14.toString() == "null"){
-                                  emp.total14 = "0";
-
-                                }else if(emp.pan.toString() == "null"){
-                                  emp.pan = "0";
-
-                                }else if(emp.s332.toString() == "null"){
-                                  emp.s332 = "0";
-
-                                }else if(emp.s7.toString() == "null"){
-                                  emp.s7 = "0";
-
-                                }else if(emp.s12.toString() == "null"){
-                                  emp.s12 = "0";
-
-                                }else if(emp.fiberspan.toString() == "null"){
-                                  emp.fiberspan = "0";
-
-                                }else if(emp.totalstems.toString() == "null"){
-                                  emp.totalstems = "0";
-
-                                }
-                                return DataRow(cells: [
-                                  /* DataCell(
+                            if (emp.ps4.toString() == "null") {
+                              emp.ps4 = "0";
+                            } else if (emp.sampledate.toString() != "null") {
+                              final DateTime now = DateTime.now();
+                              final DateFormat formatter = DateFormat(
+                                  'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
+                              final String formatted = formatter.format(now);
+                              emp.sampledate = formatted;
+                            } else if (emp.sampletime.toString() == "null") {
+                              emp.sampletime = "0";
+                            } else if (emp.shift.toString() == "null") {
+                              emp.shift = 0;
+                            } else if (emp.box.toString() == "null") {
+                              emp.box = 0;
+                            } else if (emp.d1x1.toString() == "null") {
+                              emp.d1x1 = "0";
+                            } else if (emp.d12x12.toString() == "null") {
+                              emp.d12x12 = "0";
+                            } else if (emp.total12.toString() == "null") {
+                              emp.total12 = "0";
+                            } else if (emp.d14x14.toString() == "null") {
+                              emp.d14x14 = "0";
+                            } else if (emp.total14.toString() == "null") {
+                              emp.total14 = "0";
+                            } else if (emp.pan.toString() == "null") {
+                              emp.pan = "0";
+                            } else if (emp.s332.toString() == "null") {
+                              emp.s332 = "0";
+                            } else if (emp.s7.toString() == "null") {
+                              emp.s7 = "0";
+                            } else if (emp.s12.toString() == "null") {
+                              emp.s12 = "0";
+                            } else if (emp.fiberspan.toString() == "null") {
+                              emp.fiberspan = "0";
+                            } else if (emp.totalstems.toString() == "null") {
+                              emp.totalstems = "0";
+                            }
+                            return DataRow(cells: [
+                              /* DataCell(
                                 Text(emp.cod_grade.toString()),
                               ),*/
-                                  DataCell(
-                                    Text(emp.sampledate.toString()),
-                                  ),
-                                  DataCell(
-                                    Text(emp.sampletime.toString()),
-                                  ),
-                                  DataCell(
-                                    Text(emp.shift.toString()),
-                                  ),
-                                   DataCell(
+                              DataCell(
+                                Text(emp.sampledate.toString()),
+                              ),
+                              DataCell(
+                                Text(emp.sampletime.toString()),
+                              ),
+                              DataCell(
+                                Text(emp.shift.toString()),
+                              ),
+                              DataCell(
                                 Text(emp.box.toString()),
-                                  ),
-                                  DataCell(
-                                    Text(double.parse(emp.d1x1.toString()).toStringAsFixed(2)),
-                                  ),
-                                    DataCell(
-                                      Text(double.parse(emp.d12x12.toString()).toStringAsFixed(2)),
-                                  ),  DataCell(
-                                    Text(double.parse(emp.total12.toString()).toStringAsFixed(2)),
-                                  ), DataCell(
-                                    Text(double.parse(emp.d14x14.toString()).toStringAsFixed(2)),
-                                  ), DataCell(
-                                    Text(double.parse(emp.total14.toString()).toStringAsFixed(2)),
-                                  ), DataCell(
-                                    Text(double.parse(emp.d18x18.toString()).toStringAsFixed(2)),
-                                  ), DataCell(
-                                    Text(double.parse(emp.pan.toString()).toStringAsFixed(2)),
-                                  ), DataCell(
-                                    Text(double.parse(emp.s332.toString()).toStringAsFixed(2)),
-                                  ), DataCell(
-                                    Text(double.parse(emp.s7.toString()).toStringAsFixed(2)),
-                                  ), DataCell(
-                                    Text(double.parse(emp.s12.toString()).toStringAsFixed(2)),
-                                  ), DataCell(
-                                    Text(double.parse(emp.fiberspan.toString()).toStringAsFixed(2)),
-                                  ), DataCell(
-                                    Text(double.parse(emp.totalstems.toString()).toStringAsFixed(2)),
-                                  ),
-                                  DataCell(
-                                      Text(double.parse(emp.ps4.toString()).toStringAsFixed(2)),
-                                  ), /*DataCell(
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.d1x1.toString())
+                                    .toStringAsFixed(2)),
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.d12x12.toString())
+                                    .toStringAsFixed(2)),
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.total12.toString())
+                                    .toStringAsFixed(2)),
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.d14x14.toString())
+                                    .toStringAsFixed(2)),
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.total14.toString())
+                                    .toStringAsFixed(2)),
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.d18x18.toString())
+                                    .toStringAsFixed(2)),
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.pan.toString())
+                                    .toStringAsFixed(2)),
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.s332.toString())
+                                    .toStringAsFixed(2)),
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.s7.toString())
+                                    .toStringAsFixed(2)),
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.s12.toString())
+                                    .toStringAsFixed(2)),
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.fiberspan.toString())
+                                    .toStringAsFixed(2)),
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.totalstems.toString())
+                                    .toStringAsFixed(2)),
+                              ),
+                              DataCell(
+                                Text(double.parse(emp.ps4.toString())
+                                    .toStringAsFixed(2)),
+                              ), /*DataCell(
                                     Text(emp.out_crop.toString()),
                                   ), DataCell(
                                     Text(emp.des_grade.toString()),
@@ -406,14 +474,12 @@ class _DegradationState extends State<Degradation> {
                                   ),DataCell(
                                     Text(emp.pm12.toString()),
                                   ),*/
+                            ]);
+                          },
+                        ).toList(),
+                      );
 
-
-                                ]);
-                              },
-                            ).toList(),
-                          );
-
-                          /* return ListView.separated(
+                      /* return ListView.separated(
                               itemCount: snapshot.data!.length,
                               itemBuilder: (context, index){
 
@@ -437,17 +503,16 @@ class _DegradationState extends State<Degradation> {
                           },
                           );*/
 
-                        }
-                        break;
                     }
-                    return Container();
-                  },
-                ),
-              ),
-            ]),
+                    break;
+                }
+                return Container();
+              },
+            ),
+          ),
+        ),
+      ]),
     ); //https://flutterhq.com/questions-and-answers/1284/how-to-create-rows-data-in-to-datatable-using-from-json-model-json-api-respons-flutter
-
-
   }
 }
 

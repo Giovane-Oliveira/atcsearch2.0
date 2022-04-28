@@ -32,8 +32,12 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
       _recuperarPostagens();
     });
 
+    safra.addListener(() {
+      _recuperarPostagens();
+    });
+
     final DateTime now = DateTime.now();
-    final DateFormat formatter = DateFormat('yyyy');
+    final DateFormat formatter = DateFormat('yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
     final String formatted = formatter.format(now);
     safra.text = formatted.toString();
     grade.text = "";
@@ -42,16 +46,34 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
   Future<List<Grade>> _recuperarPostagens() async {
     String url = "http://192.168.200.11/read.php?tipo=grade";
 
-    if (!grade.text.isEmpty && !safra.text.isEmpty) {
+    bool x = true;
+    try{
+      int.parse(grade.text);
+    }catch(Exception){
+      x = false;
+     // print("sadsdasdasdsad");
+    }
+
+    if (x == false && !grade.text.isEmpty && !safra.text.isEmpty) {
+   //   print("aaaqui 1");
       url = "http://192.168.200.11/read.php?tipo=grade&grade=" +
+          grade.text.toUpperCase() +
+          "&safra=" +
+          safra.text;
+    } else if (x == false && !grade.text.isEmpty) {
+    //  print("aaaqui 2");
+      url = "http://192.168.200.11/read.php?tipo=grade&grade=" + grade.text.toUpperCase();
+    } else if (x == false && !safra.text.isEmpty) {
+      //print("aaaqui 3");
+      url = "http://192.168.200.11/read.php?tipo=safra&safra=" + safra.text;
+    } else if (x == true) {
+     // print("aaaqui 4");
+      url = "http://192.168.200.11/read.php?tipo=codcliente&grade=" +
           grade.text +
           "&safra=" +
           safra.text;
-    } else if (!grade.text.isEmpty) {
-      url = "http://192.168.200.11/read.php?tipo=grade&grade=" + grade.text;
-    } else if (!safra.text.isEmpty) {
-      url = "http://192.168.200.11/read.php?tipo=safra&safra=" + safra.text;
-    }
+
+      }
 
     http.Response response;
     response = await http.get(Uri.parse(url));
@@ -122,6 +144,11 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(2, 0, 5, 0),
                   child: TextFormField(
+                    onChanged: (teste) {
+                      setState(() {
+                        _myData = _recuperarPostagens();
+                      });
+                    },
                     controller: safra,
                     obscureText: false,
                     keyboardType: TextInputType.number,

@@ -22,18 +22,22 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
   late Future<List<Post>> _myData = _recuperarPostagens();
   late TextEditingController safra;
   late TextEditingController grade;
+  late TextEditingController cliente;
+
 
   @override
   void initState() {
     super.initState();
     safra = TextEditingController();
     grade = TextEditingController();
+    cliente = TextEditingController();
 
       final DateTime now = DateTime.now();
       final DateFormat formatter = DateFormat('yyyy');
       final String formatted = formatter.format(now);
       safra.text = formatted.toString();
       grade.text = "0000";
+      cliente.text = "";
 
 
     setState(() {
@@ -63,6 +67,10 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
     List<Post> postagens = <Post>[];
     for (var post in dadosJson) {
       // print("post: " + post["cod_carga"] );
+      setState(() {
+        cliente.text =  post["des_pessoa"];
+      });
+
       Post p = Post(
           post["data_processo"],
           post["box_inicial"],
@@ -87,13 +95,13 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
         title: Text("Nicotine and Sugar"),
         backgroundColor: Colors.black,
       ),
-      body: Column(mainAxisSize: MainAxisSize.max, children: [
+      body: Column(mainAxisSize: MainAxisSize.max,    crossAxisAlignment: CrossAxisAlignment.start, children: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 16, 0),
-          child: Row(
+          padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 0),
+          child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Codigo: " + grade.text + " Safra: " + safra.text,
@@ -101,10 +109,18 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                     fontSize: 15,
                   ),
                 ),
+                Text(
+                  "Cliente: " + cliente.text,
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
+
               ]),
+
         ),
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -200,6 +216,8 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
           ],
         ),
         Expanded(
+        child: Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                 child: FutureBuilder<List<Post>>(
                   initialData: const <Post>[],
                   future: _myData,
@@ -229,18 +247,19 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                             columnSpacing: 0,
                             horizontalMargin: 0,
                             minWidth: 1300,
+                            dataRowHeight: 20,
                             columns: const [
                               // DataColumn(label: Text('COD_GRADE')),
-                              DataColumn2(label: Text('Date', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('Case First', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('Case Last', style: TextStyle(fontSize: 13)), size: ColumnSize.L),
+                              DataColumn2(label: Text('Date', style: TextStyle(fontSize: 13)), size: ColumnSize.S),
+                              DataColumn2(label: Text('Case First', style: TextStyle(fontSize: 13)), size: ColumnSize.S),
+                              DataColumn2(label: Text('Case Last', style: TextStyle(fontSize: 13)), size: ColumnSize.S),
                               // DataColumn(label: Text('BOX_TOTAL')),
-                              DataColumn2(label: Text('Moisture',style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('Weight',style: TextStyle(fontSize: 13)), size: ColumnSize.L),
-                              DataColumn2(label: Text('Read Nicotine mg/mL',style: TextStyle(fontSize: 13)), size: ColumnSize.L), //mg/mL
-                              DataColumn2(label: Text('Read Sugar mg/mL', style: TextStyle(fontSize: 13)), size: ColumnSize.L), //mg/mL
-                              DataColumn2(label: Text('Result Nicotine %', style: TextStyle(fontSize: 13)), size: ColumnSize.L), //%
-                              DataColumn2(label: Text('Result_Sugar %', style: TextStyle(fontSize: 13)), size: ColumnSize.L), //%
+                              DataColumn2(label: Text('Moisture',style: TextStyle(fontSize: 13)), size: ColumnSize.S),
+                              DataColumn2(label: Text('Weight',style: TextStyle(fontSize: 13)), size: ColumnSize.S),
+                              DataColumn2(label: Text('Read Nicotine mg/mL',style: TextStyle(fontSize: 13)), size: ColumnSize.M), //mg/mL
+                              DataColumn2(label: Text('Read Sugar mg/mL', style: TextStyle(fontSize: 13)), size: ColumnSize.M), //mg/mL
+                              DataColumn2(label: Text('Result Nicotine %', style: TextStyle(fontSize: 13)), size: ColumnSize.M), //%
+                              DataColumn2(label: Text('Result_Sugar %',  style: TextStyle(fontSize: 13)), size: ColumnSize.S), //%
                               /*  DataColumn(label: Text('DES_GRADE')),
                           DataColumn(label: Text('DES_PESSOA')),
                           DataColumn(label: Text('USER_INSERCAO')),
@@ -253,8 +272,11 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                               snapshot.data!.length,
                               (index) {
                                 var emp = snapshot.data![index];
-                                if(emp.data_processo.toString() == "null"){
-                                  emp.data_processo = "0";
+                                if(emp.data_processo.toString() != "null"){
+                                  final DateTime now = DateTime.now();
+                                  final DateFormat formatter = DateFormat('dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
+                                  final String formatted = formatter.format(now);
+                                  emp.data_processo = formatted;
 
                                 }else if(emp.box_inicial.toString() == "null"){
                                   emp.box_inicial = 0;
@@ -377,7 +399,8 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
 
             ),
         //https://flutterhq.com/questions-and-answers/1284/how-to-create-rows-data-in-to-datatable-using-from-json-model-json-api-respons-flutter
-          ]),
+        ),
+    ]),
     );
 
   }
