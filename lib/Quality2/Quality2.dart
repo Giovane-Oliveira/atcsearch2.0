@@ -30,7 +30,7 @@ import 'package:fluttericon/zocial_icons.dart';
 //https://www.fluttericon.com/
 
 class Quality2 extends StatelessWidget {
-  static const String _title = 'ATC Search';
+  static const String _title = 'Quality';
 
   _logado() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -49,7 +49,7 @@ class Quality2 extends StatelessWidget {
           backgroundColor: Color(0xFF040404),
           automaticallyImplyLeading: false,
           title: Text(
-            'ATC Search',
+            'Quality',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Poppins',
