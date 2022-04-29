@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'ControleVendas/ControleVendas.dart';
 import 'Login.dart';
 import 'Quality2/Quality2.dart';
 
@@ -157,13 +158,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               elevation: 10,
               color: Colors.white,
               child: Center(
-                /*  child: InkWell(
+                    child: InkWell(
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => Quality2(),
+                        builder: (_) => ControleVendas(),
                       ),
-                    ),*/
+                    ),
                 child: Column(
 
                   mainAxisSize: MainAxisSize.min,
@@ -175,7 +176,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
                   ],
                 ),
-                // ),
+                ),
               ),
 
             ),
@@ -203,10 +204,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
                   ],
                 ),
-                //),
+                ),
               ),
 
-            ),
+           // ),
 
 
 

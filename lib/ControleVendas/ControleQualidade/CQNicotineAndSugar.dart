@@ -7,23 +7,23 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'package:data_table_2/data_table_2.dart';
-
 import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
 
-class NicotineAndSugar extends StatefulWidget {
+class CQNicotineAndSugar extends StatefulWidget {
   String? valor, valor1, valor2;
 
-  NicotineAndSugar({this.valor, this.valor1, this.valor2});
+  CQNicotineAndSugar({this.valor, this.valor1, this.valor2});
 
   @override
-  _NicotineAndSugarState createState() => _NicotineAndSugarState();
+  _CQNicotineAndSugarState createState() => _CQNicotineAndSugarState();
 }
 
-class _NicotineAndSugarState extends State<NicotineAndSugar> {
+class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
   late Future<List<Post>> _myData = _recuperarPostagens();
   late TextEditingController safra;
   late TextEditingController grade;
   late TextEditingController cliente;
+
 
   @override
   void initState() {
@@ -204,7 +204,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => ConsultaCostumer(
-                          interface: "NicotineAndSugar",
+                          interface: "CQNicotineAndSugar",
 
                         )));
 
@@ -250,22 +250,17 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                         } else {
                           print("lista: carregou!! ");
                           return DataTable2(
-
-                          //  headingRowColor: MaterialStateColor.resolveWith((states) => Colors.black),
-                           // headingTextStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-
+                            dividerThickness: 3,
+                            dataRowColor: MaterialStateColor.resolveWith((states) => const Color(
+                                0xFFFFFFFF)),
+                            decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 10)),
                             headingRowHeight: 30,
                             headingRowColor: MaterialStateColor.resolveWith((states) => Colors.black),
                             headingTextStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
                             columnSpacing: 0,
                             horizontalMargin: 10,
-                            minWidth: 1300,
+                            minWidth: 600,
                             dataRowHeight: 20,
-                            dividerThickness: 3,
-                            dataRowColor: MaterialStateColor.resolveWith((states) => const Color(
-                                0xFFFFFFFF)),
-                            decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 10)),
-                            //showCheckboxColumn: false,
                             columns: const [
                               // DataColumn(label: Text('COD_GRADE')),
                               DataColumn2(label: Text('Date',  textAlign:TextAlign.center, style: TextStyle(fontSize: 13)), size: ColumnSize.S),
@@ -273,9 +268,9 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                               DataColumn2(label: Text('Case Last', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)), size: ColumnSize.S),
                               // DataColumn(label: Text('BOX_TOTAL')),
                               DataColumn2(label: Text('Moisture', textAlign:TextAlign.center,style: TextStyle(fontSize: 13)), size: ColumnSize.S),
-                              DataColumn2(label: Text('Weight', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)), size: ColumnSize.S),
-                              DataColumn2(label: Text('Read Nicotine mg/mL', textAlign:TextAlign.center,style: TextStyle(fontSize: 13)), size: ColumnSize.M), //mg/mL
-                              DataColumn2(label: Text('Read Sugar mg/mL', textAlign:TextAlign.center,style: TextStyle(fontSize: 13)), size: ColumnSize.M), //mg/mL
+                             // DataColumn2(label: Text('Weight', textAlign:TextAlign.center, style: TextStyle(fontSize: 13)), size: ColumnSize.S),
+                              //DataColumn2(label: Text('Read Nicotine mg/mL', textAlign:TextAlign.center,style: TextStyle(fontSize: 13)), size: ColumnSize.M), //mg/mL
+                              //DataColumn2(label: Text('Read Sugar mg/mL', textAlign:TextAlign.center,style: TextStyle(fontSize: 13)), size: ColumnSize.M), //mg/mL
                               DataColumn2(label: Text('Result Nicotine %', textAlign:TextAlign.center,style: TextStyle(fontSize: 13)), size: ColumnSize.M), //%
                               DataColumn2(label: Text('Result_Sugar %',  textAlign:TextAlign.center,style: TextStyle(fontSize: 13)), size: ColumnSize.S), //%
                               /*  DataColumn(label: Text('DES_GRADE')),
@@ -290,7 +285,6 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                               snapshot.data!.length,
                               (index) {
                                 var emp = snapshot.data![index];
-
                                 if(emp.data_processo.toString() != "null"){
                                   final DateTime now = DateTime.now();
                                   final DateFormat formatter = DateFormat('dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
@@ -329,7 +323,6 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                               ),*/
                                   DataCell(
                                     Text(emp.data_processo.toString()),
-
                                   ),
                                   DataCell(
                                     Text(emp.box_inicial.toString()),
@@ -344,7 +337,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                                   DataCell(
                                     Text((double.parse(emp.umidade.toString()).toStringAsFixed(2)).toString(), textAlign:TextAlign.center,),
                                   ),
-                                  DataCell(
+                               /*   DataCell(
                                     Text((double.parse(emp.peso_amostra.toString()).toStringAsFixed(3)).toString(), textAlign:TextAlign.center,),
                                   ),
                                   DataCell(
@@ -352,7 +345,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                                   ),
                                   DataCell(
                                     Text((double.parse(emp.leitura_acucar.toString()).toStringAsFixed(2)).toString(), textAlign:TextAlign.center,),
-                                  ),
+                                  ),*/
                                   DataCell(
                                     Text((double.parse(emp.result_nicotina.toString()).toStringAsFixed(2)).toString(), textAlign:TextAlign.center,),
                                   ),

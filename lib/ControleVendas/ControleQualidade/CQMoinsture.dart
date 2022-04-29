@@ -9,16 +9,16 @@ import 'dart:async';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
 
-class Moinsture extends StatefulWidget {
+class CQMoinsture extends StatefulWidget {
   String? valor, valor1, valor2;
 
-  Moinsture({this.valor, this.valor1, this.valor2});
+  CQMoinsture({this.valor, this.valor1, this.valor2});
 
   @override
-  _MoinstureState createState() => _MoinstureState();
+  _CQMoinstureState createState() => _CQMoinstureState();
 }
 
-class _MoinstureState extends State<Moinsture> {
+class _CQMoinstureState extends State<CQMoinsture> {
   late Future<List<ModelMoisture>> _myData = _recuperarPostagens(0);
   late TextEditingController safra;
   late TextEditingController grade;
@@ -217,7 +217,7 @@ class _MoinstureState extends State<Moinsture> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => ConsultaCostumer(
-                              interface: "Moinsture",
+                              interface: "CQMoinsture",
                             )));
 
                 /*setState(() {

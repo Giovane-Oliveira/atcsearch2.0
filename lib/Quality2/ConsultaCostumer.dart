@@ -1,4 +1,7 @@
 import 'dart:ui';
+import 'package:atcsearch/ControleVendas/ControleQualidade/CQDegradation.dart';
+import 'package:atcsearch/ControleVendas/ControleQualidade/CQMoinsture.dart';
+import 'package:atcsearch/ControleVendas/ControleQualidade/CQNicotineAndSugar.dart';
 import 'package:atcsearch/Quality2/Degradation.dart';
 import 'package:atcsearch/Quality2/Moinsture.dart';
 import 'package:intl/intl.dart';
@@ -246,12 +249,45 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
                                           valor2: post.crop.toString(),
                                         )));
 
+                              }else if(widget.interface.toString() == "CQMoinsture"){
+
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CQMoinsture(
+                                          valor: post.cod_grade.toString(),
+                                          valor1: post.des_grade,
+                                          valor2: post.crop.toString(),
+                                        )));
+
+                              }else if(widget.interface.toString() == "CQNicotineAndSugar"){
+
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CQNicotineAndSugar(
+                                          valor: post.cod_grade.toString(),
+                                          valor1: post.des_grade,
+                                          valor2: post.crop.toString(),
+                                        )));
+
                               }else if(widget.interface.toString() == "Degradation"){
 
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => Degradation(
+                                          valor: post.cod_grade.toString(),
+                                          valor1: post.des_grade,
+                                          valor2: post.crop.toString(),
+                                        )));
+
+                              }else if(widget.interface.toString() == "CQDegradation"){
+
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CQDegradation(
                                           valor: post.cod_grade.toString(),
                                           valor1: post.des_grade,
                                           valor2: post.crop.toString(),

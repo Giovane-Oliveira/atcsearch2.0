@@ -10,16 +10,16 @@ import 'dart:async';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
 
-class Degradation extends StatefulWidget {
+class CQDegradation extends StatefulWidget {
   String? valor, valor1, valor2;
 
-  Degradation({this.valor, this.valor1, this.valor2});
+  CQDegradation({this.valor, this.valor1, this.valor2});
 
   @override
-  _DegradationState createState() => _DegradationState();
+  _CQDegradationState createState() => _CQDegradationState();
 }
 
-class _DegradationState extends State<Degradation> {
+class _CQDegradationState extends State<CQDegradation> {
   late Future<List<ModelDegradation>> _myData = _recuperarPostagens();
   late TextEditingController safra;
   late TextEditingController grade;
@@ -204,7 +204,7 @@ class _DegradationState extends State<Degradation> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => ConsultaCostumer(
-                              interface: "Degradation",
+                              interface: "CQDegradation",
                             )));
 
                 /*setState(() {
@@ -253,13 +253,13 @@ class _DegradationState extends State<Degradation> {
                         dataRowColor: MaterialStateColor.resolveWith((states) => const Color(
                             0xFFFFFFFF)),
                         decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 10)),
+                        minWidth: 1300,
+                        dataRowHeight: 20,
                         headingRowHeight: 30,
                         headingRowColor: MaterialStateColor.resolveWith((states) => Colors.black),
                         headingTextStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
                         columnSpacing: 0,
                         horizontalMargin: 10,
-                        minWidth: 1300,
-                        dataRowHeight: 20,
                         columns: const [
                           // DataColumn(label: Text('COD_GRADE')),
                           DataColumn2(
