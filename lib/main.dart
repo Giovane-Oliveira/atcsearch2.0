@@ -14,6 +14,7 @@ void main(){
     initialRoute: '/',
     routes: {
       "/login": (context) => Login(),
+      "/home": (context) => Home(),
       '/quality': (context) => Quality2(),
       "/consultacostumer": (context) => ConsultaCostumer(),
       '/degradation': (context) => Degradation(),

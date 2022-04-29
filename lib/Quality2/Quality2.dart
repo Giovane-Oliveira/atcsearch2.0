@@ -55,7 +55,7 @@ class Quality2 extends StatelessWidget {
               fontSize: 22,
             ),
           ),
-          /*actions: [
+          actions: [
 
             Align(
               alignment: Alignment.center,
@@ -104,7 +104,7 @@ class Quality2 extends StatelessWidget {
 
             }),
 
-          ],*/
+          ],
           centerTitle: false,
           elevation: 2,
         ),

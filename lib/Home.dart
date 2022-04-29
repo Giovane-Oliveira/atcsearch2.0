@@ -76,13 +76,8 @@ class Home extends StatelessWidget {
                 onPressed: () async {
                   SharedPreferences prefs = await SharedPreferences.getInstance();
                   prefs.setBool('boolValue', false);
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => Login(),
-                    ),
-
-                  );
+                  //Fecha a ultima tela ao fazer logout
+                  Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
 
           },
                 child: const Text('Continue'),
