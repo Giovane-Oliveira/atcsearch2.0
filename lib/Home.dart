@@ -175,8 +175,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
 
-                    Icon( Octicons.package, size:80.0),
-                    Text("P. Acabado"),
+                    Icon( Icons.paste, size:80.0),
+                    Text("Controle Vendas"),
 
                   ],
                 ),

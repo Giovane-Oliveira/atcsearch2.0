@@ -30,7 +30,7 @@ import 'package:fluttericon/zocial_icons.dart';
 //https://www.fluttericon.com/
 
 class Quality2 extends StatelessWidget {
-  static const String _title = 'Quality';
+  static const String _title = 'Quality2';
 
   _logado() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -47,7 +47,7 @@ class Quality2 extends StatelessWidget {
           backgroundColor: Color(0xFF040404),
           //automaticallyImplyLeading: false,
           title: Text(
-            'Quality',
+            'Quality2',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Poppins',
@@ -55,7 +55,7 @@ class Quality2 extends StatelessWidget {
               fontSize: 22,
             ),
           ),
-          actions: [
+          /*actions: [
 
             Align(
               alignment: Alignment.center,
@@ -104,7 +104,7 @@ class Quality2 extends StatelessWidget {
 
             }),
 
-          ],
+          ],*/
           centerTitle: false,
           elevation: 2,
         ),
