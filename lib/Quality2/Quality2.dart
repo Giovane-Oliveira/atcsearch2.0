@@ -30,7 +30,7 @@ import 'package:fluttericon/zocial_icons.dart';
 //https://www.fluttericon.com/
 
 class Quality2 extends StatelessWidget {
-  static const String _title = 'Quality2';
+  //static const String _title = 'Quality2';
 
   _logado() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
