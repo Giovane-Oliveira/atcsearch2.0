@@ -41,13 +41,11 @@ class Quality2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: _title,
-      home: Scaffold(
+    return  Scaffold(
         backgroundColor: Colors.white,
         appBar:   AppBar(
           backgroundColor: Color(0xFF040404),
-          automaticallyImplyLeading: false,
+          //automaticallyImplyLeading: false,
           title: Text(
             'Quality',
             textAlign: TextAlign.center,
@@ -111,8 +109,7 @@ class Quality2 extends StatelessWidget {
           elevation: 2,
         ),
         body: MyStatefulWidget(),
-      ),
-    );
+      );
   }
 }
 

@@ -251,6 +251,9 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                         } else {
                           print("lista: carregou!! ");
                           return DataTable2(
+
+                          //  headingRowColor: MaterialStateColor.resolveWith((states) => Colors.black),
+                           // headingTextStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
                             columnSpacing: 0,
                             horizontalMargin: 0,
                             minWidth: 1300,

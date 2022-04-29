@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Timer(
           Duration(seconds: 3),
               () => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => Quality2())));
+              MaterialPageRoute(builder: (context) => Home())));
     }else{
       Timer(
           Duration(seconds: 3),

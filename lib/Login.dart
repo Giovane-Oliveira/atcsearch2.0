@@ -78,7 +78,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               passwordController.text.toUpperCase())) {
         _logado();
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => Quality2()));
+            MaterialPageRoute(builder: (context) => Home()));
       } else if (retorno["nome"].toString() == "null") {
         showDialog<String>(
           context: context,
