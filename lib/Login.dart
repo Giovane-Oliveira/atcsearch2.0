@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatelessWidget {
-  static const String _title = 'ATC Search';
+  static const String _title = 'Sistemas ATC';
 
   @override
   Widget build(BuildContext context) {

@@ -43,6 +43,14 @@ dependencies:
   horizontal_data_table: ^3.6.1+1
   splashscreen: ^1.2.0
   get: ^4.6.1
+  flutter_launcher_name: ^0.0.1
+
+flutter_launcher_name:
+  name: "Sistemas ATC"
+
+  #flutter pub get
+  #flutter pub run flutter_launcher_name:main
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

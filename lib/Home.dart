@@ -26,7 +26,7 @@ import 'package:fluttericon/zocial_icons.dart';
 //https://www.fluttericon.com/
 
 class Home extends StatelessWidget {
-  static const String _title = 'ATC Search';
+  static const String _title = 'Sistemas ATC';
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
           backgroundColor: Color(0xFF040404),
       automaticallyImplyLeading: false,
       title: Text(
-        'ATC Search',
+        '$_title',
         textAlign: TextAlign.center,
         style: TextStyle(
           fontFamily: 'Poppins',
