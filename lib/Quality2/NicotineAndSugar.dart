@@ -29,6 +29,9 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
   int x = 0;
   bool checked = false;
   List<int> selectedRow = [];
+  double mediaNicotine  = 0;
+  double mediaSugar  = 0;
+  int count = 0;
 
 
 
@@ -85,6 +88,9 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
     List<Post> postagens = <Post>[];
     for (var post in dadosJson) {
       // print("post: " + post["cod_carga"] );
+      mediaNicotine = mediaNicotine + double.parse(post["result_nicotina"]);
+      mediaSugar = mediaSugar + double.parse(post["result_acucar"]);
+      count  = count + 1;
       setState(() {
         cliente.text =  post["des_pessoa"];
       });
@@ -102,6 +108,8 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
       postagens.add(p);
     }
     //print( postagens.toString() );
+mediaNicotine = mediaNicotine / count;
+mediaSugar = mediaSugar / count;
 
     return postagens;
   }
@@ -441,6 +449,8 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                             ).toList(),
                           );
 
+
+
                           /* return ListView.separated(
                               itemCount: snapshot.data!.length,
                               itemBuilder: (context, index){
@@ -474,6 +484,61 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
 
             ),
         //https://flutterhq.com/questions-and-answers/1284/how-to-create-rows-data-in-to-datatable-using-from-json-model-json-api-respons-flutter
+        ),
+
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 5),
+          child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Result Nicotine:",
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      Text(
+                        " " + (double.parse(mediaNicotine.toString()).toStringAsFixed(2)).toString(),
+                        style: TextStyle(
+                            fontSize: 15,
+
+                        ),
+                      ),
+
+                      Text(
+                        "\tResult Sugar:",
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      Text(
+                        " " + (double.parse(mediaSugar.toString()).toStringAsFixed(2)).toString(),
+                        style: TextStyle(
+                            fontSize: 15,
+
+                        ),
+                      ),
+
+                    ]),
+
+
+
+
+
+              ]),
+
+
+
+
         ),
     ]),
     );
