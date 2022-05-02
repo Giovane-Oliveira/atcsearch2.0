@@ -106,6 +106,8 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
       postagens.add(p);
     }
     //print( postagens.toString() );
+    mediaNicotine = mediaNicotine / count;
+    mediaSugar = mediaSugar / count;
 
     return postagens;
   }
