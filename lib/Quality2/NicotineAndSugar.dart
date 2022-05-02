@@ -25,7 +25,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
   late TextEditingController safra;
   late TextEditingController grade;
   late TextEditingController cliente;
-  int n = 0;
+  int n = -1; // 0 para deixar selecionada a prinmeira linha e -1 para nenhuma no datable
   int x = 0;
   bool checked = false;
   List<int> selectedRow = [];
