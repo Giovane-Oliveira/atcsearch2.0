@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -24,6 +25,12 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
   late TextEditingController safra;
   late TextEditingController grade;
   late TextEditingController cliente;
+  int n = 0;
+  int x = 0;
+  bool checked = false;
+  List<int> selectedRow = [];
+
+
 
   @override
   void initState() {
@@ -31,6 +38,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
     safra = TextEditingController();
     grade = TextEditingController();
     cliente = TextEditingController();
+
 
       final DateTime now = DateTime.now();
       final DateFormat formatter = DateFormat('yyyy');
@@ -52,6 +60,16 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
 
       } else {
         widget.valor1 = "0000";
+      }
+    });
+  }
+
+  onSelectedRow(bool? selected, int index) async {
+    setState(() {
+      if (selected == true) {
+        selectedRow.add(index);
+      } else {
+        selectedRow.remove(index);
       }
     });
   }
@@ -228,7 +246,6 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                   initialData: const <Post>[],
                   future: _myData,
                   builder: (context, snapshot)
-
                       /*Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 child:
@@ -262,6 +279,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                             minWidth: 1300,
                             dataRowHeight: 20,
                             dividerThickness: 3,
+                            showCheckboxColumn: true,
                             dataRowColor: MaterialStateColor.resolveWith((states) => const Color(
                                 0xFFFFFFFF)),
                             decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 10)),
@@ -289,6 +307,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                             rows: List.generate(
                               snapshot.data!.length,
                               (index) {
+
                                 var emp = snapshot.data![index];
 
                                 if(emp.data_processo.toString() != "null"){
@@ -323,17 +342,52 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
 
                                 }
 
-                                return DataRow(cells: [
+                                return DataRow(
+
+                                    /*color: MaterialStateColor.resolveWith((states) {
+                                      return index % 2 == 0 ? Colors.red : Colors.black; //make tha magic!
+                                    }),*/
+
+                                    selected: selectedRow.contains(index) || index == n && x % 2 == 0 ? true : false,
+
+                                  color: MaterialStateColor.resolveWith(
+                                (states){
+
+                                  if (selectedRow.contains(index) || index == n && x % 2 == 0) {
+                                    return  Color(Random().nextInt(0xffffffff)).withOpacity(0.5);
+                                  } else {
+                                    return Colors.white;
+                                  }
+                                },
+                                    ),
+
+                                    onSelectChanged: (v) {
+                                      setState(() {
+                                        n = index;
+                                        x = x + 1;
+                                        onSelectedRow(v, index);
+
+                                      });
+
+                                    },
+
+                                    cells: [
 
                                   /* DataCell(
                                 Text(emp.cod_grade.toString()),
                               ),*/
                                   DataCell(
                                     Text(emp.data_processo.toString()),
-
                                   ),
                                   DataCell(
                                     Text(emp.box_inicial.toString()),
+                                 /*   onTap: () {
+                                      setState(() {
+                                        n = index;
+                                        x = x + 1;
+                                      });
+
+                                    },*/
                                   ),
                                   DataCell(
                                     Text(emp.box_final.toString()),
