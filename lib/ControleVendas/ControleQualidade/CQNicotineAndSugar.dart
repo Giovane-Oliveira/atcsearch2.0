@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -23,6 +24,13 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
   late TextEditingController safra;
   late TextEditingController grade;
   late TextEditingController cliente;
+  int n = -1; // 0 para deixar selecionada a prinmeira linha e -1 para nenhuma no datable
+  int x = 0;
+  bool checked = false;
+  List<int> selectedRow = [];
+  double mediaNicotine  = 0;
+  double mediaSugar  = 0;
+  int count = 0;
 
 
   @override
@@ -56,6 +64,17 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
     });
   }
 
+  onSelectedRow(bool? selected, int index) async {
+    setState(() {
+      if (selected == true) {
+        selectedRow.add(index);
+      } else {
+        selectedRow.remove(index);
+      }
+    });
+  }
+
+
   Future<List<Post>> _recuperarPostagens() async {
     String url = "http://192.168.200.11/read.php?tipo=consultar&safra=" +
         safra.text +
@@ -67,6 +86,9 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
     List<Post> postagens = <Post>[];
     for (var post in dadosJson) {
       // print("post: " + post["cod_carga"] );
+      mediaNicotine = mediaNicotine + double.parse(post["result_nicotina"]);
+      mediaSugar = mediaSugar + double.parse(post["result_acucar"]);
+      count  = count + 1;
       setState(() {
         cliente.text =  post["des_pessoa"];
       });
@@ -261,6 +283,7 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
                             horizontalMargin: 10,
                             minWidth: 600,
                             dataRowHeight: 20,
+                            showCheckboxColumn: false,
                             columns: const [
                               // DataColumn(label: Text('COD_GRADE')),
                               DataColumn2(label: Text('Date',  textAlign:TextAlign.center, style: TextStyle(fontSize: 13)), size: ColumnSize.S),
@@ -317,7 +340,35 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
 
                                 }
 
-                                return DataRow(cells: [
+                                return DataRow(
+
+                                    selected: selectedRow.contains(index) || index == n && x % 2 == 0 ? true : false,
+
+                                    color: MaterialStateColor.resolveWith(
+                                          (states){
+
+                                        if (selectedRow.contains(index) || index == n && x % 2 == 0) {
+                                          return  Color(Random().nextInt(0xffffffff)).withOpacity(0.5);
+                                        } else {
+                                          return Colors.white;
+                                        }
+                                      },
+                                    ),
+
+                                    onSelectChanged: (v) {
+                                      setState(() {
+                                        n = index;
+                                        x = x + 1;
+                                        onSelectedRow(v, index);
+
+                                      });
+
+                                    },
+
+
+
+
+                                    cells: [
                                   /* DataCell(
                                 Text(emp.cod_grade.toString()),
                               ),*/
@@ -413,6 +464,64 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
             ),
         //https://flutterhq.com/questions-and-answers/1284/how-to-create-rows-data-in-to-datatable-using-from-json-model-json-api-respons-flutter
         ),
+
+
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 5),
+          child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Result Nicotine:",
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      Text(
+                        " " + (double.parse(mediaNicotine.toString()).toStringAsFixed(2)).toString(),
+                        style: TextStyle(
+                          fontSize: 15,
+
+                        ),
+                      ),
+
+                      Text(
+                        "\tResult Sugar:",
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      Text(
+                        " " + (double.parse(mediaSugar.toString()).toStringAsFixed(2)).toString(),
+                        style: TextStyle(
+                          fontSize: 15,
+
+                        ),
+                      ),
+
+                    ]),
+
+
+
+
+
+              ]),
+
+
+
+
+        ),
+
+
     ]),
     );
 

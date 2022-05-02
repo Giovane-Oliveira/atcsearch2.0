@@ -287,7 +287,7 @@ mediaSugar = mediaSugar / count;
                             minWidth: 1300,
                             dataRowHeight: 20,
                             dividerThickness: 3,
-                            showCheckboxColumn: true,
+                            showCheckboxColumn: false,
                             dataRowColor: MaterialStateColor.resolveWith((states) => const Color(
                                 0xFFFFFFFF)),
                             decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 10)),
