@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'ControleVendas/ControleVendas.dart';
 import 'Login.dart';
@@ -111,6 +112,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
+      SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown, //Forçar orientação da tela
+    ]);
     return SafeArea(
       child: GestureDetector(
         child: GridView.count(
