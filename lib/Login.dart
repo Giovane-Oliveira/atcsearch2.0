@@ -1,8 +1,26 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:fluttericon/brandico_icons.dart';
+import 'package:fluttericon/elusive_icons.dart';
+import 'package:fluttericon/entypo_icons.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:fluttericon/fontelico_icons.dart';
+import 'package:fluttericon/iconic_icons.dart';
+import 'package:fluttericon/linearicons_free_icons.dart';
+import 'package:fluttericon/linecons_icons.dart';
+import 'package:fluttericon/maki_icons.dart';
+import 'package:fluttericon/meteocons_icons.dart';
+import 'package:fluttericon/mfg_labs_icons.dart';
+import 'package:fluttericon/modern_pictograms_icons.dart';
+import 'package:fluttericon/octicons_icons.dart';
+import 'package:fluttericon/rpg_awesome_icons.dart';
+import 'package:fluttericon/typicons_icons.dart';
+import 'package:fluttericon/web_symbols_icons.dart';
+import 'package:fluttericon/zocial_icons.dart';
+
 import 'package:atcsearch/Home.dart';
-import 'package:atcsearch/Quality2/Quality2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -172,7 +190,7 @@ _verificar_internet() async {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Usuário',
-                  prefixIcon: Icon(Icons.verified_user),
+                  prefixIcon: Icon(FontAwesome.user),
                 ),
               ),
             ),
@@ -183,7 +201,7 @@ _verificar_internet() async {
                 controller: passwordController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Password',
+                    labelText: 'Senha',
                     prefixIcon: Icon(Icons.key),
                     suffixIcon: IconButton(
                         icon: Icon(
