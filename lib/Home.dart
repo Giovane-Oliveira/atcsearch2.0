@@ -124,7 +124,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
-              elevation: 10,
+              elevation: 20,
               color: Colors.white,
               child: Center(
                 child: InkWell(
@@ -161,7 +161,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
-              elevation: 10,
+              elevation: 20,
               color: Colors.white,
               child: Center(
                     child: InkWell(
@@ -192,7 +192,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15.0),
               ),
-              elevation: 10,
+              elevation: 20,
               color: Colors.white,
               child: Center(
                 /*child: InkWell(

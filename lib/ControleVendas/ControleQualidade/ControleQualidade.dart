@@ -136,7 +136,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             children: [
 
               Card(
-                elevation: 10,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                elevation: 20,
                 color: Colors.white,
                 child: Center(
                   child: InkWell(
@@ -158,7 +161,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               ),
 
               Card(
-                elevation: 10,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                elevation: 20,
                 color: Colors.white,
                 child: Center(
                   child: InkWell(
@@ -182,7 +188,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
 
               Card(
-                elevation: 10,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                elevation: 20,
                 color: Colors.white,
                 child: Center(
                   child: InkWell(
