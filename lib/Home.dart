@@ -121,6 +121,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           crossAxisCount: 3,
           children: [
             Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
               elevation: 10,
               color: Colors.white,
               child: Center(
@@ -155,6 +158,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ),
 
             Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
               elevation: 10,
               color: Colors.white,
               child: Center(
@@ -183,6 +189,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
 
             Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
               elevation: 10,
               color: Colors.white,
               child: Center(
