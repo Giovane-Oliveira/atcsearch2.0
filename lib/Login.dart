@@ -31,7 +31,7 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-
+late bool _isObscure = true;
   _logado() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('boolValue', true);
@@ -134,15 +134,22 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
-                obscureText: true,
+                obscureText: _isObscure,
                 controller: passwordController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Senha',
-                  prefixIcon: Icon(Icons.key),
-                ),
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                    suffixIcon: IconButton(
+                        icon: Icon(
+                            _isObscure ? Icons.visibility : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        })),
               ),
             ),
+
             /* Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: TextField(
