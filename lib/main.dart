@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:atcsearch/Home.dart';
 import 'package:atcsearch/Login.dart';
 import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
@@ -29,13 +30,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Splash Screen',
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+          primarySwatch: Colors.grey,
       ),
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
+
 
 class MyHomePage extends StatefulWidget {
   @override

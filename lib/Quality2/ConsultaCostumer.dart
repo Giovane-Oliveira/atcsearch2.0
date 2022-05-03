@@ -181,7 +181,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
             ],
           ),
         ),
-        Row(
+       /* Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -200,7 +200,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
               label: Text("Buscar"),
             )
           ],
-        ),
+        ),*/
         Expanded(
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
