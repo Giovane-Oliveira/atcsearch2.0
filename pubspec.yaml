@@ -44,7 +44,6 @@ dependencies:
   splashscreen: ^1.2.0
   get: ^4.6.1
   flutter_launcher_name: ^0.0.1
-
 flutter_launcher_name:
   name: "Sistemas ATC"
 

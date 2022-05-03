@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:atcsearch/Home.dart';
 import 'package:atcsearch/Login.dart';
 import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
@@ -79,19 +78,26 @@ class _MyHomePageState extends State<MyHomePage> {
     return Container(
         color: Colors.white,
         child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-
-            Image.asset("images/atclogo.jpg"),
-
-
-
-        ])
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Center(
+              child: Container(
+                height: 150,
+                width: 150,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("images/atclogo.jpg"),
+                        fit: BoxFit.contain
+                    )
+                ),
+              ),
+            ),
+            Center(
+              child: CircularProgressIndicator(color: Colors.orangeAccent,),
+            )
+          ],
+        ),
     );
-
-
 
   }
 }
