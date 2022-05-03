@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:atcsearch/Quality2/ModelsQuality/ModelCC.dart';
 import 'package:flutter/material.dart';
@@ -289,6 +290,20 @@ visible: setVisible(),
                       case ConnectionState.done:
                         if (snapshot.hasError) {
                           print("lista: Erro ao carregar $snapshot");
+                          if(grade.text != "0000"){
+
+                            Fluttertoast.showToast(
+                                msg: "Não há itens para a Grade consultada",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 6,
+                                backgroundColor: Colors.black26,
+                                textColor: Colors.black,
+                                fontSize: 16.0
+                            );
+
+                          }
+
                         } else {
                           print("lista: carregou!! ");
                           return DataTable2(
