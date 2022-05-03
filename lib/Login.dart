@@ -139,6 +139,7 @@ late bool _isObscure = true;
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
+                    prefixIcon: Icon(Icons.key),
                     suffixIcon: IconButton(
                         icon: Icon(
                             _isObscure ? Icons.visibility : Icons.visibility_off),
