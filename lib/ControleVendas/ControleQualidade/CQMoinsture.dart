@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -23,6 +24,13 @@ class _CQMoinstureState extends State<CQMoinsture> {
   late TextEditingController safra;
   late TextEditingController grade;
   late TextEditingController cliente;
+  int n = -1; // 0 para deixar selecionada a prinmeira linha e -1 para nenhuma no datable
+  int x = 0;
+  bool checked = false;
+  List<int> selectedRow = [];
+  //double mediaNicotine  = 0;
+  //double mediaSugar  = 0;
+  int count = 0;
 
   @override
   void initState() {
@@ -51,6 +59,26 @@ class _CQMoinstureState extends State<CQMoinsture> {
         widget.valor1 = "0000";
       }
     });
+  }
+
+  onSelectedRow(bool? selected, int index) async {
+    setState(() {
+      if (selected == true) {
+        selectedRow.add(index);
+      } else {
+        selectedRow.remove(index);
+      }
+    });
+  }
+
+  bool setVisible(){
+
+    if (MediaQuery.of(context).orientation == Orientation.portrait){
+      return true;  // is portrait
+    }else{
+      return false;// is landscape
+    }
+
   }
 
   Future<List<ModelMoisture>> _recuperarPostagens(int n) async {
@@ -119,7 +147,9 @@ class _CQMoinstureState extends State<CQMoinsture> {
         backgroundColor: Colors.black,
       ),
       body: Column(mainAxisSize: MainAxisSize.max,    crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Padding(
+        Visibility(
+          visible: setVisible(),
+          child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 0),
           child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -142,7 +172,10 @@ class _CQMoinstureState extends State<CQMoinsture> {
               ]),
 
         ),
-        Padding(
+    ),
+        Visibility(
+          visible: setVisible(),
+          child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -206,7 +239,10 @@ class _CQMoinstureState extends State<CQMoinsture> {
             ],
           ),
         ),
-        Row(
+    ),
+        Visibility(
+          visible: setVisible(),
+          child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -232,6 +268,7 @@ class _CQMoinstureState extends State<CQMoinsture> {
               label: Text("Buscar"),
             )
           ],
+        ),
         ),
         Expanded(
         child: Padding(
@@ -263,10 +300,6 @@ class _CQMoinstureState extends State<CQMoinsture> {
                     print("lista: carregou!! ");
 
                     return DataTable2(
-                      dividerThickness: 3,
-                      dataRowColor: MaterialStateColor.resolveWith((states) => const Color(
-                          0xFFFFFFFF)),
-                      decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 10)),
                       headingRowHeight: 30,
                       headingRowColor: MaterialStateColor.resolveWith((states) => Colors.black),
                       headingTextStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
@@ -274,6 +307,11 @@ class _CQMoinstureState extends State<CQMoinsture> {
                       horizontalMargin: 10,
                       minWidth: 1300,
                       dataRowHeight: 20,
+                      dividerThickness: 3,
+                      showCheckboxColumn: false,
+                      dataRowColor: MaterialStateColor.resolveWith((states) => const Color(
+                          0xFFFFFFFF)),
+                      decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 10)),
                       columns: const [
                         // DataColumn(label: Text('COD_GRADE')),
                         DataColumn2(
@@ -375,7 +413,33 @@ class _CQMoinstureState extends State<CQMoinsture> {
                           } else if (emp.ptemp.toString() == "null") {
                             emp.ptemp = 0;
                           }
-                          return DataRow(cells: [
+                          return DataRow(
+
+                              selected: selectedRow.contains(index) || index == n && x % 2 == 0 ? true : false,
+
+                              color: MaterialStateColor.resolveWith(
+                                    (states){
+
+                                  if (selectedRow.contains(index) || index == n && x % 2 == 0) {
+                                    return  Color(Random().nextInt(0xffffffff)).withOpacity(0.5);
+                                  } else {
+                                    return Colors.white;
+                                  }
+                                },
+                              ),
+
+                              onSelectChanged: (v) {
+                                setState(() {
+                                  n = index;
+                                  x = x + 1;
+                                  onSelectedRow(v, index);
+
+                                });
+
+                              },
+
+
+                              cells: [
                             /* DataCell(
                                 Text(emp.cod_grade.toString()),
                               ),*/
