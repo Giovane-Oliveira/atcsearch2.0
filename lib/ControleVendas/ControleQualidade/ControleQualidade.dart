@@ -101,9 +101,7 @@ class ControleQualidade extends StatelessWidget {
                   ],
                 ),
               );
-
             }),
-
           ],
           centerTitle: false,
           elevation: 2,
@@ -112,9 +110,6 @@ class ControleQualidade extends StatelessWidget {
       );
   }
 }
-
-
-
 
 
 class MyStatefulWidget extends StatefulWidget {

@@ -76,7 +76,15 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
       }
     });
   }
+  bool setVisible(){
 
+    if (MediaQuery.of(context).orientation == Orientation.portrait){
+    return true;  // is portrait
+    }else{
+return false;// is landscape
+    }
+
+  }
   Future<List<Post>> _recuperarPostagens() async {
     String url = "http://192.168.200.11/read.php?tipo=consultar&safra=" +
         safra.text +
@@ -128,7 +136,9 @@ mediaSugar = mediaSugar / count;
         backgroundColor: Colors.black,
       ),
       body: Column(mainAxisSize: MainAxisSize.max,    crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Padding(
+        Visibility(
+          visible: setVisible(),
+          child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 0),
           child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -151,7 +161,10 @@ mediaSugar = mediaSugar / count;
               ]),
 
         ),
-        Padding(
+    ),
+    Visibility(
+      visible: setVisible(),
+        child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -217,7 +230,10 @@ mediaSugar = mediaSugar / count;
             ],
           ),
         ),
-        Row(
+    ),
+    Visibility(
+visible: setVisible(),
+      child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -247,6 +263,7 @@ mediaSugar = mediaSugar / count;
             )
           ],
         ),
+    ),
         Expanded(
         child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
@@ -499,7 +516,7 @@ mediaSugar = mediaSugar / count;
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Result Nicotine:",
+                        "AVG Nicotine:",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold
@@ -514,7 +531,7 @@ mediaSugar = mediaSugar / count;
                       ),
 
                       Text(
-                        "\tResult Sugar:",
+                        "\tAVG Sugar:",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold

@@ -64,6 +64,16 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
     });
   }
 
+  bool setVisible(){
+
+    if (MediaQuery.of(context).orientation == Orientation.portrait){
+      return true;  // is portrait
+    }else{
+      return false;// is landscape
+    }
+
+  }
+
   onSelectedRow(bool? selected, int index) async {
     setState(() {
       if (selected == true) {
@@ -126,7 +136,9 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
         backgroundColor: Colors.black,
       ),
       body: Column(mainAxisSize: MainAxisSize.max,    crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Padding(
+        Visibility(
+          visible: setVisible(),
+          child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 0),
           child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -149,7 +161,10 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
               ]),
 
         ),
-        Padding(
+    ),
+        Visibility(
+          visible: setVisible(),
+          child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -215,7 +230,10 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
             ],
           ),
         ),
-        Row(
+    ),
+        Visibility(
+          visible: setVisible(),
+          child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -244,6 +262,7 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
               label: Text("Buscar"),
             )
           ],
+        ),
         ),
         Expanded(
         child: Padding(
@@ -481,7 +500,7 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Result Nicotine:",
+                        "AVG Nicotine:",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold
@@ -496,7 +515,7 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
                       ),
 
                       Text(
-                        "\tResult Sugar:",
+                        "\tAVG Sugar:",
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold
