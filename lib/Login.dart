@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:atcsearch/Home.dart';
 import 'package:atcsearch/Quality2/Quality2.dart';
@@ -32,6 +33,50 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 late bool _isObscure = true;
+
+
+
+@override
+void initState() {
+  super.initState();
+
+  _verificar_internet();
+
+
+}
+
+_verificar_internet() async {
+
+
+  try {
+    final result = await InternetAddress.lookup('google.com');
+    if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+      print('connected');
+    }
+  } on SocketException catch (_) {
+    showDialog<String>(
+        context: context,
+        builder: (BuildContext context) =>
+        AlertDialog(
+          title: const Text('Aviso!'),
+          content: const Text('O dispositivo não está conectado com a internet'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+    );
+  }
+
+
+}
+
   _logado() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('boolValue', true);
