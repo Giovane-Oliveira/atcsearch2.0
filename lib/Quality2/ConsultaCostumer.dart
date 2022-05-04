@@ -9,8 +9,11 @@ import 'package:atcsearch/Quality2/ModelsQuality/ModelNS.dart';
 import 'package:atcsearch/Quality2/NicotineAndSugar.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'dart:async';
+
+import '../Login.dart';
 
 class ConsultaCostumer extends StatefulWidget {
   String? interface;
@@ -25,12 +28,15 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
   late Future<List<Grade>> _myData = _recuperarPostagens();
   late TextEditingController safra;
   late TextEditingController grade;
+  late bool rs = true;
+
 
   @override
   void initState() {
     super.initState();
     grade = TextEditingController();
     safra = TextEditingController();
+
     grade.addListener(() {
       _recuperarPostagens();
     });
@@ -45,6 +51,51 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
     safra.text = formatted.toString();
     grade.text = "";
   }
+
+  _opcaoTrue() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? s = prefs.getBool('bannerOpcao');
+   // print('$s');
+    if(s != true && s != false){
+
+      prefs.setBool('bannerOpcao', true);
+      rs = true;
+
+    }else{
+
+      rs = false;
+
+    }
+
+    //bool? boolValue = prefs.getBool('boolValue');
+
+  }
+
+
+ _banner(){
+    _opcaoTrue();
+
+      return Visibility(
+          visible: rs,
+          child: MaterialBanner(
+            content: const Text('Pesquise por código do cliente, grade e safra'),
+            leading: CircleAvatar(child: Icon(Icons.search)),
+            actions: [
+              FlatButton(
+                child: const Text('Ocultar', style: TextStyle(color: Colors.blue),),
+                onPressed: () {
+
+                  setState(() {
+                    _opcaoTrue();
+                  });
+
+                },
+              ),
+
+            ],
+          ));
+
+}
 
   Future<List<Grade>> _recuperarPostagens() async {
     String url = "http://192.168.200.11/read.php?tipo=grade";
@@ -101,6 +152,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
         backgroundColor: Colors.black,
       ),
       body: Column(mainAxisSize: MainAxisSize.max, children: [
+       _banner(),
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
           child: Row(
