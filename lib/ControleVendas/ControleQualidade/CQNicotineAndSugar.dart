@@ -505,45 +505,67 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
           padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 5),
           child: Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+
+                Container(
+
+                  child: Row(
                     mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "AVG Nicotine:",
-                        style: TextStyle(
+
+                  Text(
+                    "AVG Nicotine:",
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  Text(
+                    " " + (double.parse(mediaNicotine.toString()).toStringAsFixed(2)).toString(),
+                    style: TextStyle(
+                      fontSize: 15,
+
+                    ),
+                  ),
+
+                  ]
+                  ),
+
+                ),
+
+                Container(
+
+                  child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "\tAVG Sugar:",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        Text(
+                          " " + (double.parse(mediaSugar.toString()).toStringAsFixed(2)).toString(),
+                          style: TextStyle(
                             fontSize: 15,
-                            fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      Text(
-                        " " + (double.parse(mediaNicotine.toString()).toStringAsFixed(2)).toString(),
-                        style: TextStyle(
-                          fontSize: 15,
 
+                          ),
                         ),
-                      ),
 
-                      Text(
-                        "\tAVG Sugar:",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold
-                        ),
-                      ),
-                      Text(
-                        " " + (double.parse(mediaSugar.toString()).toStringAsFixed(2)).toString(),
-                        style: TextStyle(
-                          fontSize: 15,
+                      ]
+                  ),
 
-                        ),
-                      ),
+                ),
 
-                    ]),
+
+
 
 
 
