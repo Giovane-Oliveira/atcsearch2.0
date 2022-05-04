@@ -78,7 +78,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
       return Visibility(
           visible: rs,
           child: MaterialBanner(
-            content: const Text('Pesquise por código do cliente, grade e safra'),
+            content: const Text('Pesquise por código do cliente ou grade e safra'),
             leading: CircleAvatar(child: Icon(Icons.search)),
             actions: [
               FlatButton(
