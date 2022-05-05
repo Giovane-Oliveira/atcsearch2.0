@@ -28,7 +28,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
   late Future<List<Grade>> _myData = _recuperarPostagens();
   late TextEditingController safra;
   late TextEditingController grade;
-  late bool rs = true;
+
 
 
   @override
@@ -36,6 +36,12 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
     super.initState();
     grade = TextEditingController();
     safra = TextEditingController();
+
+    setState(() {
+      _opcao();
+    });
+
+
 
     grade.addListener(() {
       _recuperarPostagens();
@@ -54,48 +60,38 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
 
   _opcaoTrue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('bannerOpcao', false);
+
+
+
+  }
+ _opcao() async {
+    bool rs;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? s = prefs.getBool('bannerOpcao');
-   // print('$s');
-    if(s != true && s != false){
+    print('EEEEEEE $s');
+    if(s == true){
+
+      rs = true;
+
+    }else if(s ==  false){
+
+      rs = false;
+
+    }else{
 
       prefs.setBool('bannerOpcao', true);
       rs = true;
 
-    }else{
-
-      rs = false;
-
     }
+
+    return rs;
 
     //bool? boolValue = prefs.getBool('boolValue');
 
   }
 
 
- _banner(){
-    _opcaoTrue();
-
-      return Visibility(
-          visible: rs,
-          child: MaterialBanner(
-            content: const Text('Pesquise por código do cliente ou grade e safra'),
-            leading: CircleAvatar(child: Icon(Icons.search)),
-            actions: [
-              FlatButton(
-                child: const Text('Ocultar', style: TextStyle(color: Colors.blue),),
-                onPressed: () {
-
-                  setState(() {
-                    _opcaoTrue();
-                  });
-
-                },
-              ),
-
-            ],
-          ));
-
-}
 
   Future<List<Grade>> _recuperarPostagens() async {
     String url = "http://192.168.200.11/read.php?tipo=grade";
@@ -152,7 +148,66 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
         backgroundColor: Colors.black,
       ),
       body: Column(mainAxisSize: MainAxisSize.max, children: [
-       _banner(),
+      FutureBuilder<dynamic>(
+      future: _opcao(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasData) {
+            //print("" + snapshot.data.toString());
+            if (snapshot.data == true) {
+              return Visibility(
+                  visible: true,
+                  child: MaterialBanner(
+                    content: const Text('Pesquise por código do cliente ou grade e safra'),
+                    leading: CircleAvatar(child: Icon(Icons.search)),
+                    actions: [
+                      FlatButton(
+                        child: const Text('Ocultar', style: TextStyle(color: Colors.blue),),
+                        onPressed: () {
+
+                          setState(() {
+
+                            _opcaoTrue();
+
+                          });
+
+
+                        },
+                      ),
+
+                    ],
+                  ));
+            } else {
+              return Visibility(
+                  visible: false,
+                  child: MaterialBanner(
+                    content: const Text('Pesquise por código do cliente ou grade e safra'),
+                    leading: CircleAvatar(child: Icon(Icons.search)),
+                    actions: [
+                      FlatButton(
+                        child: const Text('Ocultar', style: TextStyle(color: Colors.blue),),
+                        onPressed: () {
+
+                          setState(() {
+
+                            _opcaoTrue();
+
+                          });
+
+
+                        },
+                      ),
+
+                    ],
+                  ));
+            }
+          }else{
+
+            return Container();
+
+          }
+        }
+      ),
+
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
           child: Row(
