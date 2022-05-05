@@ -126,10 +126,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               content: const Text('Informe usuário e senha'),
               actions: <Widget>[
                 TextButton(
-                  onPressed: () => Navigator.pop(context, 'Cancel'),
-                  child: const Text('Cancel'),
-                ),
-                TextButton(
                   onPressed: () => Navigator.pop(context, 'OK'),
                   child: const Text('OK'),
                 ),
