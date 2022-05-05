@@ -100,6 +100,7 @@ bool rs = true;
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         print('connected');
         rs = false;
+
       }
 
 
@@ -125,6 +126,7 @@ bool rs = true;
     }
 
    return rs;
+
 
   }
 
