@@ -1,20 +1,18 @@
-class ModelDegradation{
+class ModelDegradation {
+  String? _sampledate;
+  String? _sampletime;
+  String? _des_pessoa;
 
-
-String? _sampledate;
-String? _sampletime;
-String? _des_pessoa;
-
-String? get des_pessoa => _des_pessoa;
+  String? get des_pessoa => _des_pessoa;
 
   set des_pessoa(String? value) {
     _des_pessoa = value;
   }
 
   int? _shift;
-int? _box;
+  int? _box;
 
-ModelDegradation(
+  ModelDegradation(
       this._sampledate,
       this._sampletime,
       this._shift,
@@ -33,118 +31,117 @@ ModelDegradation(
       this._totalstems,
       this._ps4);
 
-String? _d1x1;
-String? _d12x12;
-String? _total12;
-String? _d14x14;
-String? _total14;
-String? _d18x18;
-String? _pan;
-String? _s332;
-String? _s7;
-String? _s12;
-String? _fiberspan;
-String? _totalstems;
-String? _ps4;
+  String? _d1x1;
+  String? _d12x12;
+  String? _total12;
+  String? _d14x14;
+  String? _total14;
+  String? _d18x18;
+  String? _pan;
+  String? _s332;
+  String? _s7;
+  String? _s12;
+  String? _fiberspan;
+  String? _totalstems;
+  String? _ps4;
 
-String? get sampledate => _sampledate;
+  String? get sampledate => _sampledate;
 
   set sampledate(String? value) {
     _sampledate = value;
   }
 
+  String? get total14 => _total14;
 
-String? get total14 => _total14;
+  set total14(String? value) {
+    _total14 = value;
+  }
 
-set total14(String? value) {
-  _total14 = value;
-}
-
-String? get sampletime => _sampletime;
+  String? get sampletime => _sampletime;
 
   set sampletime(String? value) {
     _sampletime = value;
   }
 
-int? get shift => _shift;
+  int? get shift => _shift;
 
   set shift(int? value) {
     _shift = value;
   }
 
-int? get box => _box;
+  int? get box => _box;
 
   set box(int? value) {
     _box = value;
   }
 
-String? get d1x1 => _d1x1;
+  String? get d1x1 => _d1x1;
 
   set d1x1(String? value) {
     _d1x1 = value;
   }
 
-String? get d12x12 => _d12x12;
+  String? get d12x12 => _d12x12;
 
   set d12x12(String? value) {
     _d12x12 = value;
   }
 
-String? get total12 => _total12;
+  String? get total12 => _total12;
 
   set total12(String? value) {
     _total12 = value;
   }
 
-String? get d14x14 => _d14x14;
+  String? get d14x14 => _d14x14;
 
   set d14x14(String? value) {
     _d14x14 = value;
   }
 
-String? get d18x18 => _d18x18;
+  String? get d18x18 => _d18x18;
 
   set d18x18(String? value) {
     _d18x18 = value;
   }
 
-String? get pan => _pan;
+  String? get pan => _pan;
 
   set pan(String? value) {
     _pan = value;
   }
 
-String? get s332 => _s332;
+  String? get s332 => _s332;
 
   set s332(String? value) {
     _s332 = value;
   }
 
-String? get s7 => _s7;
+  String? get s7 => _s7;
 
   set s7(String? value) {
     _s7 = value;
   }
 
-String? get s12 => _s12;
+  String? get s12 => _s12;
 
   set s12(String? value) {
     _s12 = value;
   }
 
-String? get fiberspan => _fiberspan;
+  String? get fiberspan => _fiberspan;
 
   set fiberspan(String? value) {
     _fiberspan = value;
   }
 
-String? get totalstems => _totalstems;
+  String? get totalstems => _totalstems;
 
   set totalstems(String? value) {
     _totalstems = value;
   }
 
-String? get ps4 => _ps4;
+  String? get ps4 => _ps4;
 
   set ps4(String? value) {
     _ps4 = value;

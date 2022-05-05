@@ -35,65 +35,62 @@ class Home extends StatelessWidget {
       title: _title,
       home: Scaffold(
         backgroundColor: Colors.white,
-        appBar:   AppBar(
+        appBar: AppBar(
           backgroundColor: Color(0xFF040404),
-      automaticallyImplyLeading: false,
-      title: Text(
-        '$_title',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontFamily: 'Poppins',
-          color: Colors.white,
-          fontSize: 22,
-        ),
-      ),
-      actions: [
-
-        Align(
-          alignment: Alignment.center,
-          child: Text(
-            "Sair",
-            textScaleFactor: 1.5,
+          automaticallyImplyLeading: false,
+          title: Text(
+            '$_title',
+            textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 12.0,
+              fontFamily: 'Poppins',
               color: Colors.white,
+              fontSize: 22,
             ),
           ),
+          actions: [
+            Align(
+              alignment: Alignment.center,
+              child: Text(
+                "Sair",
+                textScaleFactor: 1.5,
+                style: TextStyle(
+                  fontSize: 12.0,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            IconButton(
+                icon: Icon(Icons.logout),
+                onPressed: () {
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: const Text('Aviso!'),
+                      content: const Text('Deseja mesmo sair?'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Cancel'),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            prefs.setBool('boolValue', false);
+                            //Fecha a ultima tela ao fazer logout
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                '/login', (Route<dynamic> route) => false);
+                          },
+                          child: const Text('Continue'),
+                        ),
+                      ],
+                    ),
+                  );
+                }),
+          ],
+          centerTitle: false,
+          elevation: 2,
         ),
-
-        IconButton(icon: Icon(Icons.logout), onPressed: () {
-
-          showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-            title: const Text('Aviso!'),
-            content: const Text('Deseja mesmo sair?'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: const Text('Cancel'),
-              ),
-              TextButton(
-
-                onPressed: () async {
-                  SharedPreferences prefs = await SharedPreferences.getInstance();
-                  prefs.setBool('boolValue', false);
-                  //Fecha a ultima tela ao fazer logout
-                  Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-
-          },
-                child: const Text('Continue'),
-              ),
-            ],
-          ),
-          );
-
-        }),
-
-      ],
-      centerTitle: false,
-      elevation: 2,
-    ),
         body: MyStatefulWidget(),
       ),
     );
@@ -106,13 +103,9 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-
-
-
-
   @override
   Widget build(BuildContext context) {
-      SystemChrome.setPreferredOrientations([
+    SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown, //Forçar orientação da tela
     ]);
@@ -149,11 +142,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         color: Colors.black,
                       ),
                       Text(
-                          "Quality2",
+                        "Quality2",
                         style: TextStyle(
-
                           color: Colors.black,
-
                         ),
                       ),
                     ],
@@ -169,29 +160,24 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               elevation: 20,
               color: Colors.white,
               child: Center(
-                    child: InkWell(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => ControleVendas(),
-                      ),
+                child: InkWell(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => ControleVendas(),
                     ),
-                child: Column(
-
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-
-                    Icon( Icons.paste, size:80.0),
-                    Text("Controle Vendas"),
-
-                  ],
-                ),
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(Icons.paste, size: 80.0),
+                      Text("Controle Vendas"),
+                    ],
+                  ),
                 ),
               ),
-
             ),
-
 
             Card(
               shape: RoundedRectangleBorder(
@@ -208,30 +194,23 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       ),
                     ),*/
                 child: Column(
-
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-
-                    Icon( FontAwesome.envira, size:80.0,),
+                    Icon(
+                      FontAwesome.envira,
+                      size: 80.0,
+                    ),
                     Text("Fumo Cru"),
-
                   ],
                 ),
-                ),
               ),
+            ),
 
-           // ),
-
-
-
+            // ),
           ],
         ),
       ),
-
     );
-
   }
 }
-
-

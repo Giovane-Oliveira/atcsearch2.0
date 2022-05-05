@@ -52,8 +52,6 @@ class MyStatefulWidget extends StatefulWidget {
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   late bool _isObscure = true;
 
-
-
   @override
   void initState() {
     super.initState();
@@ -61,57 +59,37 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     setState(() {
       _verificar_internet();
     });
-
   }
 
-
-
   _verificar_internet() async {
-
-
     try {
-
-
       final result = await InternetAddress.lookup('google.com');
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         print('connected');
-
-
       }
-
-
     } on SocketException catch (_) {
-
       showDialog<String>(
         context: context,
-        builder: (BuildContext context) =>
-            AlertDialog(
-              title: const Text('Aviso!'),
-              content: const Text('O dispositivo não está conectado com a internet'),
-              actions: <Widget>[
-
-                TextButton(
-                  onPressed: () => Navigator.pop(context, 'OK'),
-                  child: const Text('OK'),
-                ),
-              ],
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Aviso!'),
+          content:
+              const Text('O dispositivo não está conectado com a internet'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
             ),
+          ],
+        ),
       );
     }
-
-
-
-
   }
 
   _logado() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('boolValue', true);
     //bool? boolValue = prefs.getBool('boolValue');
-
   }
-
-
 
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -120,17 +98,16 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     if (nameController.text.isEmpty || passwordController.text.isEmpty) {
       showDialog<String>(
         context: context,
-        builder: (BuildContext context) =>
-            AlertDialog(
-              title: const Text('Aviso!'),
-              content: const Text('Informe usuário e senha'),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () => Navigator.pop(context, 'OK'),
-                  child: const Text('OK'),
-                ),
-              ],
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Aviso!'),
+          content: const Text('Informe usuário e senha'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
             ),
+          ],
+        ),
       );
     } else {
       String url = "http://192.168.200.11/readpass.php?tipo=login&usuario=" +
@@ -140,27 +117,28 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       http.Response response;
       response = await http.get(Uri.parse(url));
       Map<String, dynamic> retorno = json.decode(response.body);
-      if (retorno["nome"].toString().contains(
-          nameController.text.toUpperCase()) &&
-          retorno["senha"].toString().contains(
-              passwordController.text.toUpperCase())) {
+      if (retorno["nome"]
+              .toString()
+              .contains(nameController.text.toUpperCase()) &&
+          retorno["senha"]
+              .toString()
+              .contains(passwordController.text.toUpperCase())) {
         _logado();
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => Home()));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Home()));
       } else if (retorno["nome"].toString() == "null") {
         showDialog<String>(
           context: context,
-          builder: (BuildContext context) =>
-              AlertDialog(
-                title: const Text('Aviso!'),
-                content: const Text('Usuário ou senha incorretos'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'OK'),
-                    child: const Text('OK'),
-                  ),
-                ],
+          builder: (BuildContext context) => AlertDialog(
+            title: const Text('Aviso!'),
+            content: const Text('Usuário ou senha incorretos'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
               ),
+            ],
+          ),
         );
       }
     }
@@ -205,8 +183,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     labelText: 'Senha',
                     prefixIcon: Icon(Icons.key),
                     suffixIcon: IconButton(
-                        icon: Icon(
-                            _isObscure ? Icons.visibility : Icons.visibility_off),
+                        icon: Icon(_isObscure
+                            ? Icons.visibility
+                            : Icons.visibility_off),
                         onPressed: () {
                           setState(() {
                             _isObscure = !_isObscure;

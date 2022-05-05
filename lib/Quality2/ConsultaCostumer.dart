@@ -29,8 +29,6 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
   late TextEditingController safra;
   late TextEditingController grade;
 
-
-
   @override
   void initState() {
     super.initState();
@@ -50,7 +48,8 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
     });
 
     final DateTime now = DateTime.now();
-    final DateFormat formatter = DateFormat('yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
+    final DateFormat formatter =
+        DateFormat('yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
     final String formatted = formatter.format(now);
     safra.text = formatted.toString();
     grade.text = "";
@@ -59,68 +58,58 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
   _opcaoTrue() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('bannerOpcao', false);
-
   }
 
- _opcao() async {
+  _opcao() async {
     bool rs;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? s = prefs.getBool('bannerOpcao');
     //print('EEEEEEE $s');
-    if(s == true){
-
+    if (s == true) {
       rs = true;
-
-    }else if(s ==  false){
-
+    } else if (s == false) {
       rs = false;
-
-    }else{
-
+    } else {
       prefs.setBool('bannerOpcao', true);
       rs = true;
-
     }
 
     return rs;
 
     //bool? boolValue = prefs.getBool('boolValue');
-
   }
-
-
 
   Future<List<Grade>> _recuperarPostagens() async {
     String url = "http://192.168.200.11/read.php?tipo=grade";
 
     bool x = true;
-    try{
+    try {
       int.parse(grade.text);
-    }catch(Exception){
+    } catch (Exception) {
       x = false;
-     // print("sadsdasdasdsad");
+      // print("sadsdasdasdsad");
     }
 
     if (x == false && !grade.text.isEmpty && !safra.text.isEmpty) {
-   //   print("aaaqui 1");
+      //   print("aaaqui 1");
       url = "http://192.168.200.11/read.php?tipo=grade&grade=" +
           grade.text.toUpperCase() +
           "&safra=" +
           safra.text;
     } else if (x == false && !grade.text.isEmpty) {
-    //  print("aaaqui 2");
-      url = "http://192.168.200.11/read.php?tipo=grade&grade=" + grade.text.toUpperCase();
+      //  print("aaaqui 2");
+      url = "http://192.168.200.11/read.php?tipo=grade&grade=" +
+          grade.text.toUpperCase();
     } else if (x == false && !safra.text.isEmpty) {
       //print("aaaqui 3");
       url = "http://192.168.200.11/read.php?tipo=safra&safra=" + safra.text;
     } else if (x == true) {
-     // print("aaaqui 4");
+      // print("aaaqui 4");
       url = "http://192.168.200.11/read.php?tipo=codcliente&grade=" +
           grade.text +
           "&safra=" +
           safra.text;
-
-      }
+    }
 
     http.Response response;
     response = await http.get(Uri.parse(url));
@@ -145,42 +134,35 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
         backgroundColor: Colors.black,
       ),
       body: Column(mainAxisSize: MainAxisSize.max, children: [
-      FutureBuilder<dynamic>(
-      future: _opcao(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          if (snapshot.hasData) {
-            //print("" + snapshot.data.toString());
-              return Visibility(
-                  visible: snapshot.data ? true : false,
-                  child: MaterialBanner(
-                    content: const Text('Pesquise por código do cliente ou grade e safra'),
-                    leading: CircleAvatar(child: Icon(Icons.search)),
-                    actions: [
-                      FlatButton(
-                        child: const Text('Ocultar', style: TextStyle(color: Colors.blue),),
-                        onPressed: () {
-
-                          setState(() {
-
-                            _opcaoTrue();
-
-                          });
-
-
-                        },
-                      ),
-
-                    ],
-                  ));
-
-          }else{
-
-            return Container();
-
-          }
-        }
-      ),
-
+        FutureBuilder<dynamic>(
+            future: _opcao(),
+            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+              if (snapshot.hasData) {
+                //print("" + snapshot.data.toString());
+                return Visibility(
+                    visible: snapshot.data ? true : false,
+                    child: MaterialBanner(
+                      content: const Text(
+                          'Pesquise por código do cliente ou grade e safra'),
+                      leading: CircleAvatar(child: Icon(Icons.search)),
+                      actions: [
+                        FlatButton(
+                          child: const Text(
+                            'Ocultar',
+                            style: TextStyle(color: Colors.blue),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _opcaoTrue();
+                            });
+                          },
+                        ),
+                      ],
+                    ));
+              } else {
+                return Container();
+              }
+            }),
         Padding(
           padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
           child: Row(
@@ -261,7 +243,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
             ],
           ),
         ),
-       /* Row(
+        /* Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -308,74 +290,68 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
 
                           return ListTile(
                             onTap: () {
-                              if(widget.interface.toString() == "NicotineAndSugar"){
-
+                              if (widget.interface.toString() ==
+                                  "NicotineAndSugar") {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => NicotineAndSugar(
-                                          valor: post.cod_grade.toString(),
-                                          valor1: post.des_grade,
-                                          valor2: post.crop.toString(),
-                                        )));
-                              }else if(widget.interface.toString() == "Moinsture"){
-
+                                              valor: post.cod_grade.toString(),
+                                              valor1: post.des_grade,
+                                              valor2: post.crop.toString(),
+                                            )));
+                              } else if (widget.interface.toString() ==
+                                  "Moinsture") {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => Moinsture(
-                                          valor: post.cod_grade.toString(),
-                                          valor1: post.des_grade,
-                                          valor2: post.crop.toString(),
-                                        )));
-
-                              }else if(widget.interface.toString() == "CQMoinsture"){
-
+                                              valor: post.cod_grade.toString(),
+                                              valor1: post.des_grade,
+                                              valor2: post.crop.toString(),
+                                            )));
+                              } else if (widget.interface.toString() ==
+                                  "CQMoinsture") {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => CQMoinsture(
-                                          valor: post.cod_grade.toString(),
-                                          valor1: post.des_grade,
-                                          valor2: post.crop.toString(),
-                                        )));
-
-                              }else if(widget.interface.toString() == "CQNicotineAndSugar"){
-
+                                              valor: post.cod_grade.toString(),
+                                              valor1: post.des_grade,
+                                              valor2: post.crop.toString(),
+                                            )));
+                              } else if (widget.interface.toString() ==
+                                  "CQNicotineAndSugar") {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => CQNicotineAndSugar(
-                                          valor: post.cod_grade.toString(),
-                                          valor1: post.des_grade,
-                                          valor2: post.crop.toString(),
-                                        )));
-
-                              }else if(widget.interface.toString() == "Degradation"){
-
+                                        builder: (context) =>
+                                            CQNicotineAndSugar(
+                                              valor: post.cod_grade.toString(),
+                                              valor1: post.des_grade,
+                                              valor2: post.crop.toString(),
+                                            )));
+                              } else if (widget.interface.toString() ==
+                                  "Degradation") {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => Degradation(
-                                          valor: post.cod_grade.toString(),
-                                          valor1: post.des_grade,
-                                          valor2: post.crop.toString(),
-                                        )));
-
-                              }else if(widget.interface.toString() == "CQDegradation"){
-
+                                              valor: post.cod_grade.toString(),
+                                              valor1: post.des_grade,
+                                              valor2: post.crop.toString(),
+                                            )));
+                              } else if (widget.interface.toString() ==
+                                  "CQDegradation") {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => CQDegradation(
-                                          valor: post.cod_grade.toString(),
-                                          valor1: post.des_grade,
-                                          valor2: post.crop.toString(),
-                                        )));
-
+                                              valor: post.cod_grade.toString(),
+                                              valor1: post.des_grade,
+                                              valor2: post.crop.toString(),
+                                            )));
                               }
-
-
                             },
                             title: new Center(
                                 child: new Text(

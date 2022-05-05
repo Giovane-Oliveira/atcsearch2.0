@@ -1,8 +1,4 @@
-class ModelMoisture{
-
-
-
-
+class ModelMoisture {
   String? _sampledate;
   String? _des_pessoa;
 
@@ -14,12 +10,37 @@ class ModelMoisture{
 
   int? _shift;
 
-  ModelMoisture(this._sampledate, this._shift, this._box, this._sampletime,
-      this._casefirst, this._caselast, this._blending, this._brabender,
-      this._oven, this._coolerr, this._coolerl, this._bthresh, this._stem,
-      this._tips, this._ptemp, this._out_crop, this._des_grade, this._method,
-      this._product, this._pm1, this._pm2, this._pm3, this._pm4, this._pm5,
-      this._pm6, this._pm7, this._pm8, this._pm9, this._pm10, this._pm11,
+  ModelMoisture(
+      this._sampledate,
+      this._shift,
+      this._box,
+      this._sampletime,
+      this._casefirst,
+      this._caselast,
+      this._blending,
+      this._brabender,
+      this._oven,
+      this._coolerr,
+      this._coolerl,
+      this._bthresh,
+      this._stem,
+      this._tips,
+      this._ptemp,
+      this._out_crop,
+      this._des_grade,
+      this._method,
+      this._product,
+      this._pm1,
+      this._pm2,
+      this._pm3,
+      this._pm4,
+      this._pm5,
+      this._pm6,
+      this._pm7,
+      this._pm8,
+      this._pm9,
+      this._pm10,
+      this._pm11,
       this._pm12);
 
   int? _box;
@@ -33,10 +54,29 @@ class ModelMoisture{
 
   int? _casefirst;
   int? _caselast;
-  String? _blending, _brabender, _oven, _coolerr, _coolerl, _bthresh, _stem, _tips, _ptemp;
+  String? _blending,
+      _brabender,
+      _oven,
+      _coolerr,
+      _coolerl,
+      _bthresh,
+      _stem,
+      _tips,
+      _ptemp;
   int? _out_crop;
   String? _des_grade, _method, _product;
-  String? _pm1, _pm2, _pm3, _pm4, _pm5, _pm6, _pm7, _pm8, _pm9, _pm10, _pm11, _pm12;
+  String? _pm1,
+      _pm2,
+      _pm3,
+      _pm4,
+      _pm5,
+      _pm6,
+      _pm7,
+      _pm8,
+      _pm9,
+      _pm10,
+      _pm11,
+      _pm12;
 
   int? get shift => _shift;
 
@@ -217,6 +257,4 @@ class ModelMoisture{
   set pm12(value) {
     _pm12 = value;
   }
-
-
 }

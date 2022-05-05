@@ -36,86 +36,77 @@ class ControleVendas extends StatelessWidget {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('boolValue', false);
     //bool? boolValue = prefs.getBool('boolValue');
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-        backgroundColor: Colors.white,
-        appBar:   AppBar(
-          backgroundColor: Color(0xFF040404),
-          //automaticallyImplyLeading: false,
-          title: Text(
-            'Controle Vendas',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: 'Poppins',
-              color: Colors.white,
-              fontSize: 22,
-            ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Color(0xFF040404),
+        //automaticallyImplyLeading: false,
+        title: Text(
+          'Controle Vendas',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            color: Colors.white,
+            fontSize: 22,
           ),
-          actions: [
-
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                "Sair",
-                textScaleFactor: 1.5,
-                style: TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.white,
-                ),
+        ),
+        actions: [
+          Align(
+            alignment: Alignment.center,
+            child: Text(
+              "Sair",
+              textScaleFactor: 1.5,
+              style: TextStyle(
+                fontSize: 12.0,
+                color: Colors.white,
               ),
             ),
-
-            IconButton(icon: Icon(Icons.logout), onPressed: () {
-
-              showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                  title: const Text('Aviso!'),
-                  content: const Text('Deseja mesmo sair?'),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, 'Cancel'),
-                      child: const Text('Cancel'),
-                    ),
-                    TextButton(
-
-                      onPressed: () {
-                        _logado();
-                    /*    Navigator.pushReplacement(
+          ),
+          IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () {
+                showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text('Aviso!'),
+                    content: const Text('Deseja mesmo sair?'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Cancel'),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          _logado();
+                          /*    Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (_) => Login(),
                           ),
 
                         );*/
-                        //Fecha a ultima tela ao fazer logout
-                        Navigator.of(context).pushNamedAndRemoveUntil('/login', (Route<dynamic> route) => false);
-
-                      },
-                      child: const Text('Continue'),
-                    ),
-                  ],
-                ),
-              );
-
-            }),
-
-          ],
-          centerTitle: false,
-          elevation: 2,
-        ),
-        body: MyStatefulWidget(),
-      );
+                          //Fecha a ultima tela ao fazer logout
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              '/login', (Route<dynamic> route) => false);
+                        },
+                        child: const Text('Continue'),
+                      ),
+                    ],
+                  ),
+                );
+              }),
+        ],
+        centerTitle: false,
+        elevation: 2,
+      ),
+      body: MyStatefulWidget(),
+    );
   }
 }
-
-
-
-
 
 class MyStatefulWidget extends StatefulWidget {
   @override
@@ -123,108 +114,96 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown, //Forçar orientação da tela
     ]);
-    return  SafeArea(
-        child: GestureDetector(
-          child: GridView.count(
-            primary: false,
-            padding: const EdgeInsets.all(4),
-            crossAxisSpacing: 4,
-            mainAxisSpacing: 4,
-            crossAxisCount: 3,
-            children: [
-
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                elevation: 20,
-                color: Colors.white,
-                child: Center(
-                  child: InkWell(
-                    onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ControleQualidade())),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.control_camera_sharp,
-                          size: 80.0,
-                        ),
-                        Text("Ctrl. Qualidade"),
-                      ],
-                    ),
+    return SafeArea(
+      child: GestureDetector(
+        child: GridView.count(
+          primary: false,
+          padding: const EdgeInsets.all(4),
+          crossAxisSpacing: 4,
+          mainAxisSpacing: 4,
+          crossAxisCount: 3,
+          children: [
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              elevation: 20,
+              color: Colors.white,
+              child: Center(
+                child: InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ControleQualidade())),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.control_camera_sharp,
+                        size: 80.0,
+                      ),
+                      Text("Ctrl. Qualidade"),
+                    ],
                   ),
                 ),
               ),
-
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                elevation: 20,
-                color: Colors.white,
-                child: Center(
-                  child: InkWell(
+            ),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              elevation: 20,
+              color: Colors.white,
+              child: Center(
+                child: InkWell(
                   /*  onTap: () => Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Moinsture())),*/
-                    child: Column(
-
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-
-                        Icon( Icons.monetization_on, size:80.0),
-                        Text("Vendas"),
-
-                      ],
-                    ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(Icons.monetization_on, size: 80.0),
+                      Text("Vendas"),
+                    ],
                   ),
                 ),
-
               ),
-
-
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                elevation: 20,
-                color: Colors.white,
-                child: Center(
-                  child: InkWell(
-                   /* onTap: () => Navigator.push(context,
+            ),
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              elevation: 20,
+              color: Colors.white,
+              child: Center(
+                child: InkWell(
+                  /* onTap: () => Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Degradation())),*/
-                    child: Column(
-
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-
-                        Icon( Icons.edit, size:80.0,),
-                        Text("Composição"),
-
-                      ],
-                    ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.edit,
+                        size: 80.0,
+                      ),
+                      Text("Composição"),
+                    ],
                   ),
                 ),
-
               ),
-
-
-
-
-            ],
-          ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
 
     /*GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -318,7 +297,4 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       ),
     );*/
   }
-
 }
-
-

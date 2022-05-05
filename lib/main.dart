@@ -9,7 +9,7 @@ import 'package:atcsearch/Quality2/Quality2.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main(){
+void main() {
   runApp(MaterialApp(
     initialRoute: '/',
     routes: {
@@ -30,14 +30,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Splash Screen',
       theme: ThemeData(
-          primarySwatch: Colors.grey,
+        primarySwatch: Colors.grey,
       ),
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
-
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -46,6 +45,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   double value = 0;
+
   @override
   void initState() {
     super.initState();
@@ -59,52 +59,46 @@ class _MyHomePageState extends State<MyHomePage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? s = prefs.getBool('boolValue');
 
-
-       if (s == true) {
-    Timer(
-          Duration(seconds: 3),
-              () => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => Home())));
-    }else{
+    if (s == true) {
       Timer(
           Duration(seconds: 3),
-              () => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => Login())));
-
+          () => Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Home())));
+    } else {
+      Timer(
+          Duration(seconds: 3),
+          () => Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Login())));
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Center(
-              child: Container(
-                height: 150,
-                width: 150,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("images/atclogo.jpg"),
-                        fit: BoxFit.contain
-                    )
-                ),
-              ),
+      color: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Center(
+            child: Container(
+              height: 150,
+              width: 150,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("images/atclogo.jpg"),
+                      fit: BoxFit.contain)),
             ),
-            Center(
-              child: CircularProgressIndicator(color: Colors.orangeAccent,),
-            )
-          ],
-        ),
+          ),
+          Center(
+            child: CircularProgressIndicator(
+              color: Colors.orangeAccent,
+            ),
+          )
+        ],
+      ),
     );
-
   }
 }
-
-
 
 /*
 Segunda tela, pode ser implementado diversas telas num único arquivo .dart
