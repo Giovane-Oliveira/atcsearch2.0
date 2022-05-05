@@ -41,8 +41,6 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
       _opcao();
     });
 
-
-
     grade.addListener(() {
       _recuperarPostagens();
     });
@@ -62,14 +60,13 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('bannerOpcao', false);
 
-
-
   }
+
  _opcao() async {
     bool rs;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? s = prefs.getBool('bannerOpcao');
-    print('EEEEEEE $s');
+    //print('EEEEEEE $s');
     if(s == true){
 
       rs = true;
@@ -153,9 +150,8 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
             //print("" + snapshot.data.toString());
-            if (snapshot.data == true) {
               return Visibility(
-                  visible: true,
+                  visible: snapshot.data ? true : false,
                   child: MaterialBanner(
                     content: const Text('Pesquise por código do cliente ou grade e safra'),
                     leading: CircleAvatar(child: Icon(Icons.search)),
@@ -176,30 +172,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
 
                     ],
                   ));
-            } else {
-              return Visibility(
-                  visible: false,
-                  child: MaterialBanner(
-                    content: const Text('Pesquise por código do cliente ou grade e safra'),
-                    leading: CircleAvatar(child: Icon(Icons.search)),
-                    actions: [
-                      FlatButton(
-                        child: const Text('Ocultar', style: TextStyle(color: Colors.blue),),
-                        onPressed: () {
 
-                          setState(() {
-
-                            _opcaoTrue();
-
-                          });
-
-
-                        },
-                      ),
-
-                    ],
-                  ));
-            }
           }else{
 
             return Container();

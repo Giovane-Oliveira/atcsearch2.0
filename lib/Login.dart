@@ -51,6 +51,7 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   late bool _isObscure = true;
+  late Future<dynamic> _data = _verificar_internet();
 
 
 
@@ -58,21 +59,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   void initState() {
     super.initState();
 
-    _verificar_internet();
+    setState(() {
+      _verificar_internet();
+    });
+
 
 
   }
 
-  _verificar_internet() async {
+  _saibamais(){
 
-
-    try {
-      final result = await InternetAddress.lookup('google.com');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print('connected');
-      }
-    } on SocketException catch (_) {
-      showDialog<String>(
+     showDialog<String>(
         context: context,
         builder: (BuildContext context) =>
             AlertDialog(
@@ -87,8 +84,47 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               ],
             ),
       );
+
+
+
+  }
+
+  _verificar_internet() async {
+
+bool rs = true;
+
+    try {
+
+
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        print('connected');
+        rs = false;
+      }
+
+
+    } on SocketException catch (_) {
+
+      rs = true;
+
+     /* showDialog<String>(
+        context: context,
+        builder: (BuildContext context) =>
+            AlertDialog(
+              title: const Text('Aviso!'),
+              content: const Text('O dispositivo não está conectado com a internet'),
+              actions: <Widget>[
+
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'OK'),
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+      );*/
     }
 
+   return rs;
 
   }
 
@@ -98,6 +134,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     //bool? boolValue = prefs.getBool('boolValue');
 
   }
+
+
 
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -174,6 +212,48 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: <Widget>[
+            FutureBuilder<dynamic>(
+                future: _verificar_internet(),
+                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                  if (snapshot.hasData) {
+                    //print("" + snapshot.data.toString());
+
+                      return Visibility(
+                          visible: snapshot.data ? true : false,
+                          child: MaterialBanner(
+                            content: const Text('Seu dispositivo não está conectado com a internet'),
+                            leading: CircleAvatar(child: Icon(Icons.wifi)),
+                            actions: [
+
+                              FlatButton(
+                                child: const Text('Saiba mais', style: TextStyle(color: Colors.blue),),
+                                onPressed: () {
+
+                                 _saibamais();
+
+                                 /*
+                                 *   setState(() {
+                                   _verificar_internet();
+                                 });
+                                 *
+                                 * */
+
+                                },
+                              ),
+
+                            ],
+                          ));
+
+                  }else{
+
+                    return Container();
+
+                  }
+                }
+            ),
+
+
+
             Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
