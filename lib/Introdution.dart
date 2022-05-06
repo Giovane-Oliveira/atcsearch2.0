@@ -103,7 +103,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           title: "Sistemas ATC",
           body:
           "Este aplicativo é integrado com o sistema ATC.",
-          image: _buildImage('atclogo.jpg'),
+          image: _buildImage('world.png'),
           decoration: pageDecoration,
         ),
         PageViewModel(

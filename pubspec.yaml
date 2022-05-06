@@ -91,6 +91,7 @@ flutter:
     - images/pesoamostra.jpg
     - images/Lupa.png
     - images/desenv.png
+    - images/world.png
 
 
   # To add assets to your application, add an assets section, like this:
