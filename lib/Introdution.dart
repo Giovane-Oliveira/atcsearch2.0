@@ -9,6 +9,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Introdution extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown, //Forçar orientação da tela
+      // DeviceOrientation.landscapeLeft,
+      // DeviceOrientation.landscapeRight,
+    ]);
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
     );
@@ -116,7 +122,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "Desenvolvimento",
           body:
-          "Estamos em constante desenvolvimento, conforme a utilização do sistema mobile, iremos adicionando novas  funcionalidades de acordo com nossas necessidades.",
+          "Será desenvolvido novas funcionalidades contantemente conforme solicitado",
           image: _buildImage('desenv.png'),
           decoration: pageDecoration,
         ),
