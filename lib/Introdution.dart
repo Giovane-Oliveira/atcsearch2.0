@@ -122,7 +122,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "Desenvolvimento",
           body:
-          "Será desenvolvido novas funcionalidades contantemente conforme solicitado",
+          "Desenvolvimento constante conforme as necessidades.",
           image: _buildImage('desenv.png'),
           decoration: pageDecoration,
         ),
