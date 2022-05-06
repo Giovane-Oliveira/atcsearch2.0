@@ -128,17 +128,81 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return MaterialApp(
+        title: "Search Grade",
+        theme: ThemeData(
+            primarySwatch: Colors.orange,
+            appBarTheme: AppBarTheme(
+             //backgroundColor: Colors.black,
+              foregroundColor: Colors.white, //here you can give the text color
+            )
+          //accentColor: Colors.orange,
+
+        ),
+
+        home: Scaffold(
       appBar: AppBar(
-       /* leading: BackButton(color: Colors.orange,
-          /*onPressed:
-              () => Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => Home())),*/
+
+         leading: BackButton(color: Colors.white,
+          onPressed: (){
+
+      if (widget.interface.toString() ==
+          "NicotineAndSugar") {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => NicotineAndSugar(
+                )));
+      } else if (widget.interface.toString() ==
+          "Moinsture") {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Moinsture(
+                )));
+      } else if (widget.interface.toString() ==
+          "CQMoinsture") {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CQMoinsture(
+                )));
+      } else if (widget.interface.toString() ==
+          "CQNicotineAndSugar") {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    CQNicotineAndSugar(
+                    )));
+      } else if (widget.interface.toString() ==
+          "Degradation") {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Degradation(
+                )));
+      } else if (widget.interface.toString() ==
+          "CQDegradation") {
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CQDegradation(
+                )));
+      }
+    }
 
 
-        ),*/
-        title: Text("Search Grade",),
-        backgroundColor: Colors.black,
+
+
+
+
+
+        ),
+        title: Text(
+          "Search Grade",
+        ),
+        //backgroundColor: Colors.black,
       ),
       body: Column(mainAxisSize: MainAxisSize.max, children: [
         FutureBuilder<dynamic>(
@@ -151,7 +215,13 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
                     child: MaterialBanner(
                       content: const Text(
                           'Pesquise por código do cliente ou grade e safra'),
-                      leading: CircleAvatar(child: Icon(Icons.search, color: Colors.white,), backgroundColor: Colors.blue,),
+                      leading: CircleAvatar(
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        ),
+                        backgroundColor: Colors.blue,
+                      ),
                       actions: [
                         FlatButton(
                           child: const Text(
@@ -413,7 +483,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
 
         /**/
       ]),
-    );
+    ));
   }
 }
 
