@@ -9,6 +9,8 @@ import 'package:atcsearch/Quality2/Quality2.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Introdution.dart';
+
 void main() {
   runApp(MaterialApp(
     initialRoute: '/',
@@ -58,13 +60,22 @@ class _MyHomePageState extends State<MyHomePage> {
     //_logado();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? s = prefs.getBool('boolValue');
+    bool? i = prefs.getBool('intro');
+    print("dsadasdasdd" + s.toString());
+if(i == null && s == null){
 
-    if (s == true) {
+   Timer(
+          Duration(seconds: 3),
+          () => Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Introdution())));
+
+
+}else if (s == true && i == true) {
       Timer(
           Duration(seconds: 3),
           () => Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => Home())));
-    } else {
+    } else if(s == false && i == true) {
       Timer(
           Duration(seconds: 3),
           () => Navigator.pushReplacement(
