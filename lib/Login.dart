@@ -34,7 +34,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
-      theme: ThemeData(
+      /*theme: ThemeData(
         primarySwatch: Colors.orange,
           appBarTheme: AppBarTheme(
               backgroundColor: Colors.black,
@@ -42,13 +42,13 @@ class Login extends StatelessWidget {
           )
         //accentColor: Colors.orange,
 
-      ),
+      ),*/
       home: Scaffold(
         appBar: AppBar(
           title: const Text(_title, style: TextStyle( fontFamily: 'Poppins',
-            //color: Colors.white,
+            color: Colors.white,
             fontSize: 22,fontWeight: FontWeight.bold),),
-           // backgroundColor: Colors.black,
+            backgroundColor: Colors.black,
         ),
         body: MyStatefulWidget(),
       ),
