@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Splash Screen',
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.orange,
       ),
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
@@ -62,20 +62,22 @@ class _MyHomePageState extends State<MyHomePage> {
     bool? s = prefs.getBool('boolValue');
     bool? i = prefs.getBool('intro');
     //print("dsadasdasdd" + s.toString());
-if(i == null && s == null){
-
-   Timer(
+    if (i == null && s == null) {
+      Timer(
           Duration(seconds: 3),
           () => Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => Introdution())));
-
-
-}else if (s == true && i == true) {
+    } else if (s == true && i == true) {
       Timer(
           Duration(seconds: 3),
           () => Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => Home())));
-    } else if(s == false && i == true) {
+    } else if (s == false && i == true) {
+      Timer(
+          Duration(seconds: 3),
+          () => Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Login())));
+    } else {
       Timer(
           Duration(seconds: 3),
           () => Navigator.pushReplacement(

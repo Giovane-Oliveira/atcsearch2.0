@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:fluttericon/brandico_icons.dart';
 import 'package:fluttericon/elusive_icons.dart';
@@ -33,10 +34,21 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
+      theme: ThemeData(
+        primarySwatch: Colors.grey,
+          appBarTheme: AppBarTheme(
+              backgroundColor: Colors.black,
+              foregroundColor: Colors.white, //here you can give the text color
+          )
+        //accentColor: Colors.orange,
+
+      ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text(_title),
-          backgroundColor: Colors.black,
+          title: const Text(_title, style: TextStyle( fontFamily: 'Poppins',
+            //color: Colors.white,
+            fontSize: 22,fontWeight: FontWeight.bold),),
+           // backgroundColor: Colors.black,
         ),
         body: MyStatefulWidget(),
       ),
@@ -221,7 +233,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 height: 60,
                 padding: const EdgeInsets.fromLTRB(120, 20, 120, 0),
                 child: ElevatedButton(
-                  child: const Text('Login'),
+                  child: const Text('Login', style: TextStyle(color: Colors.white),),
                   onPressed: () {
                     // print(nameController.text);
                     //print(passwordController.text);
