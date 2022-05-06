@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
+import 'package:atcsearch/Home.dart';
+import 'package:atcsearch/Quality2/Quality2.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
@@ -128,64 +130,83 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Nicotine and Sugar"),
-        backgroundColor: Colors.black,
-      ),
-      body: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Visibility(
-              visible: setVisible(),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 0),
-                child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Codigo: " + grade.text + " Safra: " + safra.text,
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
-                      ),
-                      Text(
-                        "Cliente: " + cliente.text,
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
-                      ),
-                    ]),
-              ),
+    return MaterialApp(
+        title: "Nicotine And Sugar",
+        theme: ThemeData(
+            primarySwatch: Colors.blueGrey,
+            appBarTheme: AppBarTheme(
+              //backgroundColor: Colors.black,
+              //foregroundColor: Colors.white, //here you can give the text color
+            )
+            //accentColor: Colors.orange,
+
             ),
-            Visibility(
-              visible: setVisible(),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        child: Text(
-                          "Grade: ${widget.valor1}",
-                          style: TextStyle(
-                            fontSize: 20,
-                            foreground: Paint()
-                              ..style = PaintingStyle.stroke
-                              ..strokeWidth = 1.5
-                              ..color = Colors.black,
+        home: Scaffold(
+          appBar: AppBar(
+            leading: BackButton(
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (context) => Quality2()));
+                }),
+            title: Text(
+              "Nicotine And Sugar",
+            ),
+            //backgroundColor: Colors.black,
+          ),
+          body: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Visibility(
+                  visible: setVisible(),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 0),
+                    child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Codigo: " + grade.text + " Safra: " + safra.text,
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                          Text(
+                            "Cliente: " + cliente.text,
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                        ]),
+                  ),
+                ),
+                Visibility(
+                  visible: setVisible(),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            child: Text(
+                              "Grade: ${widget.valor1}",
+                              style: TextStyle(
+                                fontSize: 20,
+                                foreground: Paint()
+                                  ..style = PaintingStyle.stroke
+                                  ..strokeWidth = 1.5
+                                  ..color = Colors.blueGrey,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                    /*  Expanded(
+                        /*  Expanded(
 
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(10, 0, 110, 0),
@@ -223,298 +244,303 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                    ),*/
                   ),
                   ),*/
-                  ],
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Visibility(
-              visible: setVisible(),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ConsultaCostumer(
-                                    interface: "NicotineAndSugar",
-                                  )));
+                Visibility(
+                  visible: setVisible(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ConsultaCostumer(
+                                        interface: "NicotineAndSugar",
+                                      )));
 
-                      /*setState(() {
+                          /*setState(() {
                   _myData = _recuperarPostagens(0);
                 });*/
-                      // Respond to button press
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.black, // Background color
-                    ),
-                    icon: Icon(Icons.search, size: 18),
-                    label: Text("Buscar"),
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                child: FutureBuilder<List<Post>>(
-                  initialData: const <Post>[],
-                  future: _myData,
-                  builder: (context, snapshot)
-                      /*Padding(
+                          // Respond to button press
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blueGrey, // Background color
+                        ),
+                        icon: Icon(Icons.search, color: Colors.white, size: 18),
+                        label: Text("Buscar", style: TextStyle(color: Colors.white),),
+                      )
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    child: FutureBuilder<List<Post>>(
+                      initialData: const <Post>[],
+                      future: _myData,
+                      builder: (context, snapshot)
+                          /*Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 child:
                 new  FutureBuilder<List<Post>>(
                   future:  _myData,
                   builder:  (context, snapshot)*/
-                      {
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.none:
-                      case ConnectionState.waiting:
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                        break;
-                      case ConnectionState.active:
-                      case ConnectionState.done:
-                        if (snapshot.hasError) {
-                          print("lista: Erro ao carregar $snapshot");
-                          if (grade.text != "0000") {
-                            Fluttertoast.showToast(
-                                msg: "Não há itens para a Grade consultada",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 6,
-                                backgroundColor: Colors.black26,
-                                textColor: Colors.black,
-                                fontSize: 16.0);
-                          }
-                        } else {
-                          print("lista: carregou!! ");
-                          return DataTable2(
-                            //  headingRowColor: MaterialStateColor.resolveWith((states) => Colors.black),
-                            // headingTextStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                          {
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.none:
+                          case ConnectionState.waiting:
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                            break;
+                          case ConnectionState.active:
+                          case ConnectionState.done:
+                            if (snapshot.hasError) {
+                              print("lista: Erro ao carregar $snapshot");
+                              if (grade.text != "0000") {
+                                Fluttertoast.showToast(
+                                    msg: "Não há itens para a Grade consultada",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 6,
+                                    backgroundColor: Colors.black26,
+                                    textColor: Colors.black,
+                                    fontSize: 16.0);
+                              }
+                            } else {
+                              print("lista: carregou!! ");
+                              return DataTable2(
+                                //  headingRowColor: MaterialStateColor.resolveWith((states) => Colors.black),
+                                // headingTextStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
 
-                            headingRowHeight: 30,
-                            headingRowColor: MaterialStateColor.resolveWith(
-                                (states) => Colors.black),
-                            headingTextStyle: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                            columnSpacing: 0,
-                            horizontalMargin: 10,
-                            minWidth: 1300,
-                            dataRowHeight: 20,
-                            dividerThickness: 3,
-                            showCheckboxColumn: false,
-                            dataRowColor: MaterialStateColor.resolveWith(
-                                (states) => const Color(0xFFFFFFFF)),
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.black, width: 10)),
-                            //showCheckboxColumn: false,
-                            columns: const [
-                              // DataColumn(label: Text('COD_GRADE')),
-                              DataColumn2(
-                                  label: Text('Date',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Case First',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Case Last',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              // DataColumn(label: Text('BOX_TOTAL')),
-                              DataColumn2(
-                                  label: Text('Moisture',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Weight',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Read Nicotine mg/mL',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.M), //mg/mL
-                              DataColumn2(
-                                  label: Text('Read Sugar mg/mL',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.M), //mg/mL
-                              DataColumn2(
-                                  label: Text('Result Nicotine %',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.M), //%
-                              DataColumn2(
-                                  label: Text('Result_Sugar %',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S), //%
-                              /*  DataColumn(label: Text('DES_GRADE')),
+                                headingRowHeight: 30,
+                                headingRowColor: MaterialStateColor.resolveWith(
+                                    (states) => Colors.black),
+                                headingTextStyle: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                                columnSpacing: 0,
+                                horizontalMargin: 10,
+                                minWidth: 1300,
+                                dataRowHeight: 20,
+                                dividerThickness: 3,
+                                showCheckboxColumn: false,
+                                dataRowColor: MaterialStateColor.resolveWith(
+                                    (states) => const Color(0xFFFFFFFF)),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.black, width: 10)),
+                                //showCheckboxColumn: false,
+                                columns: const [
+                                  // DataColumn(label: Text('COD_GRADE')),
+                                  DataColumn2(
+                                      label: Text('Date',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Case First',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Case Last',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  // DataColumn(label: Text('BOX_TOTAL')),
+                                  DataColumn2(
+                                      label: Text('Moisture',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Weight',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Read Nicotine mg/mL',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.M), //mg/mL
+                                  DataColumn2(
+                                      label: Text('Read Sugar mg/mL',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.M), //mg/mL
+                                  DataColumn2(
+                                      label: Text('Result Nicotine %',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.M), //%
+                                  DataColumn2(
+                                      label: Text('Result_Sugar %',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S), //%
+                                  /*  DataColumn(label: Text('DES_GRADE')),
                           DataColumn(label: Text('DES_PESSOA')),
                           DataColumn(label: Text('USER_INSERCAO')),
                           DataColumn(label: Text('DT_HR_INSERCAO')),
                           DataColumn(label: Text('USER_ALTERACAO')),
                           DataColumn(label: Text('DT_HR_INSERCAO')),
                           DataColumn(label: Text('NIC_TIPO_CALCULO')),*/
-                            ],
-                            rows: List.generate(
-                              snapshot.data!.length,
-                              (index) {
-                                var emp = snapshot.data![index];
+                                ],
+                                rows: List.generate(
+                                  snapshot.data!.length,
+                                  (index) {
+                                    var emp = snapshot.data![index];
 
-                                if (emp.data_processo.toString() != "null") {
-                                  final DateTime now = DateTime.now();
-                                  final DateFormat formatter = DateFormat(
-                                      'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
-                                  final String formatted =
-                                      formatter.format(now);
-                                  emp.data_processo = formatted;
-                                } else if (emp.box_inicial.toString() ==
-                                    "null") {
-                                  emp.box_inicial = 0;
-                                } else if (emp.box_final.toString() == "null") {
-                                  emp.box_final = 0;
-                                } else if (emp.umidade.toString() == "null") {
-                                  emp.umidade = "0";
-                                } else if (emp.peso_amostra.toString() ==
-                                    "null") {
-                                  emp.peso_amostra = "0";
-                                } else if (emp.leitura_nicotina.toString() ==
-                                    "null") {
-                                  emp.leitura_nicotina = "0";
-                                } else if (emp.leitura_acucar.toString() ==
-                                    "null") {
-                                  emp.leitura_acucar = "0";
-                                } else if (emp.result_nicotina.toString() ==
-                                    "null") {
-                                  emp.result_nicotina = "0";
-                                } else if (emp.result_acucar.toString() ==
-                                    "null") {
-                                  emp.result_acucar = "0";
-                                }
+                                    if (emp.data_processo.toString() !=
+                                        "null") {
+                                      final DateTime now = DateTime.now();
+                                      final DateFormat formatter = DateFormat(
+                                          'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
+                                      final String formatted =
+                                          formatter.format(now);
+                                      emp.data_processo = formatted;
+                                    } else if (emp.box_inicial.toString() ==
+                                        "null") {
+                                      emp.box_inicial = 0;
+                                    } else if (emp.box_final.toString() ==
+                                        "null") {
+                                      emp.box_final = 0;
+                                    } else if (emp.umidade.toString() ==
+                                        "null") {
+                                      emp.umidade = "0";
+                                    } else if (emp.peso_amostra.toString() ==
+                                        "null") {
+                                      emp.peso_amostra = "0";
+                                    } else if (emp.leitura_nicotina
+                                            .toString() ==
+                                        "null") {
+                                      emp.leitura_nicotina = "0";
+                                    } else if (emp.leitura_acucar.toString() ==
+                                        "null") {
+                                      emp.leitura_acucar = "0";
+                                    } else if (emp.result_nicotina.toString() ==
+                                        "null") {
+                                      emp.result_nicotina = "0";
+                                    } else if (emp.result_acucar.toString() ==
+                                        "null") {
+                                      emp.result_acucar = "0";
+                                    }
 
-                                return DataRow(
+                                    return DataRow(
 
-                                    /*color: MaterialStateColor.resolveWith((states) {
+                                        /*color: MaterialStateColor.resolveWith((states) {
                                       return index % 2 == 0 ? Colors.red : Colors.black; //make tha magic!
                                     }),*/
 
-                                    selected: selectedRow.contains(index) ||
-                                            index == n && x % 2 == 0
-                                        ? true
-                                        : false,
-                                    color: MaterialStateColor.resolveWith(
-                                      (states) {
-                                        if (selectedRow.contains(index) ||
-                                            index == n && x % 2 == 0) {
-                                          return Color(
-                                                  Random().nextInt(0xffffffff))
-                                              .withOpacity(0.5);
-                                        } else {
-                                          return Colors.white;
-                                        }
-                                      },
-                                    ),
-                                    onSelectChanged: (v) {
-                                      setState(() {
-                                        n = index;
-                                        x = x + 1;
-                                        onSelectedRow(v, index);
-                                      });
-                                    },
-                                    cells: [
-                                      /* DataCell(
+                                        selected: selectedRow.contains(index) ||
+                                                index == n && x % 2 == 0
+                                            ? true
+                                            : false,
+                                        color: MaterialStateColor.resolveWith(
+                                          (states) {
+                                            if (selectedRow.contains(index) ||
+                                                index == n && x % 2 == 0) {
+                                              return Color(Random()
+                                                      .nextInt(0xffffffff))
+                                                  .withOpacity(0.5);
+                                            } else {
+                                              return Colors.white;
+                                            }
+                                          },
+                                        ),
+                                        onSelectChanged: (v) {
+                                          setState(() {
+                                            n = index;
+                                            x = x + 1;
+                                            onSelectedRow(v, index);
+                                          });
+                                        },
+                                        cells: [
+                                          /* DataCell(
                                 Text(emp.cod_grade.toString()),
                               ),*/
-                                      DataCell(
-                                        Text(emp.data_processo.toString()),
-                                      ),
-                                      DataCell(
-                                        Text(emp.box_inicial.toString()),
-                                        /*   onTap: () {
+                                          DataCell(
+                                            Text(emp.data_processo.toString()),
+                                          ),
+                                          DataCell(
+                                            Text(emp.box_inicial.toString()),
+                                            /*   onTap: () {
                                       setState(() {
                                         n = index;
                                         x = x + 1;
                                       });
 
                                     },*/
-                                      ),
-                                      DataCell(
-                                        Text(emp.box_final.toString()),
-                                      ),
-                                      /* DataCell(
+                                          ),
+                                          DataCell(
+                                            Text(emp.box_final.toString()),
+                                          ),
+                                          /* DataCell(
                                 Text(emp.box_total.toString()),
                               ),*/
 
-                                      DataCell(
-                                        Text(
-                                          (double.parse(emp.umidade.toString())
-                                                  .toStringAsFixed(2))
-                                              .toString(),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                          (double.parse(emp.peso_amostra
-                                                      .toString())
-                                                  .toStringAsFixed(3))
-                                              .toString(),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                          (double.parse(emp.leitura_nicotina
-                                                      .toString())
-                                                  .toStringAsFixed(4))
-                                              .toString(),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                          (double.parse(emp.leitura_acucar
-                                                      .toString())
-                                                  .toStringAsFixed(2))
-                                              .toString(),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                          (double.parse(emp.result_nicotina
-                                                      .toString())
-                                                  .toStringAsFixed(2))
-                                              .toString(),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                          (double.parse(emp.result_acucar
-                                                      .toString())
-                                                  .toStringAsFixed(2))
-                                              .toString(),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      /*  DataCell(
+                                          DataCell(
+                                            Text(
+                                              (double.parse(emp.umidade
+                                                          .toString())
+                                                      .toStringAsFixed(2))
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                              (double.parse(emp.peso_amostra
+                                                          .toString())
+                                                      .toStringAsFixed(3))
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                              (double.parse(emp.leitura_nicotina
+                                                          .toString())
+                                                      .toStringAsFixed(4))
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                              (double.parse(emp.leitura_acucar
+                                                          .toString())
+                                                      .toStringAsFixed(2))
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                              (double.parse(emp.result_nicotina
+                                                          .toString())
+                                                      .toStringAsFixed(2))
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                              (double.parse(emp.result_acucar
+                                                          .toString())
+                                                      .toStringAsFixed(2))
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          /*  DataCell(
                                 Text(emp.des_grade.toString()),
                               ),
                               DataCell(
@@ -536,12 +562,12 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                               DataCell(
                                 Text(emp.nic_tipo_calculo.toString()),
                               ),*/
-                                    ]);
-                              },
-                            ).toList(),
-                          );
+                                        ]);
+                                  },
+                                ).toList(),
+                              );
 
-                          /* return ListView.separated(
+                              /* return ListView.separated(
                               itemCount: snapshot.data!.length,
                               itemBuilder: (context, index){
 
@@ -565,70 +591,72 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                           },
                           );*/
 
+                            }
+                            break;
                         }
-                        break;
-                    }
-                    return Container();
-                  },
+                        return Container();
+                      },
+                    ),
+                  ),
+                  //https://flutterhq.com/questions-and-answers/1284/how-to-create-rows-data-in-to-datatable-using-from-json-model-json-api-respons-flutter
                 ),
-              ),
-              //https://flutterhq.com/questions-and-answers/1284/how-to-create-rows-data-in-to-datatable-using-from-json-model-json-api-respons-flutter
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 5),
-              child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "AVG Nicotine:",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              " " +
-                                  (double.parse(mediaNicotine.toString())
-                                          .toStringAsFixed(2))
-                                      .toString(),
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                          ]),
-                    ),
-                    Container(
-                      child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "\tAVG Sugar:",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              " " +
-                                  (double.parse(mediaSugar.toString())
-                                          .toStringAsFixed(2))
-                                      .toString(),
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                          ]),
-                    ),
-                  ]),
-            ),
-          ]),
-    );
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 5),
+                  child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "AVG Nicotine:",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  " " +
+                                      (double.parse(mediaNicotine.toString())
+                                              .toStringAsFixed(2))
+                                          .toString(),
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ]),
+                        ),
+                        Container(
+                          child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "\tAVG Sugar:",
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  " " +
+                                      (double.parse(mediaSugar.toString())
+                                              .toStringAsFixed(2))
+                                          .toString(),
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ]),
+                        ),
+                      ]),
+                ),
+              ]),
+        ));
   }
 }
 

@@ -34,21 +34,21 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
-      /*theme: ThemeData(
-        primarySwatch: Colors.orange,
+      theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
           appBarTheme: AppBarTheme(
-              backgroundColor: Colors.black,
+             // backgroundColor: Colors.black,
               foregroundColor: Colors.white, //here you can give the text color
           )
         //accentColor: Colors.orange,
 
-      ),*/
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text(_title, style: TextStyle( fontFamily: 'Poppins',
             color: Colors.white,
             fontSize: 22,fontWeight: FontWeight.bold),),
-            backgroundColor: Colors.black,
+           // backgroundColor: Colors.black,
         ),
         body: MyStatefulWidget(),
       ),
@@ -240,7 +240,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     _verifica_usuario();
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
+                    primary: Colors.blueGrey,
 
                     /*Color primary, // set the background color
                     Color onPrimary,

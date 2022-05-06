@@ -22,7 +22,8 @@ class Introdution extends StatelessWidget {
     return MaterialApp(
       title: 'Tela de Introdução',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(primarySwatch: Colors.blueGrey),
+
       home: OnBoardingPage(),
     );
   }

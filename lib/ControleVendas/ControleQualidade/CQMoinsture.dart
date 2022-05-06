@@ -11,6 +11,8 @@ import 'dart:async';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
 
+import 'ControleQualidade.dart';
+
 class CQMoinsture extends StatefulWidget {
   String? valor, valor1, valor2;
 
@@ -142,12 +144,31 @@ class _CQMoinstureState extends State<CQMoinsture> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Moinsture"),
-        backgroundColor: Colors.black,
-      ),
-      body: Column(
+    return MaterialApp(
+        title: "Moinsture",
+        theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+        appBarTheme: AppBarTheme(
+        // backgroundColor: Colors.black,
+        //foregroundColor: Colors.white, //here you can give the text color
+    )
+    //accentColor: Colors.orange,
+
+    ),
+    home: Scaffold(
+    appBar: AppBar(
+    leading: BackButton(
+    color: Colors.white,
+    onPressed: () {
+    Navigator.pushReplacement(context,
+    MaterialPageRoute(builder: (context) => ControleQualidade()));
+    }),
+    title: Text(
+    "Moinsture",
+    ),
+    //backgroundColor: Colors.black,
+    ),
+    body: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -194,7 +215,7 @@ class _CQMoinstureState extends State<CQMoinsture> {
                             foreground: Paint()
                               ..style = PaintingStyle.stroke
                               ..strokeWidth = 1.5
-                              ..color = Colors.black,
+                              ..color = Colors.blueGrey,
                           ),
                         ),
                       ),
@@ -264,7 +285,7 @@ class _CQMoinstureState extends State<CQMoinsture> {
                       // Respond to button press
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.black, // Background color
+                      primary: Colors.blueGrey, // Background color
                     ),
                     icon: Icon(Icons.search, size: 18),
                     label: Text("Buscar"),
@@ -626,7 +647,7 @@ class _CQMoinstureState extends State<CQMoinsture> {
               ),
             ),
           ]),
-    );
+    ));
   }
 }
 

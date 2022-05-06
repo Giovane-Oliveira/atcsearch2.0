@@ -131,7 +131,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
     return MaterialApp(
         title: "Search Grade",
         theme: ThemeData(
-            primarySwatch: Colors.orange,
+            primarySwatch: Colors.blueGrey,
             appBarTheme: AppBarTheme(
              //backgroundColor: Colors.black,
               foregroundColor: Colors.white, //here you can give the text color

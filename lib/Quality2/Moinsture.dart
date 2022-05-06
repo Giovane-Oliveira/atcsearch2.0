@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
+import 'package:atcsearch/Quality2/Quality2.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
@@ -142,65 +143,84 @@ class _MoinstureState extends State<Moinsture> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Moinsture"),
-        backgroundColor: Colors.black,
-      ),
-      body: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Visibility(
-              visible: setVisible(),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 0),
-                child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Codigo: " + grade.text + " Safra: " + safra.text,
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
-                      ),
-                      Text(
-                        "Cliente: " + cliente.text,
-                        style: TextStyle(
-                          fontSize: 15,
-                        ),
-                      ),
-                    ]),
-              ),
+    return MaterialApp(
+        title: "Moinsture",
+        theme: ThemeData(
+            primarySwatch: Colors.blueGrey,
+            appBarTheme: AppBarTheme(
+             // backgroundColor: Colors.black,
+              //foregroundColor: Colors.white, //here you can give the text color
+            )
+            //accentColor: Colors.orange,
+
             ),
-            Visibility(
-              visible: setVisible(),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        child: Text(
-                          "Grade: ${widget.valor1}",
-                          style: TextStyle(
-                            fontSize: 20,
-                            foreground: Paint()
-                              ..style = PaintingStyle.stroke
-                              ..strokeWidth = 1.5
-                              ..color = Colors.black,
+        home: Scaffold(
+          appBar: AppBar(
+            leading: BackButton(
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => Quality2()));
+                }),
+            title: Text(
+              "Moinsture",
+            ),
+            //backgroundColor: Colors.black,
+          ),
+          body: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Visibility(
+                  visible: setVisible(),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 10, 16, 0),
+                    child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Codigo: " + grade.text + " Safra: " + safra.text,
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                          Text(
+                            "Cliente: " + cliente.text,
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                        ]),
+                  ),
+                ),
+                Visibility(
+                  visible: setVisible(),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(10, 10, 0, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            child: Text(
+                              "Grade: ${widget.valor1}",
+                              style: TextStyle(
+                                fontSize: 20,
+                                foreground: Paint()
+                                  ..style = PaintingStyle.stroke
+                                  ..strokeWidth = 1.5
+                                  ..color = Colors.blueGrey,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
 
-                    /*  Expanded(
+                        /*  Expanded(
 
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(10, 0, 110, 0),
@@ -238,167 +258,167 @@ class _MoinstureState extends State<Moinsture> {
                    ),*/
                   ),
                   ),*/
-                  ],
+                      ],
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Visibility(
-              visible: setVisible(),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: <Widget>[
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ConsultaCostumer(
-                                    interface: "Moinsture",
-                                  )));
+                Visibility(
+                  visible: setVisible(),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ConsultaCostumer(
+                                        interface: "Moinsture",
+                                      )));
 
-                      /*setState(() {
+                          /*setState(() {
                   _myData = _recuperarPostagens(0);
                 });*/
-                      // Respond to button press
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.black, // Background color
-                    ),
-                    icon: Icon(Icons.search, size: 18),
-                    label: Text("Buscar"),
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                child: FutureBuilder<List<ModelMoisture>>(
-                  initialData: const <ModelMoisture>[],
-                  future: _myData,
-                  builder: (context, snapshot)
+                          // Respond to button press
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blueGrey, // Background color
+                        ),
+                        icon: Icon(Icons.search, color: Colors.white, size: 18),
+                        label: Text("Buscar", style: TextStyle(color: Colors.white),),
+                      )
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    child: FutureBuilder<List<ModelMoisture>>(
+                      initialData: const <ModelMoisture>[],
+                      future: _myData,
+                      builder: (context, snapshot)
 
-                      /*Padding(
+                          /*Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 child:
                 new  FutureBuilder<List<Post>>(
                   future:  _myData,
                   builder:  (context, snapshot)*/
-                      {
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.none:
-                      case ConnectionState.waiting:
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                        break;
-                      case ConnectionState.active:
-                      case ConnectionState.done:
-                        if (snapshot.hasError) {
-                          print("lista: Erro ao carregar $snapshot");
-                          if (grade.text != "0000") {
-                            Fluttertoast.showToast(
-                                msg: "Não há itens para a Grade consultada",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 6,
-                                backgroundColor: Colors.black26,
-                                textColor: Colors.black,
-                                fontSize: 16.0);
-                          }
-                        } else {
-                          print("lista: carregou!! ");
+                          {
+                        switch (snapshot.connectionState) {
+                          case ConnectionState.none:
+                          case ConnectionState.waiting:
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                            break;
+                          case ConnectionState.active:
+                          case ConnectionState.done:
+                            if (snapshot.hasError) {
+                              print("lista: Erro ao carregar $snapshot");
+                              if (grade.text != "0000") {
+                                Fluttertoast.showToast(
+                                    msg: "Não há itens para a Grade consultada",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 6,
+                                    backgroundColor: Colors.black26,
+                                    textColor: Colors.black,
+                                    fontSize: 16.0);
+                              }
+                            } else {
+                              print("lista: carregou!! ");
 
-                          return DataTable2(
-                            headingRowHeight: 30,
-                            headingRowColor: MaterialStateColor.resolveWith(
-                                (states) => Colors.black),
-                            headingTextStyle: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                            columnSpacing: 0,
-                            horizontalMargin: 10,
-                            minWidth: 1300,
-                            dataRowHeight: 20,
-                            dividerThickness: 3,
-                            showCheckboxColumn: false,
-                            dataRowColor: MaterialStateColor.resolveWith(
-                                (states) => const Color(0xFFFFFFFF)),
-                            decoration: BoxDecoration(
-                                border:
-                                    Border.all(color: Colors.black, width: 10)),
-                            columns: const [
-                              // DataColumn(label: Text('COD_GRADE')),
-                              DataColumn2(
-                                  label: Text('Date',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.M),
-                              DataColumn2(
-                                  label: Text('Shift',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Case',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Time',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.M),
-                              //   DataColumn(label: Text('Casefirst')),
-                              //  DataColumn(label: Text('Caselast')),
-                              DataColumn2(
-                                  label: Text('% Brabender',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text(' % Oven',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Cooler R',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Cooler L',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Blending',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Bthresh',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Stem',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Tips',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              DataColumn2(
-                                  label: Text('Packed Temp',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 13)),
-                                  size: ColumnSize.S),
-                              /* DataColumn(label: Text('Out_crop')),
+                              return DataTable2(
+                                headingRowHeight: 30,
+                                headingRowColor: MaterialStateColor.resolveWith(
+                                    (states) => Colors.black),
+                                headingTextStyle: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                                columnSpacing: 0,
+                                horizontalMargin: 10,
+                                minWidth: 1300,
+                                dataRowHeight: 20,
+                                dividerThickness: 3,
+                                showCheckboxColumn: false,
+                                dataRowColor: MaterialStateColor.resolveWith(
+                                    (states) => const Color(0xFFFFFFFF)),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.black, width: 10)),
+                                columns: const [
+                                  // DataColumn(label: Text('COD_GRADE')),
+                                  DataColumn2(
+                                      label: Text('Date',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.M),
+                                  DataColumn2(
+                                      label: Text('Shift',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Case',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Time',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.M),
+                                  //   DataColumn(label: Text('Casefirst')),
+                                  //  DataColumn(label: Text('Caselast')),
+                                  DataColumn2(
+                                      label: Text('% Brabender',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text(' % Oven',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Cooler R',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Cooler L',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Blending',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Bthresh',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Stem',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Tips',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  DataColumn2(
+                                      label: Text('Packed Temp',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 13)),
+                                      size: ColumnSize.S),
+                                  /* DataColumn(label: Text('Out_crop')),
                               DataColumn(label: Text('Des_grade')),
                               DataColumn(label: Text('Method')),
                               DataColumn(label: Text('Product')),
@@ -414,148 +434,160 @@ class _MoinstureState extends State<Moinsture> {
                               DataColumn(label: Text('Pm10')),
                               DataColumn(label: Text('Pm11')),
                               DataColumn(label: Text('Pm12')),*/
-                            ],
-                            rows: List.generate(
-                              snapshot.data!.length,
-                              (index) {
-                                var emp = snapshot.data![index];
-                                if (emp.sampledate.toString() != "null") {
-                                  final DateTime now = DateTime.now();
-                                  final DateFormat formatter = DateFormat(
-                                      'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
-                                  final String formatted =
-                                      formatter.format(now);
-                                  emp.sampledate = formatted;
-                                } else if (emp.shift.toString() == "null") {
-                                  emp.shift = 0;
-                                } else if (emp.sampletime.toString() ==
-                                    "null") {
-                                  emp.sampletime = "0";
-                                } else if (emp.brabender.toString() == "null") {
-                                  emp.brabender = 0;
-                                } else if (emp.oven.toString() == "null") {
-                                  emp.oven = 0;
-                                } else if (emp.coolerr.toString() == "null") {
-                                  emp.coolerr = 0;
-                                } else if (emp.coolerl.toString() == "null") {
-                                  emp.coolerl = "0";
-                                } else if (emp.blending.toString() == "null") {
-                                  emp.blending = "0";
-                                } else if (emp.bthresh.toString() == "null") {
-                                  emp.bthresh = 0;
-                                } else if (emp.stem.toString() == "null") {
-                                  emp.stem = 0;
-                                } else if (emp.tips.toString() == "null") {
-                                  emp.tips = 0;
-                                } else if (emp.ptemp.toString() == "null") {
-                                  emp.ptemp = 0;
-                                }
-                                return DataRow(
-                                    selected: selectedRow.contains(index) ||
-                                            index == n && x % 2 == 0
-                                        ? true
-                                        : false,
-                                    color: MaterialStateColor.resolveWith(
-                                      (states) {
-                                        if (selectedRow.contains(index) ||
-                                            index == n && x % 2 == 0) {
-                                          return Color(
-                                                  Random().nextInt(0xffffffff))
-                                              .withOpacity(0.5);
-                                        } else {
-                                          return Colors.white;
-                                        }
-                                      },
-                                    ),
-                                    onSelectChanged: (v) {
-                                      setState(() {
-                                        n = index;
-                                        x = x + 1;
-                                        onSelectedRow(v, index);
-                                      });
-                                    },
-                                    cells: [
-                                      /* DataCell(
+                                ],
+                                rows: List.generate(
+                                  snapshot.data!.length,
+                                  (index) {
+                                    var emp = snapshot.data![index];
+                                    if (emp.sampledate.toString() != "null") {
+                                      final DateTime now = DateTime.now();
+                                      final DateFormat formatter = DateFormat(
+                                          'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
+                                      final String formatted =
+                                          formatter.format(now);
+                                      emp.sampledate = formatted;
+                                    } else if (emp.shift.toString() == "null") {
+                                      emp.shift = 0;
+                                    } else if (emp.sampletime.toString() ==
+                                        "null") {
+                                      emp.sampletime = "0";
+                                    } else if (emp.brabender.toString() ==
+                                        "null") {
+                                      emp.brabender = 0;
+                                    } else if (emp.oven.toString() == "null") {
+                                      emp.oven = 0;
+                                    } else if (emp.coolerr.toString() ==
+                                        "null") {
+                                      emp.coolerr = 0;
+                                    } else if (emp.coolerl.toString() ==
+                                        "null") {
+                                      emp.coolerl = "0";
+                                    } else if (emp.blending.toString() ==
+                                        "null") {
+                                      emp.blending = "0";
+                                    } else if (emp.bthresh.toString() ==
+                                        "null") {
+                                      emp.bthresh = 0;
+                                    } else if (emp.stem.toString() == "null") {
+                                      emp.stem = 0;
+                                    } else if (emp.tips.toString() == "null") {
+                                      emp.tips = 0;
+                                    } else if (emp.ptemp.toString() == "null") {
+                                      emp.ptemp = 0;
+                                    }
+                                    return DataRow(
+                                        selected: selectedRow.contains(index) ||
+                                                index == n && x % 2 == 0
+                                            ? true
+                                            : false,
+                                        color: MaterialStateColor.resolveWith(
+                                          (states) {
+                                            if (selectedRow.contains(index) ||
+                                                index == n && x % 2 == 0) {
+                                              return Color(Random()
+                                                      .nextInt(0xffffffff))
+                                                  .withOpacity(0.5);
+                                            } else {
+                                              return Colors.white;
+                                            }
+                                          },
+                                        ),
+                                        onSelectChanged: (v) {
+                                          setState(() {
+                                            n = index;
+                                            x = x + 1;
+                                            onSelectedRow(v, index);
+                                          });
+                                        },
+                                        cells: [
+                                          /* DataCell(
                                 Text(emp.cod_grade.toString()),
                               ),*/
-                                      DataCell(
-                                        Text(emp.sampledate.toString(),
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      DataCell(
-                                        Text(emp.shift.toString(),
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      DataCell(
-                                        Text(emp.box.toString(),
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      DataCell(
-                                        Text(emp.sampletime.toString(),
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      /*DataCell(
+                                          DataCell(
+                                            Text(emp.sampledate.toString(),
+                                                textAlign: TextAlign.center),
+                                          ),
+                                          DataCell(
+                                            Text(emp.shift.toString(),
+                                                textAlign: TextAlign.center),
+                                          ),
+                                          DataCell(
+                                            Text(emp.box.toString(),
+                                                textAlign: TextAlign.center),
+                                          ),
+                                          DataCell(
+                                            Text(emp.sampletime.toString(),
+                                                textAlign: TextAlign.center),
+                                          ),
+                                          /*DataCell(
                                     Text(emp.casefirst.toString()),
                                   ),
                                   DataCell(
                                     Text(emp.caselast.toString()),
                                   ),*/
-                                      DataCell(
-                                        Text(
-                                            double.parse(
-                                                    emp.brabender.toString())
-                                                .toStringAsFixed(2),
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                            double.parse(emp.oven.toString())
-                                                .toStringAsFixed(2),
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                            double.parse(emp.coolerr.toString())
-                                                .toStringAsFixed(2),
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                            double.parse(emp.coolerl.toString())
-                                                .toStringAsFixed(2),
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                            double.parse(
-                                                    emp.blending.toString())
-                                                .toStringAsFixed(2),
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                            double.parse(emp.bthresh.toString())
-                                                .toStringAsFixed(2),
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                            double.parse(emp.stem.toString())
-                                                .toStringAsFixed(2),
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                            double.parse(emp.tips.toString())
-                                                .toStringAsFixed(2),
-                                            textAlign: TextAlign.center),
-                                      ),
-                                      DataCell(
-                                        Text(
-                                            double.parse(emp.ptemp.toString())
-                                                .toStringAsFixed(2),
-                                            textAlign: TextAlign.center),
-                                      ), /*DataCell(
+                                          DataCell(
+                                            Text(
+                                                double.parse(emp.brabender
+                                                        .toString())
+                                                    .toStringAsFixed(2),
+                                                textAlign: TextAlign.center),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                                double.parse(
+                                                        emp.oven.toString())
+                                                    .toStringAsFixed(2),
+                                                textAlign: TextAlign.center),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                                double.parse(
+                                                        emp.coolerr.toString())
+                                                    .toStringAsFixed(2),
+                                                textAlign: TextAlign.center),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                                double.parse(
+                                                        emp.coolerl.toString())
+                                                    .toStringAsFixed(2),
+                                                textAlign: TextAlign.center),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                                double.parse(
+                                                        emp.blending.toString())
+                                                    .toStringAsFixed(2),
+                                                textAlign: TextAlign.center),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                                double.parse(
+                                                        emp.bthresh.toString())
+                                                    .toStringAsFixed(2),
+                                                textAlign: TextAlign.center),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                                double.parse(
+                                                        emp.stem.toString())
+                                                    .toStringAsFixed(2),
+                                                textAlign: TextAlign.center),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                                double.parse(
+                                                        emp.tips.toString())
+                                                    .toStringAsFixed(2),
+                                                textAlign: TextAlign.center),
+                                          ),
+                                          DataCell(
+                                            Text(
+                                                double.parse(
+                                                        emp.ptemp.toString())
+                                                    .toStringAsFixed(2),
+                                                textAlign: TextAlign.center),
+                                          ), /*DataCell(
                                     Text(emp.out_crop.toString()),
                                   ), DataCell(
                                     Text(emp.des_grade.toString()),
@@ -588,12 +620,12 @@ class _MoinstureState extends State<Moinsture> {
                                   ),DataCell(
                                     Text(emp.pm12.toString()),
                                   ),*/
-                                    ]);
-                              },
-                            ).toList(),
-                          );
+                                        ]);
+                                  },
+                                ).toList(),
+                              );
 
-                          /* return ListView.separated(
+                              /* return ListView.separated(
                               itemCount: snapshot.data!.length,
                               itemBuilder: (context, index){
 
@@ -617,16 +649,16 @@ class _MoinstureState extends State<Moinsture> {
                           },
                           );*/
 
+                            }
+                            break;
                         }
-                        break;
-                    }
-                    return Container();
-                  },
+                        return Container();
+                      },
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ]),
-    );
+              ]),
+        ));
   }
 }
 

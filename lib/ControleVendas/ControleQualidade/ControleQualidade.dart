@@ -27,6 +27,8 @@ import 'package:fluttericon/rpg_awesome_icons.dart';
 import 'package:fluttericon/typicons_icons.dart';
 import 'package:fluttericon/web_symbols_icons.dart';
 import 'package:fluttericon/zocial_icons.dart';
+
+import '../ControleVendas.dart';
 //https://www.fluttericon.com/
 
 class ControleQualidade extends StatelessWidget {
@@ -40,71 +42,78 @@ class ControleQualidade extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Color(0xFF040404),
-        //automaticallyImplyLeading: false,
-        title: Text(
-          'Controle de Qualidade',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            color: Colors.white,
-            fontSize: 22,
-          ),
-        ),
-        actions: [
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              "Sair",
-              textScaleFactor: 1.5,
-              style: TextStyle(
-                fontSize: 12.0,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          IconButton(
-              icon: Icon(Icons.logout),
-              onPressed: () {
-                showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    title: const Text('Aviso!'),
-                    content: const Text('Deseja mesmo sair?'),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'Cancel'),
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          _logado();
-                          /*    Navigator.pushReplacement(
+    return MaterialApp(
+        title: "Controle de Qualidade",
+        theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+        appBarTheme: AppBarTheme(
+        //backgroundColor: Colors.black,
+        //foregroundColor: Colors.white, //here you can give the text color
+    )
+    //accentColor: Colors.orange,
+    ),
+    home: Scaffold(
+    appBar: AppBar(
+    leading: BackButton(
+    color: Colors.white,
+    onPressed: () {
+    Navigator.pushReplacement(context,
+    MaterialPageRoute(builder: (context) => ControleVendas()));
+    }),
+    title: Text(
+    "Controle de Qualidade",
+    ),
+    actions: [
+    Align(
+    alignment: Alignment.center,
+    child: Text(
+    "Sair",
+    textScaleFactor: 1.5,
+    style: TextStyle(
+    fontSize: 12.0,
+    color: Colors.white,
+    ),
+    ),
+    ),
+    IconButton(
+    icon: Icon(Icons.logout),
+    onPressed: () {
+    showDialog<String>(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+    title: const Text('Aviso!'),
+    content: const Text('Deseja mesmo sair?'),
+    actions: <Widget>[
+    TextButton(
+    onPressed: () => Navigator.pop(context, 'Cancel'),
+    child: const Text('Cancel'),
+    ),
+    TextButton(
+    onPressed: () {
+    _logado();
+    /*    Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (_) => Login(),
                           ),
 
                         );*/
-                          //Fecha a ultima tela ao fazer logout
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                              '/login', (Route<dynamic> route) => false);
-                        },
-                        child: const Text('Continue'),
-                      ),
-                    ],
-                  ),
-                );
-              }),
-        ],
-        centerTitle: false,
-        elevation: 2,
-      ),
-      body: MyStatefulWidget(),
+    //Fecha a ultima tela ao fazer logout
+    Navigator.of(context).pushNamedAndRemoveUntil(
+    '/login', (Route<dynamic> route) => false);
+    },
+    child: const Text('Continue'),
+    ),
+    ],
+    ),
     );
+    }),
+    ],
+    //backgroundColor: Colors.black,
+    ),
+    body: MyStatefulWidget()
+    ,
+    ));
   }
 }
 
@@ -137,10 +146,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               color: Colors.white,
               child: Center(
                 child: InkWell(
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CQNicotineAndSugar())),
+                  onTap: () =>
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CQNicotineAndSugar())),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -163,8 +173,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               color: Colors.white,
               child: Center(
                 child: InkWell(
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CQMoinsture())),
+                  onTap: () =>
+                      Navigator.push(context,
+                          MaterialPageRoute(
+                              builder: (context) => CQMoinsture())),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -184,8 +196,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               color: Colors.white,
               child: Center(
                 child: InkWell(
-                  onTap: () => Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => CQDegradation())),
+                  onTap: () =>
+                      Navigator.push(context,
+                          MaterialPageRoute(
+                              builder: (context) => CQDegradation())),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,

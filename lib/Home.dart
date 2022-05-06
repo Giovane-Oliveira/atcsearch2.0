@@ -32,21 +32,28 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _title,
+      title: "Sistemas ATC",
+      theme: ThemeData(
+          primarySwatch: Colors.blueGrey,
+          appBarTheme: AppBarTheme(
+            //backgroundColor: Colors.black,
+            //foregroundColor: Colors.white, //here you can give the text color
+          )
+        //accentColor: Colors.orange,
+
+      ),
       home: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
-          backgroundColor: Color(0xFF040404),
-          automaticallyImplyLeading: false,
-          title: Text(
-            '$_title',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: 'Poppins',
+        /*  leading: BackButton(
               color: Colors.white,
-              fontSize: 22,
-            ),
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => Quality2()));
+              }),*/
+          title: Text(
+            "Sistemas ATC",
           ),
+          //backgroundColor: Colors.black,
           actions: [
             Align(
               alignment: Alignment.center,
@@ -75,7 +82,7 @@ class Home extends StatelessWidget {
                         TextButton(
                           onPressed: () async {
                             SharedPreferences prefs =
-                                await SharedPreferences.getInstance();
+                            await SharedPreferences.getInstance();
                             prefs.setBool('boolValue', false);
                             //Fecha a ultima tela ao fazer logout
                             Navigator.of(context).pushNamedAndRemoveUntil(
@@ -88,8 +95,6 @@ class Home extends StatelessWidget {
                   );
                 }),
           ],
-          centerTitle: false,
-          elevation: 2,
         ),
         body: MyStatefulWidget(),
       ),

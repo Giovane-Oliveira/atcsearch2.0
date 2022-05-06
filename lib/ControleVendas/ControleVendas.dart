@@ -26,6 +26,7 @@ import 'package:fluttericon/rpg_awesome_icons.dart';
 import 'package:fluttericon/typicons_icons.dart';
 import 'package:fluttericon/web_symbols_icons.dart';
 import 'package:fluttericon/zocial_icons.dart';
+import '../Home.dart';
 import 'ControleQualidade/ControleQualidade.dart';
 //https://www.fluttericon.com/
 
@@ -40,71 +41,73 @@ class ControleVendas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Color(0xFF040404),
-        //automaticallyImplyLeading: false,
-        title: Text(
-          'Controle Vendas',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            color: Colors.white,
-            fontSize: 22,
-          ),
-        ),
-        actions: [
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              "Sair",
-              textScaleFactor: 1.5,
-              style: TextStyle(
-                fontSize: 12.0,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          IconButton(
-              icon: Icon(Icons.logout),
-              onPressed: () {
-                showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    title: const Text('Aviso!'),
-                    content: const Text('Deseja mesmo sair?'),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'Cancel'),
-                        child: const Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          _logado();
-                          /*    Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => Login(),
-                          ),
+    return MaterialApp(
+        title: "Controle de Vendas",
+        theme: ThemeData(
+            primarySwatch: Colors.blueGrey,
+            appBarTheme: AppBarTheme(
+                //backgroundColor: Colors.black,
+                //foregroundColor: Colors.white, //here you can give the text color
+                )
+            //accentColor: Colors.orange,
 
-                        );*/
-                          //Fecha a ultima tela ao fazer logout
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                              '/login', (Route<dynamic> route) => false);
-                        },
-                        child: const Text('Continue'),
-                      ),
-                    ],
+            ),
+        home: Scaffold(
+          appBar: AppBar(
+            leading: BackButton(
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => Home()));
+                }),
+            title: Text(
+              "Controle de Vendas",
+            ),
+            //backgroundColor: Colors.black,
+            actions: [
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  "Sair",
+                  textScaleFactor: 1.5,
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    color: Colors.white,
                   ),
-                );
-              }),
-        ],
-        centerTitle: false,
-        elevation: 2,
-      ),
-      body: MyStatefulWidget(),
-    );
+                ),
+              ),
+              IconButton(
+                  icon: Icon(Icons.logout),
+                  onPressed: () {
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('Aviso!'),
+                        content: const Text('Deseja mesmo sair?'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.pop(context, 'Cancel'),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              prefs.setBool('boolValue', false);
+                              //Fecha a ultima tela ao fazer logout
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  '/login', (Route<dynamic> route) => false);
+                            },
+                            child: const Text('Continue'),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+            ],
+          ),
+          body: MyStatefulWidget(),
+        ));
   }
 }
 

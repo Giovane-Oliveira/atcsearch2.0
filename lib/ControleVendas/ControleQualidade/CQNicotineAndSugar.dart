@@ -11,6 +11,8 @@ import 'dart:async';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
 
+import 'ControleQualidade.dart';
+
 class CQNicotineAndSugar extends StatefulWidget {
   String? valor, valor1, valor2;
 
@@ -127,12 +129,31 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Nicotine and Sugar"),
-        backgroundColor: Colors.black,
-      ),
-      body: Column(
+    return MaterialApp(
+        title: "Nicotine And Sugar",
+        theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+        appBarTheme: AppBarTheme(
+        //backgroundColor: Colors.black,
+        //foregroundColor: Colors.white, //here you can give the text color
+    )
+    //accentColor: Colors.orange,
+
+    ),
+    home: Scaffold(
+    appBar: AppBar(
+    leading: BackButton(
+    color: Colors.white,
+    onPressed: () {
+    Navigator.pushReplacement(
+    context, MaterialPageRoute(builder: (context) => ControleQualidade()));
+    }),
+    title: Text(
+    "Nicotine And Sugar",
+    ),
+    //backgroundColor: Colors.black,
+    ),
+    body: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -179,7 +200,7 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
                             foreground: Paint()
                               ..style = PaintingStyle.stroke
                               ..strokeWidth = 1.5
-                              ..color = Colors.black,
+                              ..color = Colors.blueGrey,
                           ),
                         ),
                       ),
@@ -248,7 +269,7 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
                       // Respond to button press
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.black, // Background color
+                      primary: Colors.blueGrey, // Background color
                     ),
                     icon: Icon(Icons.search, size: 18),
                     label: Text("Buscar"),
@@ -583,7 +604,7 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
                   ]),
             ),
           ]),
-    );
+    ));
   }
 }
 
