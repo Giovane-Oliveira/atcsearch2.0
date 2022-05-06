@@ -151,12 +151,12 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
                     child: MaterialBanner(
                       content: const Text(
                           'Pesquise por código do cliente ou grade e safra'),
-                      leading: CircleAvatar(child: Icon(Icons.search, color: Colors.black,), backgroundColor: Colors.orange,),
+                      leading: CircleAvatar(child: Icon(Icons.search, color: Colors.white,), backgroundColor: Colors.blue,),
                       actions: [
                         FlatButton(
                           child: const Text(
                             'Ocultar',
-                            style: TextStyle(color: Colors.orange),
+                            style: TextStyle(color: Colors.blue),
                           ),
                           onPressed: () {
                             setState(() {
@@ -208,7 +208,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    cursorColor: Colors.orange,
+                    //cursorColor: Colors.orange,
                     textAlign: TextAlign.left,
                   ),
                 ),
@@ -244,7 +244,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    cursorColor: Colors.orange,
+                    //cursorColor: Colors.orange,
                     textAlign: TextAlign.center,
                   ),
                 ),
