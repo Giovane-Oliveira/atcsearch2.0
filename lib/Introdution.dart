@@ -44,7 +44,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   }
 
   void _onIntroEnd(context) {
-    Navigator.of(context).push(
+   Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (_) => Login()),
     );
   }
@@ -116,8 +116,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "Desenvolvimento",
           body:
-          "Estamos em constante desenvolvimento, conforme a utilização do sistema mobile, iremos adicionando novas  funcionalidades de acordo com as necessidades de nossos "
-              "colaboradores.",
+          "Estamos em constante desenvolvimento, conforme a utilização do sistema mobile, iremos adicionando novas  funcionalidades de acordo com nossas necessidades.",
           image: _buildImage('desenv.png'),
           decoration: pageDecoration,
         ),

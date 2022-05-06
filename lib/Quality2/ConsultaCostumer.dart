@@ -128,9 +128,16 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
       appBar: AppBar(
-        title: Text("Search Grade"),
+       /* leading: BackButton(color: Colors.orange,
+          /*onPressed:
+              () => Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => Home())),*/
+
+
+        ),*/
+        title: Text("Search Grade",),
         backgroundColor: Colors.black,
       ),
       body: Column(mainAxisSize: MainAxisSize.max, children: [
@@ -144,12 +151,12 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
                     child: MaterialBanner(
                       content: const Text(
                           'Pesquise por código do cliente ou grade e safra'),
-                      leading: CircleAvatar(child: Icon(Icons.search)),
+                      leading: CircleAvatar(child: Icon(Icons.search, color: Colors.black,), backgroundColor: Colors.orange,),
                       actions: [
                         FlatButton(
                           child: const Text(
                             'Ocultar',
-                            style: TextStyle(color: Colors.blue),
+                            style: TextStyle(color: Colors.orange),
                           ),
                           onPressed: () {
                             setState(() {
@@ -201,6 +208,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    cursorColor: Colors.orange,
                     textAlign: TextAlign.left,
                   ),
                 ),
@@ -236,6 +244,7 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    cursorColor: Colors.orange,
                     textAlign: TextAlign.center,
                   ),
                 ),

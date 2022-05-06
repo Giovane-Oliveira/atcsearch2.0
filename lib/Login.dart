@@ -35,7 +35,7 @@ class Login extends StatelessWidget {
     return MaterialApp(
       title: _title,
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primarySwatch: Colors.orange,
           appBarTheme: AppBarTheme(
               backgroundColor: Colors.black,
               foregroundColor: Colors.white, //here you can give the text color
