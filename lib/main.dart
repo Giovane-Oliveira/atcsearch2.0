@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool? s = prefs.getBool('boolValue');
     bool? i = prefs.getBool('intro');
-    print("dsadasdasdd" + s.toString());
+    //print("dsadasdasdd" + s.toString());
 if(i == null && s == null){
 
    Timer(
