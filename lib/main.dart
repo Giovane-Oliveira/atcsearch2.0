@@ -8,7 +8,6 @@ import 'package:atcsearch/Quality2/NicotineAndSugar.dart';
 import 'package:atcsearch/Quality2/Quality2.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'Introdution.dart';
 
 void main() {

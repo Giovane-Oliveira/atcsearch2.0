@@ -144,7 +144,7 @@ class _MoinstureState extends State<Moinsture> {
       DeviceOrientation.landscapeRight,
     ]);
     return MaterialApp(
-        title: "Moinsture",
+        title: "Moisture",
         theme: ThemeData(
             primarySwatch: Colors.blueGrey,
             appBarTheme: AppBarTheme(
@@ -163,7 +163,7 @@ class _MoinstureState extends State<Moinsture> {
                       MaterialPageRoute(builder: (context) => Quality2()));
                 }),
             title: Text(
-              "Moinsture",
+              "Moisture",
             ),
             //backgroundColor: Colors.black,
           ),
