@@ -144,12 +144,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       Icon(
                         Icons.assessment_rounded,
                         size: 80.0,
-                        color: Colors.black,
+                        color: Colors.blueGrey,
                       ),
                       Text(
                         "Quality2",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.blueGrey,
                         ),
                       ),
                     ],
@@ -176,8 +176,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(Icons.paste, size: 80.0),
-                      Text("Controle Vendas"),
+                      Icon(Icons.paste, color: Colors.blueGrey, size: 80.0),
+                      Text("Controle Vendas", style: TextStyle(color: Colors.blueGrey),),
                     ],
                   ),
                 ),
@@ -204,9 +204,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   children: [
                     Icon(
                       FontAwesome.envira,
+                      color: Colors.blueGrey,
                       size: 80.0,
                     ),
-                    Text("Fumo Cru"),
+                    Text("Fumo Cru", style: TextStyle(color: Colors.blueGrey),),
                   ],
                 ),
               ),

@@ -220,13 +220,13 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
                           Icons.search,
                           color: Colors.white,
                         ),
-                        backgroundColor: Colors.blue,
+                        backgroundColor: Colors.blueGrey,
                       ),
                       actions: [
                         FlatButton(
                           child: const Text(
                             'Ocultar',
-                            style: TextStyle(color: Colors.blue),
+                            style: TextStyle(color: Colors.blueGrey),
                           ),
                           onPressed: () {
                             setState(() {

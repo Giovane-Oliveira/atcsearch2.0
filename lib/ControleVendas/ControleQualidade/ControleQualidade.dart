@@ -158,8 +158,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       Icon(
                         FontAwesome.beaker,
                         size: 80.0,
+                        color: Colors.blueGrey,
                       ),
-                      Text("Nic & Sugar"),
+                      Text("Nic & Sugar", style: TextStyle(color: Colors.blueGrey),),
                     ],
                   ),
                 ),
@@ -181,8 +182,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(Typicons.temperatire, size: 80.0),
-                      Text("Moisture"),
+                      Icon(Typicons.temperatire, color: Colors.blueGrey, size: 80.0),
+                      Text("Moisture", style: TextStyle(color: Colors.blueGrey),),
                     ],
                   ),
                 ),
@@ -206,9 +207,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     children: [
                       Icon(
                         Icons.waterfall_chart,
+                        color: Colors.blueGrey,
                         size: 80.0,
                       ),
-                      Text("Degradation"),
+                      Text("Degradation", style: TextStyle(color: Colors.blueGrey),),
                     ],
                   ),
                 ),

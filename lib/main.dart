@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
               width: 150,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("images/atclogo.jpg"),
+                      image: AssetImage("images/world.png"),
                       fit: BoxFit.contain)),
             ),
           ),

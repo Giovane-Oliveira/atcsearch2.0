@@ -150,9 +150,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     children: [
                       Icon(
                         Icons.control_camera_sharp,
+                        color: Colors.blueGrey,
                         size: 80.0,
                       ),
-                      Text("Ctrl. Qualidade"),
+                      Text("Ctrl. Qualidade", style: TextStyle(color: Colors.blueGrey),),
                     ],
                   ),
                 ),
@@ -172,8 +173,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(Icons.monetization_on, size: 80.0),
-                      Text("Vendas"),
+                      Icon(Icons.monetization_on, color: Colors.blueGrey, size: 80.0),
+                      Text("Vendas", style: TextStyle(color: Colors.blueGrey),),
                     ],
                   ),
                 ),
@@ -195,9 +196,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     children: [
                       Icon(
                         Icons.edit,
+                        color: Colors.blueGrey,
                         size: 80.0,
                       ),
-                      Text("Composição"),
+                      Text("Composição", style: TextStyle(color: Colors.blueGrey),),
                     ],
                   ),
                 ),
