@@ -166,7 +166,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       // DeviceOrientation.landscapeRight,
     ]);
     return Padding(
-        padding: const EdgeInsets.fromLTRB(10, 60, 10, 10),
+        padding: const EdgeInsets.fromLTRB(10, 100, 10, 10),
         child: ListView(
           children: <Widget>[
 
