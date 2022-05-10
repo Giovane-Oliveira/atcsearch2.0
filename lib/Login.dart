@@ -20,7 +20,6 @@ import 'package:fluttericon/rpg_awesome_icons.dart';
 import 'package:fluttericon/typicons_icons.dart';
 import 'package:fluttericon/web_symbols_icons.dart';
 import 'package:fluttericon/zocial_icons.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 import 'package:atcsearch/Home.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +35,10 @@ class Login extends StatelessWidget {
     return MaterialApp(
       title: _title,
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+          primarySwatch: Colors.blueGrey,
           appBarTheme: AppBarTheme(
-             // backgroundColor: Colors.black,
-              foregroundColor: Colors.white, //here you can give the text color
+            // backgroundColor: Colors.black,
+            foregroundColor: Colors.white, //here you can give the text color
           )
         //accentColor: Colors.orange,
 
@@ -47,9 +46,9 @@ class Login extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text(_title, style: TextStyle( fontFamily: 'Poppins',
-            color: Colors.white,
-            fontSize: 22,fontWeight: FontWeight.bold),),
-           // backgroundColor: Colors.black,
+              color: Colors.white,
+              fontSize: 22,fontWeight: FontWeight.bold),),
+          // backgroundColor: Colors.black,
         ),
         body: MyStatefulWidget(),
       ),
@@ -86,7 +85,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         builder: (BuildContext context) => AlertDialog(
           title: const Text('Aviso!'),
           content:
-              const Text('O dispositivo não está conectado com a internet'),
+          const Text('O dispositivo não está conectado com a internet'),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.pop(context, 'OK'),
@@ -131,8 +130,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       response = await http.get(Uri.parse(url));
       Map<String, dynamic> retorno = json.decode(response.body);
       if (retorno["nome"]
-              .toString()
-              .contains(nameController.text.toUpperCase()) &&
+          .toString()
+          .contains(nameController.text.toUpperCase()) &&
           retorno["senha"]
               .toString()
               .contains(passwordController.text.toUpperCase())) {
@@ -166,10 +165,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       // DeviceOrientation.landscapeRight,
     ]);
     return Padding(
-        padding: const EdgeInsets.fromLTRB(10, 100, 10, 10),
+        padding: const EdgeInsets.fromLTRB(10, 60, 10, 10),
         child: ListView(
           children: <Widget>[
-
             Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
@@ -233,7 +231,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
             Container(
                 height: 60,
-                padding: const EdgeInsets.fromLTRB(100, 20, 100, 0),
+                padding: const EdgeInsets.fromLTRB(120, 20, 120, 0),
                 child: ElevatedButton(
                   child: const Text('Login', style: TextStyle(color: Colors.white),),
                   onPressed: () {
