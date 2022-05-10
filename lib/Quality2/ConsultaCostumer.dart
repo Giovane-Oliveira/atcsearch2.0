@@ -133,196 +133,169 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
         theme: ThemeData(
             primarySwatch: Colors.blueGrey,
             appBarTheme: AppBarTheme(
-             //backgroundColor: Colors.black,
+              //backgroundColor: Colors.black,
               foregroundColor: Colors.white, //here you can give the text color
             )
-          //accentColor: Colors.orange,
+            //accentColor: Colors.orange,
 
-        ),
-
+            ),
         home: Scaffold(
-      appBar: AppBar(
-
-         leading: BackButton(color: Colors.white,
-          onPressed: (){
-
-      if (widget.interface.toString() ==
-          "NicotineAndSugar") {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => NicotineAndSugar(
-                )));
-      } else if (widget.interface.toString() ==
-          "Moinsture") {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => Moinsture(
-                )));
-      } else if (widget.interface.toString() ==
-          "CQMoinsture") {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CQMoinsture(
-                )));
-      } else if (widget.interface.toString() ==
-          "CQNicotineAndSugar") {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    CQNicotineAndSugar(
-                    )));
-      } else if (widget.interface.toString() ==
-          "Degradation") {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => Degradation(
-                )));
-      } else if (widget.interface.toString() ==
-          "CQDegradation") {
-        Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CQDegradation(
-                )));
-      }
-    }
-
-
-
-
-
-
-
-        ),
-        title: Text(
-          "Search Grade",
-        ),
-        //backgroundColor: Colors.black,
-      ),
-      body: Column(mainAxisSize: MainAxisSize.max, children: [
-        FutureBuilder<dynamic>(
-            future: _opcao(),
-            builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-              if (snapshot.hasData) {
-                //print("" + snapshot.data.toString());
-                return Visibility(
-                    visible: snapshot.data ? true : false,
-                    child: MaterialBanner(
-                      content: const Text(
-                          'Pesquise por código do cliente ou grade e safra'),
-                      leading: CircleAvatar(
-                        child: Icon(
-                          Icons.search,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.blueGrey,
-                      ),
-                      actions: [
-                        FlatButton(
-                          child: const Text(
-                            'Ocultar',
-                            style: TextStyle(color: Colors.blueGrey),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _opcaoTrue();
-                            });
-                          },
-                        ),
-                      ],
-                    ));
-              } else {
-                return Container();
-              }
-            }),
-        Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(2, 0, 5, 0),
-                  child: TextFormField(
-                    onChanged: (teste) {
-                      setState(() {
-                        _myData = _recuperarPostagens();
-                      });
-                    },
-                    controller: grade,
-                    obscureText: false,
-                    //   keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      prefix: Text("Grade: "),
-                      isDense: true,
-                      hintText: 'Grade',
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    //cursorColor: Colors.orange,
-                    textAlign: TextAlign.left,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(2, 0, 5, 0),
-                  child: TextFormField(
-                    onChanged: (teste) {
-                      setState(() {
-                        _myData = _recuperarPostagens();
-                      });
-                    },
-                    controller: safra,
-                    obscureText: false,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      prefix: Text("Safra:"),
-                      isDense: true,
-                      hintText: 'Insira o ano',
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.black,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    //cursorColor: Colors.orange,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ],
+          appBar: AppBar(
+            leading: BackButton(
+                color: Colors.white,
+                onPressed: () {
+                  if (widget.interface.toString() == "NicotineAndSugar") {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NicotineAndSugar()));
+                  } else if (widget.interface.toString() == "Moinsture") {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => Moinsture()));
+                  } else if (widget.interface.toString() == "CQMoinsture") {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => CQMoinsture()));
+                  } else if (widget.interface.toString() ==
+                      "CQNicotineAndSugar") {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CQNicotineAndSugar()));
+                  } else if (widget.interface.toString() == "Degradation") {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => Degradation()));
+                  } else if (widget.interface.toString() == "CQDegradation") {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CQDegradation()));
+                  }
+                }),
+            title: Text(
+              "Search Grade",
+            ),
+            //backgroundColor: Colors.black,
           ),
-        ),
-        /* Row(
+          body: Column(mainAxisSize: MainAxisSize.max, children: [
+            FutureBuilder<dynamic>(
+                future: _opcao(),
+                builder:
+                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                  if (snapshot.hasData) {
+                    //print("" + snapshot.data.toString());
+                    return Visibility(
+                        visible: snapshot.data ? true : false,
+                        child: MaterialBanner(
+                          content: const Text(
+                              'Pesquise por código do cliente ou grade e safra'),
+                          leading: CircleAvatar(
+                            child: Icon(
+                              Icons.search,
+                              color: Colors.white,
+                            ),
+                            backgroundColor: Colors.blueGrey,
+                          ),
+                          actions: [
+                            FlatButton(
+                              child: const Text(
+                                'Ocultar',
+                                style: TextStyle(color: Colors.blueGrey),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _opcaoTrue();
+                                });
+                              },
+                            ),
+                          ],
+                        ));
+                  } else {
+                    return Container();
+                  }
+                }),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(2, 0, 5, 0),
+                      child: TextFormField(
+                        onChanged: (teste) {
+                          setState(() {
+                            _myData = _recuperarPostagens();
+                          });
+                        },
+                        controller: grade,
+                        obscureText: false,
+                        //   keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          prefix: Text("Grade: "),
+                          isDense: true,
+                          hintText: 'Grade',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        //cursorColor: Colors.orange,
+                        textAlign: TextAlign.left,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(2, 0, 5, 0),
+                      child: TextFormField(
+                        onChanged: (teste) {
+                          setState(() {
+                            _myData = _recuperarPostagens();
+                          });
+                        },
+                        controller: safra,
+                        obscureText: false,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          prefix: Text("Safra:"),
+                          isDense: true,
+                          hintText: 'Insira o ano',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        //cursorColor: Colors.orange,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            /* Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -342,119 +315,127 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
             )
           ],
         ),*/
-        Expanded(
-          child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-            child: FutureBuilder<List<Grade>>(
-              future: _myData,
-              builder: (context, snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.none:
-                  case ConnectionState.waiting:
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                    break;
-                  case ConnectionState.active:
-                  case ConnectionState.done:
-                    if (snapshot.hasError) {
-                      print("lista: Erro ao carregar $snapshot");
-                    } else {
-                      print("lista: carregou!! ");
-                      return ListView.separated(
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) {
-                          List<Grade> lista = snapshot.data ?? <Grade>[];
-                          Grade post = lista[index];
+            Expanded(
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                child: FutureBuilder<List<Grade>>(
+                  future: _myData,
+                  builder: (context, snapshot) {
+                    switch (snapshot.connectionState) {
+                      case ConnectionState.none:
+                      case ConnectionState.waiting:
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                        break;
+                      case ConnectionState.active:
+                      case ConnectionState.done:
+                        if (snapshot.hasError) {
+                          print("lista: Erro ao carregar $snapshot");
+                        } else {
+                          print("lista: carregou!! ");
+                          return ListView.separated(
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (context, index) {
+                              List<Grade> lista = snapshot.data ?? <Grade>[];
+                              Grade post = lista[index];
 
-                          return ListTile(
-                            onTap: () {
-                              if (widget.interface.toString() ==
-                                  "NicotineAndSugar") {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => NicotineAndSugar(
-                                              valor: post.cod_grade.toString(),
-                                              valor1: post.des_grade,
-                                              valor2: post.crop.toString(),
-                                            )));
-                              } else if (widget.interface.toString() ==
-                                  "Moinsture") {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Moinsture(
-                                              valor: post.cod_grade.toString(),
-                                              valor1: post.des_grade,
-                                              valor2: post.crop.toString(),
-                                            )));
-                              } else if (widget.interface.toString() ==
-                                  "CQMoinsture") {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => CQMoinsture(
-                                              valor: post.cod_grade.toString(),
-                                              valor1: post.des_grade,
-                                              valor2: post.crop.toString(),
-                                            )));
-                              } else if (widget.interface.toString() ==
-                                  "CQNicotineAndSugar") {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            CQNicotineAndSugar(
-                                              valor: post.cod_grade.toString(),
-                                              valor1: post.des_grade,
-                                              valor2: post.crop.toString(),
-                                            )));
-                              } else if (widget.interface.toString() ==
-                                  "Degradation") {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Degradation(
-                                              valor: post.cod_grade.toString(),
-                                              valor1: post.des_grade,
-                                              valor2: post.crop.toString(),
-                                            )));
-                              } else if (widget.interface.toString() ==
-                                  "CQDegradation") {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => CQDegradation(
-                                              valor: post.cod_grade.toString(),
-                                              valor1: post.des_grade,
-                                              valor2: post.crop.toString(),
-                                            )));
-                              }
-                            },
-                            title: new Center(
-                                child: new Text(
-                              "COD.GRADE: " + post.cod_grade.toString(),
-                            )),
-                            subtitle: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text("GRADE: " + post.des_grade,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  Text(
-                                      "SAFRA: " +
-                                          post.crop.toString() +
-                                          "\n COD.CLIENTE: " +
-                                          post.cod_cliente.toString() +
-                                          "\n SAMPLE: " +
-                                          post.sample,
-                                      textAlign: TextAlign.center)
-                                ]),
+                              return ListTile(
+                                onTap: () {
+                                  if (widget.interface.toString() ==
+                                      "NicotineAndSugar") {
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                NicotineAndSugar(
+                                                  valor:
+                                                      post.cod_grade.toString(),
+                                                  valor1: post.des_grade,
+                                                  valor2: post.crop.toString(),
+                                                )));
+                                  } else if (widget.interface.toString() ==
+                                      "Moinsture") {
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Moinsture(
+                                                  valor:
+                                                      post.cod_grade.toString(),
+                                                  valor1: post.des_grade,
+                                                  valor2: post.crop.toString(),
+                                                )));
+                                  } else if (widget.interface.toString() ==
+                                      "CQMoinsture") {
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => CQMoinsture(
+                                                  valor:
+                                                      post.cod_grade.toString(),
+                                                  valor1: post.des_grade,
+                                                  valor2: post.crop.toString(),
+                                                )));
+                                  } else if (widget.interface.toString() ==
+                                      "CQNicotineAndSugar") {
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                CQNicotineAndSugar(
+                                                  valor:
+                                                      post.cod_grade.toString(),
+                                                  valor1: post.des_grade,
+                                                  valor2: post.crop.toString(),
+                                                )));
+                                  } else if (widget.interface.toString() ==
+                                      "Degradation") {
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Degradation(
+                                                  valor:
+                                                      post.cod_grade.toString(),
+                                                  valor1: post.des_grade,
+                                                  valor2: post.crop.toString(),
+                                                )));
+                                  } else if (widget.interface.toString() ==
+                                      "CQDegradation") {
+                                    Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => CQDegradation(
+                                                  valor:
+                                                      post.cod_grade.toString(),
+                                                  valor1: post.des_grade,
+                                                  valor2: post.crop.toString(),
+                                                )));
+                                  }
+                                },
+                                title: new Center(
+                                    child: new Text(
+                                  "COD.GRADE: " + post.cod_grade.toString(),
+                                )),
+                                subtitle: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text("GRADE: " + post.des_grade,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      Text(
+                                          "SAFRA: " +
+                                              post.crop.toString() +
+                                              "\n COD.CLIENTE: " +
+                                              post.cod_cliente.toString() +
+                                              "\n SAMPLE: " +
+                                              post.sample,
+                                          textAlign: TextAlign.center)
+                                    ]),
 
-                            /*new Text(
+                                /*new Text(
                                     "GRADE: " +
                                         post.des_grade +
                                         "\n SAFRA: " +
@@ -464,26 +445,27 @@ class _ConsultaCostumerState extends State<ConsultaCostumer> {
                                         "\n SAMPLE: " +
                                         post.sample,
                                     textAlign: TextAlign.center))*/
-                            /* title: Text( "Empresa: " + post.cod_empresa.toString() ),
+                                /* title: Text( "Empresa: " + post.cod_empresa.toString() ),
                                   subtitle: Text("Carga: " + post.cod_carga.toString() + "\n Teste: 001" + "\n teste" + "\n teste"),*/
+                              );
+                            },
+                            separatorBuilder:
+                                (BuildContext context, int index) {
+                              return Divider();
+                            },
                           );
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return Divider();
-                        },
-                      );
+                        }
+                        break;
                     }
-                    break;
-                }
-                return Container();
-              },
+                    return Container();
+                  },
+                ),
+              ),
             ),
-          ),
-        ),
 
-        /**/
-      ]),
-    ));
+            /**/
+          ]),
+        ));
   }
 }
 
