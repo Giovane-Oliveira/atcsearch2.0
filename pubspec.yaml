@@ -47,6 +47,7 @@ dependencies:
   fluttertoast: ^8.0.9
   flutter_launcher_icons: ^0.7.5
   introduction_screen: ^3.0.2
+  flutter_custom_clippers: ^2.0.0
 
 flutter_icons:
   #android: "launcher_icon"

@@ -20,6 +20,7 @@ import 'package:fluttericon/rpg_awesome_icons.dart';
 import 'package:fluttericon/typicons_icons.dart';
 import 'package:fluttericon/web_symbols_icons.dart';
 import 'package:fluttericon/zocial_icons.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 import 'package:atcsearch/Home.dart';
 import 'package:flutter/material.dart';
@@ -165,9 +166,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       // DeviceOrientation.landscapeRight,
     ]);
     return Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.fromLTRB(10, 60, 10, 10),
         child: ListView(
           children: <Widget>[
+
             Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
