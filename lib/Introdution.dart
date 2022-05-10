@@ -123,7 +123,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "Desenvolvimento",
           body:
-          "Novas funcionalidades, aprimoramento do aplicativo de forma constante.",
+          "Aprimoramento do aplicativo de forma constante.",
           image: _buildImage('desenv.png'),
           decoration: pageDecoration,
         ),
