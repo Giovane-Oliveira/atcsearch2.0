@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'dart:async';
 import 'dart:ui';
 import 'package:atcsearch/Home.dart';
@@ -6,6 +7,7 @@ import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
 import 'package:atcsearch/Quality2/Degradation.dart';
 import 'package:atcsearch/Quality2/NicotineAndSugar.dart';
 import 'package:atcsearch/Quality2/Quality2.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Introdution.dart';
@@ -59,8 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
   _verificalogado() async {
     //_logado();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool? s = prefs.getBool('boolValue');
-    bool? i = prefs.getBool('intro');
+    bool s = prefs.getBool('boolValue');
+    bool i = prefs.getBool('intro');
     //print("dsadasdasdd" + s.toString());
     if (i == null && s == null) {
       Timer(
@@ -90,12 +92,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Container(
       color: Colors.white,
       child: Column(
+        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Center(
             child: Container(
-              height: 150,
-              width: 150,
+              height: 200,
+              width: 200,
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage("images/world.png"),
@@ -103,7 +106,16 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Center(
-            child: CircularProgressIndicator(),
+            child:Container(
+              width: 200,
+              height: 200,
+              child: FlareActor(
+                "images/loading.flr",
+                color: Colors.blueGrey,
+                animation: "loading",
+                fit: BoxFit.contain,
+              ),
+          ),
           )
         ],
       ),
