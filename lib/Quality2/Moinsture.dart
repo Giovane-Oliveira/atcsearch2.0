@@ -440,11 +440,11 @@ class _MoinstureState extends State<Moinsture> {
                                   (index) {
                                     var emp = snapshot.data![index];
                                     if (emp.sampledate.toString() != "null") {
-                                      final DateTime now = DateTime.now();
+                                      final DateTime now = DateTime.parse(emp.sampledate.toString());
                                       final DateFormat formatter = DateFormat(
                                           'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
                                       final String formatted =
-                                          formatter.format(now);
+                                      formatter.format(now);
                                       emp.sampledate = formatted;
                                     } else if (emp.shift.toString() == "null") {
                                       emp.shift = 0;

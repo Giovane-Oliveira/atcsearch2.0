@@ -400,7 +400,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
 
                                     if (emp.data_processo.toString() !=
                                         "null") {
-                                      final DateTime now = DateTime.now();
+                                      final DateTime now = DateTime.parse(emp.data_processo.toString());
                                       final DateFormat formatter = DateFormat(
                                           'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
                                       final String formatted =

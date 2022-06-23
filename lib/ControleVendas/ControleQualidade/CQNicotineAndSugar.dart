@@ -384,11 +384,11 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
                               (index) {
                                 var emp = snapshot.data![index];
                                 if (emp.data_processo.toString() != "null") {
-                                  final DateTime now = DateTime.now();
+                                  final DateTime now = DateTime.parse(emp.data_processo.toString());
                                   final DateFormat formatter = DateFormat(
                                       'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
                                   final String formatted =
-                                      formatter.format(now);
+                                  formatter.format(now);
                                   emp.data_processo = formatted;
                                 } else if (emp.box_inicial.toString() ==
                                     "null") {
