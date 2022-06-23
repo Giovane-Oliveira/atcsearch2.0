@@ -287,7 +287,7 @@ class _CQMoinstureState extends State<CQMoinsture> {
                       primary: Colors.blueGrey, // Background color
                     ),
                     icon: Icon(Icons.search, size: 18),
-                    label: Text("Buscar"),
+                    label: Text("Nova Consulta"),
                   )
                 ],
               ),

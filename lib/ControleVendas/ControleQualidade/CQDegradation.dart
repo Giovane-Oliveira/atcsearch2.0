@@ -275,7 +275,7 @@ class _CQDegradationState extends State<CQDegradation> {
                       primary: Colors.blueGrey, // Background color
                     ),
                     icon: Icon(Icons.search, size: 18),
-                    label: Text("Buscar"),
+                    label: Text("Nova Consulta"),
                   )
                 ],
               ),

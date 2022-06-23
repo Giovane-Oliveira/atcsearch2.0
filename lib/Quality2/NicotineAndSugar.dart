@@ -273,7 +273,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
                           primary: Colors.blueGrey, // Background color
                         ),
                         icon: Icon(Icons.search, color: Colors.white, size: 18),
-                        label: Text("Buscar", style: TextStyle(color: Colors.white),),
+                        label: Text("Nova Consulta", style: TextStyle(color: Colors.white),),
                       )
                     ],
                   ),
