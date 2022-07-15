@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:atcsearch/ControleVendas/Uncommited/Uncommited.dart';
+import 'package:atcsearch/ControleVendas/Uncommited/Uncommited.dart';
 import 'package:atcsearch/Login.dart';
 import 'package:atcsearch/Quality2/ConsultaCostumer.dart';
 import 'package:atcsearch/Quality2/Degradation.dart';
@@ -167,14 +169,18 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               color: Colors.white,
               child: Center(
                 child: InkWell(
-                  /*  onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Moinsture())),*/
+                   onTap: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Uncomitted())),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(Icons.monetization_on, color: Colors.blueGrey, size: 80.0),
-                      Text("Vendas", style: TextStyle(color: Colors.blueGrey),),
+                      Icon(
+                        Icons.unarchive,
+                        color: Colors.blueGrey,
+                        size: 80.0,
+                      ),
+                      Text("Uncommited", style: TextStyle(color: Colors.blueGrey),),
                     ],
                   ),
                 ),
@@ -188,18 +194,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               color: Colors.white,
               child: Center(
                 child: InkWell(
-                  /* onTap: () => Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Degradation())),*/
+                  /*  onTap: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Moinsture())),*/
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.edit,
-                        color: Colors.blueGrey,
-                        size: 80.0,
-                      ),
-                      Text("Composição", style: TextStyle(color: Colors.blueGrey),),
+                      Icon(Icons.monetization_on, color: Colors.blueGrey, size: 80.0),
+                      Text("Vendas", style: TextStyle(color: Colors.blueGrey),),
                     ],
                   ),
                 ),

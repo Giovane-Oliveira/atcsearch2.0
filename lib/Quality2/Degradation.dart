@@ -32,6 +32,7 @@ class _DegradationState extends State<Degradation> {
   int x = 0;
   bool checked = false;
   List<int> selectedRow = [];
+  int verificador = 0;
 
   //double mediaNicotine  = 0;
   //double mediaSugar  = 0;
@@ -80,6 +81,7 @@ class _DegradationState extends State<Degradation> {
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
       return true; // is portrait
     } else {
+      verificador = 1;
       return false; // is landscape
     }
   }
@@ -449,12 +451,16 @@ class _DegradationState extends State<Degradation> {
                                       emp.ps4 = "0";
                                     } else if (emp.sampledate.toString() !=
                                         "null") {
-                                      final DateTime now = DateTime.parse(emp.sampledate.toString());
-                                      final DateFormat formatter = DateFormat(
-                                          'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
-                                      final String formatted =
-                                      formatter.format(now);
-                                      emp.sampledate = formatted;
+                                      if(verificador == 0){
+                                        final DateTime now = DateTime.parse(emp.sampledate.toString());
+                                        final DateFormat formatter = DateFormat(
+                                            'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
+                                        final String formatted =
+                                        formatter.format(now);
+                                        emp.sampledate = formatted;
+
+                                      }
+
                                     } else if (emp.sampletime.toString() ==
                                         "null") {
                                       emp.sampletime = "0";

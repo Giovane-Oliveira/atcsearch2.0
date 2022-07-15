@@ -36,6 +36,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
   double mediaNicotine = 0;
   double mediaSugar = 0;
   int count = 0;
+  int verificador = 0;
 
   @override
   void initState() {
@@ -81,6 +82,7 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
       return true; // is portrait
     } else {
+      verificador = 1;
       return false; // is landscape
     }
   }
@@ -400,12 +402,18 @@ class _NicotineAndSugarState extends State<NicotineAndSugar> {
 
                                     if (emp.data_processo.toString() !=
                                         "null") {
-                                      final DateTime now = DateTime.parse(emp.data_processo.toString());
-                                      final DateFormat formatter = DateFormat(
-                                          'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
-                                      final String formatted =
-                                          formatter.format(now);
-                                      emp.data_processo = formatted;
+                                      if(verificador == 0){
+
+                                        final DateTime now = DateTime.parse(emp.data_processo.toString());
+                                        final DateFormat formatter = DateFormat(
+                                            'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
+                                        final String formatted =
+                                        formatter.format(now);
+                                        emp.data_processo = formatted;
+
+                                      }
+
+
                                     } else if (emp.box_inicial.toString() ==
                                         "null") {
                                       emp.box_inicial = 0;
