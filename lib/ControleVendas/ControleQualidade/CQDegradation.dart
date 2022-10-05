@@ -36,7 +36,7 @@ class _CQDegradationState extends State<CQDegradation> {
   double mediaNicotine = 0;
   double mediaSugar = 0;
   int count = 0;
-  int verificador = 0;
+
 
   @override
   void initState() {
@@ -81,9 +81,20 @@ class _CQDegradationState extends State<CQDegradation> {
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
       return true; // is portrait
     } else {
-      verificador = 1;
       return false; // is landscape
     }
+  }
+  
+  String dataCorreta(String data){
+
+    final DateTime now = DateTime.parse(data);
+    final DateFormat formatter = DateFormat(
+        'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
+    final String formatted =
+    formatter.format(now);
+    return formatted;
+
+
   }
 
   Future<List<ModelDegradation>> _recuperarPostagens() async {
@@ -449,18 +460,6 @@ class _CQDegradationState extends State<CQDegradation> {
 
                                 if (emp.ps4.toString() == "null") {
                                   emp.ps4 = "0";
-                                } else if (emp.sampledate.toString() !=
-                                    "null") {
-                                  if(verificador == 0){
-                                    final DateTime now = DateTime.parse(emp.sampledate.toString());
-                                    final DateFormat formatter = DateFormat(
-                                        'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
-                                    final String formatted =
-                                    formatter.format(now);
-                                    emp.sampledate = formatted;
-
-                                  }
-
                                 } else if (emp.sampletime.toString() ==
                                     "null") {
                                   emp.sampletime = "0";
@@ -521,7 +520,7 @@ class _CQDegradationState extends State<CQDegradation> {
                                 Text(emp.cod_grade.toString()),
                               ),*/
                                       DataCell(
-                                        Text(emp.sampledate.toString(),
+                                        Text(dataCorreta(emp.sampledate.toString()),
                                             textAlign: TextAlign.center),
                                       ),
                                       DataCell(

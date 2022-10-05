@@ -35,7 +35,6 @@ class _MoinstureState extends State<Moinsture> {
   //double mediaNicotine  = 0;
   //double mediaSugar  = 0;
   int count = 0;
-  int verificador = 0;
 
   @override
   void initState() {
@@ -55,9 +54,8 @@ class _MoinstureState extends State<Moinsture> {
         grade.text = "${widget.valor}";
         safra.text = "${widget.valor2}";
         //VALOR = COD_GRADE
-//VALOR1 = DES_GRADE
+        //VALOR1 = DES_GRADE
         //VALOR2 = SAFRA
-
         //Consultar banco de dados
 
       } else {
@@ -70,9 +68,20 @@ class _MoinstureState extends State<Moinsture> {
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
       return true; // is portrait
     } else {
-      verificador = 1;
       return false; // is landscape
     }
+  }
+
+  String dataCorreta(String data){
+
+    final DateTime now = DateTime.parse(data);
+    final DateFormat formatter = DateFormat(
+        'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
+    final String formatted =
+    formatter.format(now);
+    return formatted;
+
+
   }
 
   onSelectedRow(bool? selected, int index) async {
@@ -441,19 +450,7 @@ class _MoinstureState extends State<Moinsture> {
                                   snapshot.data!.length,
                                   (index) {
                                     var emp = snapshot.data![index];
-                                    if (emp.sampledate.toString() != "null") {
-                                      if(verificador  == 0){
-
-                                        final DateTime now = DateTime.parse(emp.sampledate.toString());
-                                        final DateFormat formatter = DateFormat(
-                                            'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
-                                        final String formatted =
-                                        formatter.format(now);
-                                        emp.sampledate = formatted;
-
-                                      }
-
-                                    } else if (emp.shift.toString() == "null") {
+                                   if (emp.shift.toString() == "null") {
                                       emp.shift = 0;
                                     } else if (emp.sampletime.toString() ==
                                         "null") {
@@ -511,7 +508,7 @@ class _MoinstureState extends State<Moinsture> {
                                 Text(emp.cod_grade.toString()),
                               ),*/
                                           DataCell(
-                                            Text(emp.sampledate.toString(),
+                                            Text(dataCorreta(emp.sampledate.toString()),
                                                 textAlign: TextAlign.center),
                                           ),
                                           DataCell(

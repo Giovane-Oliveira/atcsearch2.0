@@ -35,7 +35,6 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
   double mediaNicotine = 0;
   double mediaSugar = 0;
   int count = 0;
-  int verificador = 0;
 
   @override
   void initState() {
@@ -71,9 +70,20 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
     if (MediaQuery.of(context).orientation == Orientation.portrait) {
       return true; // is portrait
     } else {
-      verificador = 1;
       return false; // is landscape
     }
+  }
+
+  String dataCorreta(String data){
+
+    final DateTime now = DateTime.parse(data);
+    final DateFormat formatter = DateFormat(
+        'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
+    final String formatted =
+    formatter.format(now);
+    return formatted;
+
+
   }
 
   onSelectedRow(bool? selected, int index) async {
@@ -385,20 +395,7 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
                               snapshot.data!.length,
                               (index) {
                                 var emp = snapshot.data![index];
-                                if (emp.data_processo.toString() != "null") {
-                                  if(verificador  == 0){
-
-                                    final DateTime now = DateTime.parse(emp.data_processo.toString());
-                                    final DateFormat formatter = DateFormat(
-                                        'dd-MM-yyyy'); //DateFormat('yyyy-MM-dd hh:mm');
-                                    final String formatted =
-                                    formatter.format(now);
-                                    emp.data_processo = formatted;
-
-
-                                  }
-
-                                } else if (emp.box_inicial.toString() ==
+                              if (emp.box_inicial.toString() ==
                                     "null") {
                                   emp.box_inicial = 0;
                                 } else if (emp.box_final.toString() == "null") {
@@ -451,7 +448,7 @@ class _CQNicotineAndSugarState extends State<CQNicotineAndSugar> {
                                 Text(emp.cod_grade.toString()),
                               ),*/
                                       DataCell(
-                                        Text(emp.data_processo.toString()),
+                                        Text(dataCorreta(emp.data_processo.toString())),
                                       ),
                                       DataCell(
                                         Text(emp.box_inicial.toString()),
