@@ -42,7 +42,6 @@ class _UncomittedState extends State<Uncomitted> {
   double totalexterno = 0;
 
   int count = 0;
-  int verificador = 0;
   static int v = 0;
 
   @override
